@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行政書士 江東法務事務所</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0d1b3e;
+      --navy-mid: #1a2f5e;
+      --gold: #b8962e;
+      --gold-light: #d4af37;
+      --cream: #f8f6f0;
+      --text: #2c2c2c;
+      --text-light: #666;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Serif JP', serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.8;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(13, 27, 62, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184, 150, 46, 0.3);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      color: var(--gold-light);
+      letter-spacing: 0.12em;
+      font-weight: 300;
+    }
+
+    .logo-main {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold-light);
+      transition: width 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 2px;
+      font-weight: 500;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--navy);
+      padding: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease, padding 0.35s;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      max-height: 400px;
+      padding: 8px 0 16px;
+    }
+
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 12px 28px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .mobile-menu a:hover { background: rgba(184,150,46,0.15); color: var(--gold-light); }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      background:
+        linear-gradient(to bottom right, rgba(13,27,62,0.78) 0%, rgba(13,27,62,0.55) 60%, rgba(26,47,94,0.7) 100%),
+        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80&fit=crop') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-inner { max-width: 760px; }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold-light);
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      padding: 6px 20px;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.06em;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .hero-en {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.18em;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+
+    .hero-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+    }
+
+    .hero p {
+      color: rgba(255,255,255,0.88);
+      font-size: clamp(14px, 2vw, 17px);
+      line-height: 2;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 15px 36px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      transition: background 0.25s, transform 0.2s;
+      border-radius: 2px;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 36px;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      font-weight: 400;
+      transition: border-color 0.25s, background 0.25s;
+      border-radius: 2px;
+    }
+
+    .btn-outline:hover { border-color: var(--gold-light); background: rgba(184,150,46,0.15); }
+
+    .hero-stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      margin-top: 56px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      color: var(--white);
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.14em;
+      margin-top: 6px;
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: 96px 24px; }
+
+    .section-label {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .section-desc {
+      color: var(--text-light);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 2;
+      max-width: 560px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features { background: var(--cream); }
+
+    .features-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .features-head { margin-bottom: 56px; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 40px 32px;
+      border-top: 3px solid var(--gold);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(13,27,62,0.1);
+    }
+
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    /* ===== SERVICES ===== */
+    .services { background: var(--white); }
+
+    .services-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .services-head { margin-bottom: 48px; }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 20px;
+      border: 1px solid #e8e3d8;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .service-item:hover {
+      border-color: var(--gold);
+      background: rgba(184,150,46,0.04);
+    }
+
+    .service-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      border-radius: 2px;
+    }
+
+    .service-text h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.04em;
+    }
+
+    .service-text p {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 2px;
+      font-weight: 300;
+    }
+
+    .services-highlight {
+      background: var(--navy);
+      padding: 48px 40px;
+      color: var(--white);
+      position: sticky;
+      top: 88px;
+    }
+
+    .services-highlight h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+
+    .services-highlight p {
+      font-size: 14px;
+      line-height: 2;
+      color: rgba(255,255,255,0.82);
+      font-weight: 300;
+      margin-bottom: 28px;
+    }
+
+    .highlight-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .highlight-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .highlight-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .highlight-tel {
+      border-top: 1px solid rgba(184,150,46,0.4);
+      padding-top: 28px;
+    }
+
+    .highlight-tel .tel-label {
+      font-size: 11px;
+      color: var(--gold-light);
+      letter-spacing: 0.16em;
+      margin-bottom: 6px;
+    }
+
+    .highlight-tel .tel-num {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.06em;
+    }
+
+    .highlight-tel .tel-hours {
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      font-weight: 300;
+    }
+
+    /* ===== ACCESS ===== */
+    .access { background: var(--cream); }
+
+    .access-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .access-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .access-head { margin-bottom: 40px; grid-column: 1 / -1; }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table tr {
+      border-bottom: 1px solid #e0dbd0;
+    }
+
+    .info-table th {
+      padding: 16px 0;
+      width: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      text-align: left;
+      vertical-align: top;
+      letter-spacing: 0.04em;
+    }
+
+    .info-table td {
+      padding: 16px 0;
+      font-size: 14px;
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .info-table td a {
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .info-table td a:hover { color: var(--gold); }
+
+    .map-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #ddd;
+      overflow: hidden;
+      border: 1px solid #e0dbd0;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(20%);
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8e4d8 0%, #d4cfc0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--navy);
+      gap: 12px;
+    }
+
+    .map-placeholder .pin { font-size: 40px; }
+
+    .map-placeholder p {
+      font-size: 13px;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner {
+      background: var(--navy-mid);
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      color: var(--white);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    .cta-banner p {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    .cta-banner .btn-primary {
+      font-size: 15px;
+      padding: 18px 48px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--navy);
+      padding: 56px 24px 32px;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 28px;
+    }
+
+    .footer-brand .logo-main { font-size: 16px; color: var(--white); }
+    .footer-brand .logo-sub { font-size: 10px; color: var(--gold-light); }
+
+    .footer-brand p {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      color: var(--gold-light);
+      letter-spacing: 0.18em;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      font-size: 13px;
+      padding: 4px 0;
+      font-weight: 300;
+    }
+
+    .footer-col ul li a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-bottom a {
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .services-layout { grid-template-columns: 1fr; }
+      .services-highlight { position: static; }
+      .service-list { grid-template-columns: 1fr; }
+      .access-layout { grid-template-columns: 1fr; }
+      .access-head { grid-column: 1; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 72px 20px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 28px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <nav>
+    <a href="#" class="logo">
+      <span class="logo-sub">Administrative Solicitor</span>
+      <span class="logo-main">行政書士 江東法務事務所</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">事務所について</a></li>
+      <li><a href="#services">業務内容</a></li>
+      <li><a href="#access">アクセス</a></li>
+      <li><a href="tel:0358751923" class="nav-cta">無料相談</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">事務所について</a>
+    <a href="#services">業務内容</a>
+    <a href="#access">アクセス</a>
+    <a href="tel:0358751923">📞 03-5875-1923（無料相談）</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-badge">特定行政書士　倉田 直也</div>
+    <h1>あなたの悩みに、<br>誠実に向き合います。</h1>
+    <p class="hero-en">Administrative Solicitor Kotohome Office</p>
+    <div class="hero-divider"></div>
+    <p>民事から刑事まで、幅広い分野の法務手続きをサポート。<br>
+    お一人で悩まず、まずはお気軽にご相談ください。</p>
+    <div class="hero-btns">
+      <a href="tel:0358751923" class="btn-primary">無料相談のお申し込み</a>
+      <a href="#services" class="btn-outline">業務内容を見る</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">10<span style="font-size:18px">+</span></div>
+        <div class="stat-label">取扱業務分野</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2009</div>
+        <div class="stat-label">創業年</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">江東区</div>
+        <div class="stat-label">地域密着</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="features-head">
+      <p class="section-label">About Us</p>
+      <h2 class="section-title">当事務所が選ばれる理由</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">江東区に根ざした法律の専門家として、お客さまの大切な問題に丁寧・迅速に対応いたします。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>幅広い専門知識</h3>
+        <p>遺言・相続から会社設立、建設業許可、外国人ビザまで、多岐にわたる法務手続きに対応。特定行政書士として刑事分野にも強みを持ちます。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>丁寧なヒアリング</h3>
+        <p>お客さまのご状況を詳しくお聞きした上で、最適な解決策をご提案。複雑な法的手続きをわかりやすくご説明いたします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏙️</div>
+        <h3>地域に根ざした対応</h3>
+        <p>東京都江東区を中心に、地域の皆さまの身近な法律の窓口として20年以上にわたり事務所を構えてまいりました。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-head">
+      <p class="section-label">Services</p>
+      <h2 class="section-title">主な取扱業務</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-layout">
+      <div>
+        <div class="service-list">
+          <div class="service-item">
+            <div class="service-icon">📜</div>
+            <div class="service-text">
+              <h4>遺言・相続</h4>
+              <p>遺言書作成・遺産分割協議書</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🧓</div>
+            <div class="service-text">
+              <h4>成年後見</h4>
+              <p>後見制度の申立支援</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">💼</div>
+            <div class="service-text">
+              <h4>会社設立</h4>
+              <p>株式会社・合同会社設立</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🏢</div>
+            <div class="service-text">
+              <h4>NPO法人設立</h4>
+              <p>非営利法人設立申請</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🔨</div>
+            <div class="service-text">
+              <h4>建設業許可</h4>
+              <p>許可申請・更新手続き</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🍶</div>
+            <div class="service-text">
+              <h4>酒類販売業免許</h4>
+              <p>免許申請サポート</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">💌</div>
+            <div class="service-text">
+              <h4>内容証明</h4>
+              <p>クーリングオフ・各種通知</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🐾</div>
+            <div class="service-text">
+              <h4>ペット法務</h4>
+              <p>動物関連の法律トラブル</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">⚖️</div>
+            <div class="service-text">
+              <h4>刑事関係</h4>
+              <p>告訴・告発状の作成</p>
+            </div>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">🌏</div>
+            <div class="service-text">
+              <h4>外国人関係</h4>
+              <p>在留資格・入管申請取次</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="services-highlight">
+          <h3>まずはご相談を</h3>
+          <p>どんな小さなご不安でも、一人で抱え込まずにお気軽にご連絡ください。初回相談は無料で承ります。</p>
+          <ul class="highlight-list">
+            <li>初回相談無料</li>
+            <li>土・日のご相談も応相談</li>
+            <li>出張相談も対応可能</li>
+            <li>離婚協議書の作成もお任せ</li>
+            <li>メール・電話どちらでもOK</li>
+          </ul>
+          <div class="highlight-tel">
+            <div class="tel-label">TEL（受付）</div>
+            <a href="tel:0358751923" class="tel-num" style="color:inherit;text-decoration:none;">03-5875-1923</a>
+            <div class="tel-hours">平日 9:00〜18:00（土日祝応相談）</div>
+            <div style="margin-top:12px;">
+              <span class="tel-label">FAX</span>
+              <span style="font-size:14px;color:rgba(255,255,255,0.7);margin-left:8px;">03-5875-1924</span>
+            </div>
+            <div style="margin-top:8px;">
+              <span class="tel-label">E-mail</span>
+              <a href="mailto:info@kotohome.com" style="font-size:13px;color:rgba(255,255,255,0.7);margin-left:8px;text-decoration:none;">info@kotohome.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<div class="cta-banner">
+  <h2>お困りごとは、お一人で悩まずに。</h2>
+  <p>当事務所では、丁寧なヒアリングのもと最適な法的サポートをご提案いたします。</p>
+  <a href="tel:0358751923" class="btn-primary">今すぐ電話で相談する</a>
+</div>
+
+<!-- ===== ACCESS ===== -->
+<section class="access" id="access">
+  <div class="access-inner">
+    <div class="access-head">
+      <p class="section-label">Access</p>
+      <h2 class="section-title">事務所情報・アクセス</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="access-layout">
+      <div>
+        <table class="info-table">
+          <tr>
+            <th>事務所名</th>
+            <td>行政書士 江東法務事務所</td>
+          </tr>
+          <tr>
+            <th>担当者</th>
+            <td>特定行政書士　倉田 直也</td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>〒135-0016<br>東京都江東区東陽4-6-11<br>メゾン・ド・サクラ 405号室</td>
+          </tr>
+          <tr>
+            <th>電話</th>
+            <td><a href="tel:0358751923">03-5875-1923</a></td>
+          </tr>
+          <tr>
+            <th>FAX</th>
+            <td>03-5875-1924</td>
+          </tr>
+          <tr>
+            <th>E-mail</th>
+            <td><a href="mailto:info@kotohome.com">info@kotohome.com</a></td>
+          </tr>
+          <tr>
+            <th>受付時間</th>
+            <td>平日 9:00〜18:00<br><span style="font-size:12px;color:#999;">※土日祝日はご相談ください</span></td>
+          </tr>
+          <tr>
+            <th>アクセス</th>
+            <td>東京メトロ東西線「東陽町」駅より徒歩約5分</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.7!2d139.8247!3d35.6714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601889f84b3d1edb%3A0x1c!2z5p2x5Lqs6YO95rGf5p2x5Yy65p2x6ZaA77yU5LiB55uu77yW4oiS77yR77yR!5e0!3m2!1sja!2sjp!4v1"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="事務所地図"
+          ></iframe>
+        </div>
+        <p style="font-size:12px;color:var(--text-light);margin-top:10px;font-weight:300;">
+          ※ 地図は参考表示です。お電話にてご確認の上お越しください。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-sub">Administrative Solicitor</span>
+          <span class="logo-main">行政書士 江東法務事務所</span>
+        </div>
+        <p>東京都江東区を中心に、遺言・相続から会社設立、外国人手続きまで幅広く対応する特定行政書士事務所です。</p>
+      </div>
+      <div class="footer-col">
+        <h4>業務内容</h4>
+        <ul>
+          <li><a href="#services">遺言・相続</a></li>
+          <li><a href="#services">成年後見</a></li>
+          <li><a href="#services">会社設立・NPO設立</a></li>
+          <li><a href="#services">建設業許可申請</a></li>
+          <li><a href="#services">外国人関係</a></li>
+          <li><a href="#services">ペット法務・刑事関係</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li>TEL: <a href="tel:0358751923">03-5875-1923</a></li>
+          <li>FAX: 03-5875-1924</li>
+          <li>Mail: <a href="mailto:info@kotohome.com">info@kotohome.com</a></li>
+          <li style="margin-top:8px;color:rgba(255,255,255,0.4);">平日 9:00〜18:00</li>
+          <li style="color:rgba(255,255,255,0.4);">（土日祝応相談）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Copyright &copy; 2009 行政書士 江東法務事務所 All Rights Reserved.</span>
+      <span style="color:rgba(255,255,255,0.3);">Kotohome Office</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
