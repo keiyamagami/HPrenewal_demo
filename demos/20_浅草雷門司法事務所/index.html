@@ -71,14 +71,14 @@
     letter-spacing: 0.06em;
   }
 
-  nav.pc-nav {
+  .pc-nav {
     display: flex;
     gap: 28px;
     list-style: none;
     align-items: center;
   }
 
-  nav.pc-nav a {
+  .pc-nav a {
     font-family: 'Noto Sans JP', sans-serif;
     font-size: 13px;
     font-weight: 400;
@@ -88,7 +88,7 @@
     transition: color 0.2s;
   }
 
-  nav.pc-nav a:hover { color: var(--gold-light); }
+  .pc-nav a:hover { color: var(--gold-light); }
 
   .header-tel {
     font-size: 14px;
@@ -644,7 +644,7 @@
 
   /* ========== RESPONSIVE ========== */
   @media (max-width: 900px) {
-    nav.pc-nav, .header-tel { display: none; }
+    .pc-nav, .header-tel { display: none; }
     .hamburger { display: flex; }
     .info-grid { grid-template-columns: 1fr; }
   }
