@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サイクルプラス | 足立区の自転車専門店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e85d04;
+    --accent-light: #f48c06;
+    --white: #ffffff;
+    --light: #f8f8f6;
+    --mid: #e8e6e1;
+    --text: #2d2d2d;
+    --text-light: #666;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26,26,46,0.95);
+    backdrop-filter: blur(8px);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    transition: background 0.3s;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-icon svg { width: 22px; height: 22px; fill: white; }
+
+  .logo-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+  }
+
+  .logo-sub {
+    font-size: 0.6rem;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-top: 1px;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+  }
+
+  nav ul a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    font-family: var(--sans);
+    font-weight: 400;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  nav ul a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+
+  nav ul a:hover { color: white; }
+  nav ul a:hover::after { transform: scaleX(1); }
+
+  .header-tel {
+    color: var(--accent-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    padding: 5px 14px;
+    border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .header-tel:hover { background: var(--accent); color: white; }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px; height: 2px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(20,20,36,0.98);
+    z-index: 999;
+    padding: 24px 5%;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: color 0.2s;
+  }
+
+  .mobile-nav a:hover { color: var(--accent-light); }
+
+  /* ===== HERO ===== */
+  #hero {
+    height: 100vh;
+    min-height: 600px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center 40%;
+    filter: brightness(0.45);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,26,46,0.7) 0%, rgba(232,93,4,0.15) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-light);
+    border: 1px solid var(--accent);
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-family: var(--sans);
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+  }
+
+  .hero-title span { color: var(--accent-light); }
+
+  .hero-sub {
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.15em;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 14px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.5);
+    color: white;
+    padding: 13px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    transition: border-color 0.2s, background 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    animation: bounce 2s infinite;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px; height: 40px;
+    background: rgba(255,255,255,0.3);
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ===== SECTIONS COMMON ===== */
+  section { padding: 88px 5%; }
+
+  .section-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    font-family: var(--sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.3;
+    margin-bottom: 18px;
+  }
+
+  .section-lead {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.9;
+    max-width: 560px;
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ===== FEATURES ===== */
+  #features { background: var(--light); }
+
+  .features-header { text-align: center; margin-bottom: 60px; }
+  .features-header .section-lead { margin: 0 auto; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 8px;
+    padding: 36px 28px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .feature-icon svg { width: 28px; height: 28px; fill: white; }
+
+  .feature-title {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+  }
+
+  .feature-desc {
+    font-size: 0.84rem;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* ===== SERVICES ===== */
+  #services { background: white; }
+
+  .services-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .services-info { }
+
+  .services-info .section-title { margin-bottom: 22px; }
+
+  .services-list {
+    list-style: none;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 16px;
+  }
+
+  .services-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--mid);
+  }
+
+  .services-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .services-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--light);
+    border-radius: 8px;
+    padding: 22px 24px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: background 0.2s;
+  }
+
+  .service-card:hover { background: #eeece7; }
+
+  .service-card-icon {
+    width: 44px; height: 44px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .service-card-icon svg { width: 24px; height: 24px; fill: var(--accent-light); }
+
+  .service-card-body h3 {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+  }
+
+  .service-card-body p {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    line-height: 1.75;
+  }
+
+  /* ===== BRANDS ===== */
+  #brands { background: var(--primary); padding: 60px 5%; }
+
+  .brands-inner { text-align: center; }
+
+  .brands-inner .section-label { color: var(--accent-light); }
+  .brands-inner .section-title { color: white; margin-bottom: 14px; }
+  .brands-inner .section-lead { color: rgba(255,255,255,0.6); margin: 0 auto 44px; }
+
+  .brands-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .brand-tag {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .brand-tag:hover { background: rgba(232,93,4,0.25); border-color: var(--accent); color: white; }
+
+  /* ===== ACCESS ===== */
+  #access { background: var(--light); }
+
+  .access-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .access-info { }
+
+  .info-block {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--mid);
+    align-items: start;
+  }
+
+  .info-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--text-light);
+    font-weight: 500;
+    padding-top: 2px;
+    text-transform: uppercase;
+  }
+
+  .info-value {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .info-value strong {
+    font-size: 1rem;
+    font-family: var(--serif);
+    font-weight: 600;
+  }
+
+  .info-value .holiday {
+    display: inline-block;
+    background: rgba(232,93,4,0.12);
+    color: var(--accent);
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+
+  .contact-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+  }
+
+  .contact-link:hover { opacity: 0.75; }
+
+  .map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    height: 380px;
+    background: #ddd;
+    position: relative;
+  }
+
+  .map-container iframe {
+    width: 100%; height: 100%;
+    border: none;
+    display: block;
+  }
+
+  /* ===== ANNIVERSARY BANNER ===== */
+  .anniversary {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    padding: 48px 5%;
+    text-align: center;
+  }
+
+  .anniversary-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+
+  .anniversary-num {
+    font-family: var(--serif);
+    font-size: 3.6rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+  }
+
+  .anniversary-num sup {
+    font-size: 1.2rem;
+    vertical-align: super;
+    font-weight: 400;
+  }
+
+  .anniversary-text h2 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: white;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .anniversary-text p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--primary);
+    color: rgba(255,255,255,0.7);
+    padding: 52px 5% 28px;
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand .logo-text { font-size: 1.15rem; margin-bottom: 12px; display: block; }
+
+  .footer-desc {
+    font-size: 0.8rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.5);
+    margin-top: 12px;
+    max-width: 280px;
+  }
+
+  .footer-heading {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: white; }
+
+  .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .footer-contact-item svg {
+    width: 15px; height: 15px;
+    fill: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .footer-contact-item span {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav, .header-tel { display: none; }
+    .hamburger { display: flex; }
+
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .services-inner { grid-template-columns: 1fr; gap: 40px; }
+    .access-inner { grid-template-columns: 1fr; gap: 36px; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 64px 5%; }
+    .features-grid { grid-template-columns: 1fr; }
+    .services-list { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .map-container { height: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#hero">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 20.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm14 0a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM5 17a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm14 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-1.31-10H13v2h3.22l1.94 4.38-1.8.92L14.5 10H13v2h.78l1.5 3-2.09 1.06A3.97 3.97 0 0 0 9 14H5v2h4a2 2 0 1 1-2 2H5a3.97 3.97 0 0 0 3.22 3.9L7.5 23H6v2h2l.5-1.06A3.97 3.97 0 0 0 12 21c.84 0 1.62-.26 2.27-.7L16 23h2l-2-4.5 2.5-1.25L21 21h2l-3.64-8.18A2 2 0 0 0 17.69 7zM12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+      </svg>
+    </div>
+    <div>
+      <span class="logo-text">サイクルプラス</span>
+      <span class="logo-sub">CYCLE PLUS</span>
+    </div>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="#features">こだわり</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#brands">ブランド</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+  </nav>
+  <a class="header-tel" href="tel:0338800633">TEL: 03-3880-0633</a>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#features" onclick="closeMobile()">こだわり</a>
+  <a href="#services" onclick="closeMobile()">サービス</a>
+  <a href="#brands" onclick="closeMobile()">ブランド</a>
+  <a href="#access" onclick="closeMobile()">アクセス・店舗情報</a>
+  <a href="tel:0338800633" style="color:var(--accent-light);font-weight:500;margin-top:8px;">TEL: 03-3880-0633</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">足立区の自転車専門店 ── 創業19周年</span>
+    <h1 class="hero-title">走る喜びを、<br><span>あなたの一台</span>と。</h1>
+    <p class="hero-sub">スポーツバイクから電動アシストまで、専門スタッフが丁寧にご対応します</p>
+    <div class="hero-ctas">
+      <a href="#services" class="btn-primary">サービスを見る</a>
+      <a href="#access" class="btn-outline">店舗情報・アクセス</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="features-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">サイクルプラスが<br>選ばれる理由</h2>
+      <p class="section-lead">足立区梅田で19年。地元のお客様に寄り添い、自転車のある豊かな生活を一緒に作ってきました。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12V11c0 4.52-3.12 8.79-7 10.07C8.12 19.79 5 15.52 5 11V6.3l7-3.12z"/></svg>
+        </div>
+        <h3 class="feature-title">専門スタッフによる丁寧なご提案</h3>
+        <p class="feature-desc">初めてスポーツバイクに挑戦される方も大歓迎。用途・体型・予算に合わせてベストな一台をご提案します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+        </div>
+        <h3 class="feature-title">修理・メンテナンス即日対応</h3>
+        <p class="feature-desc">パンク修理からオーバーホールまで、経験豊富なメカニックが迅速・丁寧に対応。大切な愛車を長く乗り続けるために。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        </div>
+        <h3 class="feature-title">豊富なブランド・モデルラインナップ</h3>
+        <p class="feature-desc">ロードバイク、MTB、グラベル、電動アシストまで多数の人気ブランドを取り扱い。カスタムオーダーも承ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-inner">
+      <div class="services-info">
+        <span class="section-label">Services</span>
+        <h2 class="section-title">取り扱い商品・<br>サービス一覧</h2>
+        <p class="section-lead">幅広いニーズにお応えするラインナップ。スポーツバイク入門から本格カスタムまでお任せください。</p>
+        <ul class="services-list">
+          <li>ロードバイク</li>
+          <li>マウンテンバイク</li>
+          <li>グラベルバイク</li>
+          <li>小径車（ミニベロ）</li>
+          <li>軽快車・シティサイクル</li>
+          <li>電動アシスト自転車</li>
+          <li>折りたたみ自転車</li>
+          <li>子ども乗せ自転車</li>
+          <li>パーツ・アクセサリー</li>
+          <li>ケミカル用品</li>
+        </ul>
+      </div>
+      <div class="services-cards">
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+          </div>
+          <div class="service-card-body">
+            <h3>修理・メンテナンス</h3>
+            <p>パンク修理・変速調整・ブレーキ調整・オーバーホールなど、全メニュー対応。料金はお気軽にお問い合わせください。</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3zm0 2.7L19 12v7h-4v-5H9v5H5v-7l7-6.3z"/></svg>
+          </div>
+          <div class="service-card-body">
+            <h3>パナソニック・オーダーシステム</h3>
+            <p>日本の職人が作る、世界に一台だけの自転車。フレームカラー・サイズ・パーツを自由にカスタムできます。</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2l-5.5 9h11L12 2zm0 3.84L14.6 9h-5.2L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/></svg>
+          </div>
+          <div class="service-card-body">
+            <h3>スポーツバイク入門サポート</h3>
+            <p>初めてのスポーツバイクをお考えの方へ、フィッティング・走り方・メンテナンスまで丁寧にご説明します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDS -->
+<section id="brands">
+  <div class="container brands-inner">
+    <span class="section-label">Brands</span>
+    <h2 class="section-title">取り扱いブランド</h2>
+    <p class="section-lead">国内外の信頼あるブランドを多数取り揃えています。お探しのモデルはお気軽にご相談ください。</p>
+    <div class="brands-grid">
+      <span class="brand-tag">Bianchi（ビアンキ）</span>
+      <span class="brand-tag">Panasonic</span>
+      <span class="brand-tag">LOUIS GARNEAU</span>
+      <span class="brand-tag">ANCHOR</span>
+      <span class="brand-tag">BRIDGESTONE</span>
+      <span class="brand-tag">GIOS</span>
+      <span class="brand-tag">DAHON</span>
+      <span class="brand-tag">GT</span>
+      <span class="brand-tag">GIANT</span>
+      <span class="brand-tag">SHIMANO</span>
+      <span class="brand-tag">TOPEAK</span>
+      <span class="brand-tag">CATEYE</span>
+      <span class="brand-tag">mont-bell</span>
+      <span class="brand-tag">BBB</span>
+      <span class="brand-tag">WAKO'S</span>
+      <span class="brand-tag">KNOG</span>
+    </div>
+  </div>
+</section>
+
+<!-- ANNIVERSARY BANNER -->
+<div class="anniversary">
+  <div class="anniversary-inner">
+    <div class="anniversary-num">19<sup>th</sup></div>
+    <div class="anniversary-text">
+      <h2>おかげさまで創業19周年</h2>
+      <p>足立区のお客様とともに歩んできた19年間。これからもよろしくお願いします。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="container">
+    <div class="access-inner">
+      <div class="access-info">
+        <span class="section-label">Shop Info &amp; Access</span>
+        <h2 class="section-title">営業時間・<br>アクセス</h2>
+        <div class="info-block">
+          <div class="info-row">
+            <span class="info-label">営業時間</span>
+            <div class="info-value">
+              <strong>10:00 〜 19:30</strong><br>
+              <span style="font-size:0.82rem;color:var(--text-light);">土・日・祝日も営業しております</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-label">定休日</span>
+            <div class="info-value">
+              <span class="holiday">水曜日</span>　<span class="holiday">毎月第2日曜日</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-label">住所</span>
+            <div class="info-value">
+              〒123-0851<br>
+              東京都足立区梅田7-25-2<br>
+              高須ビル102<br>
+              <span style="font-size:0.78rem;color:var(--text-light);">（国道4号沿い、東武伊勢崎線高架下近く）</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-label">TEL / FAX</span>
+            <div class="info-value">
+              <a class="contact-link" href="tel:0338800633">03-3880-0633</a>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-label">メール</span>
+            <div class="info-value">
+              <a class="contact-link" href="mailto:cycle.plus@nifty.com">cycle.plus@nifty.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps?q=東京都足立区梅田7-25-2&output=embed"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="サイクルプラス 地図">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="logo" href="#hero" style="margin-bottom:12px;display:inline-flex;">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 20.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm14 0a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM5 17a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm14 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-1.31-10H13v2h3.22l1.94 4.38-1.8.92L14.5 10H13v2h.78l1.5 3-2.09 1.06A3.97 3.97 0 0 0 9 14H5v2h4a2 2 0 1 1-2 2H5a3.97 3.97 0 0 0 3.22 3.9L7.5 23H6v2h2l.5-1.06A3.97 3.97 0 0 0 12 21c.84 0 1.62-.26 2.27-.7L16 23h2l-2-4.5 2.5-1.25L21 21h2l-3.64-8.18A2 2 0 0 0 17.69 7zM12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+            </svg>
+          </div>
+          <div style="margin-left:10px;">
+            <span class="logo-text" style="color:white;">サイクルプラス</span>
+            <span class="logo-sub">CYCLE PLUS</span>
+          </div>
+        </a>
+        <p class="footer-desc">足立区梅田の自転車専門店。スポーツバイクから電動アシスト自転車まで、修理・メンテナンス・カスタムオーダーをご提供しています。創業19周年、地域に根ざした自転車店として皆様のご来店をお待ちしております。</p>
+      </div>
+      <div>
+        <p class="footer-heading">メニュー</p>
+        <ul class="footer-links">
+          <li><a href="#features">こだわり・特徴</a></li>
+          <li><a href="#services">サービス・商品</a></li>
+          <li><a href="#brands">取り扱いブランド</a></li>
+          <li><a href="#access">アクセス・営業時間</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-heading">お問い合わせ</p>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          <span><a href="tel:0338800633" style="color:var(--accent-light);text-decoration:none;">03-3880-0633</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span><a href="mailto:cycle.plus@nifty.com" style="color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.78rem;">cycle.plus@nifty.com</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <span>東京都足立区梅田7-25-2<br>高須ビル102</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Copyright &copy; 2006 CYCLE PLUS. All Rights Reserved.</p>
+      <p style="color:rgba(255,255,255,0.25);">営業：月火木金土日祝 10:00-19:30　定休：水曜・毎月第2日曜</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }
+
+  // Close mobile menu on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+      closeMobile();
+    }
+  });
+</script>
+</body>
+</html>
