@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浅草雷門司法事務所 | 台東区・墨田区の司法書士・行政書士</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243460;
+    --gold: #b8972a;
+    --gold-light: #d4af37;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --gray: #f0ede8;
+    --text: #2c2c2c;
+    --text-light: #666666;
+    --border: #d6cfc4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.8;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 39, 68, 0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,151,42,0.3);
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+  }
+
+  .logo-main {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.06em;
+  }
+
+  nav.pc-nav {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+
+  nav.pc-nav a {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  nav.pc-nav a:hover { color: var(--gold-light); }
+
+  .header-tel {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: var(--navy);
+    padding: 16px 0 24px;
+    border-top: 1px solid rgba(184,151,42,0.2);
+  }
+
+  .mobile-nav.open { display: flex; }
+
+  .mobile-nav a {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    letter-spacing: 0.08em;
+    transition: background 0.2s;
+  }
+
+  .mobile-nav a:hover { background: rgba(184,151,42,0.1); }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,39,68,0.75) 0%, rgba(10,18,40,0.6) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    padding: 6px 20px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  .hero-title em {
+    display: block;
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(13px, 2vw, 15px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.15em;
+    margin-bottom: 40px;
+    line-height: 2;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 16px 36px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .hero-cta svg { width: 18px; height: 18px; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .hero-scroll span {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(184,151,42,0.7), transparent);
+    animation: scrollAnim 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ========== SECTION BASE ========== */
+  section { padding: 88px 24px; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .section-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 3.5vw, 34px);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    line-height: 1.5;
+  }
+
+  .section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 16px auto 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ========== FEATURES ========== */
+  .features { background: var(--cream); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border-top: 3px solid var(--gold);
+    box-shadow: 0 4px 24px rgba(26,39,68,0.07);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(26,39,68,0.12);
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .feature-icon svg {
+    width: 26px;
+    height: 26px;
+    stroke: var(--gold-light);
+    fill: none;
+    stroke-width: 1.5;
+  }
+
+  .feature-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  .feature-text {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  /* ========== SERVICES ========== */
+  .services { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover::before { transform: scaleY(1); }
+  .service-card:hover { border-color: var(--gold); box-shadow: 0 8px 32px rgba(26,39,68,0.08); }
+
+  .service-number {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+  }
+
+  .service-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .service-desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-light);
+    line-height: 1.9;
+    margin-bottom: 16px;
+  }
+
+  .service-tag {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--gray);
+    color: var(--navy);
+    border-radius: 2px;
+    margin: 2px;
+  }
+
+  /* Free badge */
+  .free-badge {
+    display: inline-block;
+    background: #c0392b;
+    color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== CTA BAND ========== */
+  .cta-band {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 72px 24px;
+    text-align: center;
+  }
+
+  .cta-band .section-title { color: var(--white); }
+
+  .cta-band p {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    margin: 16px 0 32px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+  }
+
+  .cta-tel {
+    display: inline-block;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 600;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .cta-tel-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.15em;
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    text-decoration: none;
+    padding: 13px 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    transition: background 0.3s, color 0.3s;
+    margin: 6px;
+  }
+
+  .btn-outline:hover { background: var(--gold); color: var(--white); }
+
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 13px 30px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    transition: background 0.3s;
+    margin: 6px;
+  }
+
+  .btn-solid:hover { background: var(--gold-light); }
+
+  /* ========== INFO ========== */
+  .info { background: var(--cream); }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .info-table th,
+  .info-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .info-table th {
+    width: 100px;
+    font-weight: 500;
+    color: var(--navy);
+    background: rgba(26,39,68,0.04);
+    white-space: nowrap;
+  }
+
+  .info-table td { color: var(--text-light); line-height: 1.8; }
+
+  .info-table a { color: var(--navy); text-decoration: none; }
+  .info-table a:hover { color: var(--gold); }
+
+  .map-wrap {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(20%);
+  }
+
+  .hours-note {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 8px;
+    padding-left: 16px;
+    line-height: 1.8;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: #0d1628;
+    padding: 56px 24px 28px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .footer-logo-sub {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+  }
+
+  .footer-info {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 2;
+    margin-bottom: 32px;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+    margin-bottom: 32px;
+  }
+
+  .footer-nav a {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover { color: var(--gold-light); }
+
+  .footer-copy {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    nav.pc-nav, .header-tel { display: none; }
+    .hamburger { display: flex; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 64px 20px; }
+    .features-grid, .services-grid { grid-template-columns: 1fr; }
+    .hero-cta { padding: 14px 28px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header id="header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-sub">Judicial Scrivener & Administrative Scrivener</span>
+      <span class="logo-main">浅草雷門司法事務所</span>
+    </div>
+    <nav>
+      <ul class="pc-nav">
+        <li><a href="#features">特徴</a></li>
+        <li><a href="#services">業務内容</a></li>
+        <li><a href="#info">アクセス</a></li>
+      </ul>
+    </nav>
+    <a href="tel:0358307417" class="header-tel">03-5830-7417</a>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#features" onclick="closeMobileNav()">特徴・こだわり</a>
+    <a href="#services" onclick="closeMobileNav()">業務内容</a>
+    <a href="#info" onclick="closeMobileNav()">営業時間・アクセス</a>
+    <a href="tel:0358307417">📞 03-5830-7417</a>
+  </nav>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Asakusa Kaminarimon Law Office</span>
+    <h1 class="hero-title">
+      台東区・墨田区の<br>
+      <em>相続・遺言・会社設立</em>
+      ご相談ください
+    </h1>
+    <p class="hero-sub">
+      浅草雷門司法事務所は、地域に根ざした司法書士・行政書士として<br>
+      お客様ひとりひとりの問題解決に真摯に向き合います
+    </p>
+    <a href="tel:0358307417" class="hero-cta">
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      無料相談のお申込み
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Promise</span>
+      <h2 class="section-title">浅草雷門司法事務所の<br>3つのお約束</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="feature-title">最初から最後まで同じ司法書士が担当</h3>
+        <p class="feature-text">担当者が変わることなく、一貫して同じ司法書士が対応いたします。お客様の状況を深く理解した上で、最適な解決策をご提案します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <h3 class="feature-title">相談料・着手金・減額報酬は不要</h3>
+        <p class="feature-text">債務整理・任意整理において、相談料・着手金・減額報酬はいただきません。費用は分割払い対応可能。まず気軽にご相談いただける体制を整えています。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="feature-title">出張対応・土日祝も相談可能</h3>
+        <p class="feature-text">事務所まで来られない方には司法書士が出張いたします。また、土・日・祝日も予約制にてご相談を承ります。お客様のご都合に合わせて柔軟に対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">主な業務内容</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <p class="service-number">SERVICE 01</p>
+        <h3 class="service-name">相続・遺言</h3>
+        <p class="service-desc">遺言書の確認・検認から相続人の確定、遺産分割協議、名義変更まで一括サポート。相続放棄・限定承認は3ヶ月以内の手続きが必要なため、お早めにご相談ください。</p>
+        <span class="service-tag">遺産分割協議</span>
+        <span class="service-tag">相続登記</span>
+        <span class="service-tag">相続放棄</span>
+        <span class="service-tag">遺言書作成</span>
+      </div>
+      <div class="service-card">
+        <p class="service-number">SERVICE 02</p>
+        <h3 class="service-name">
+          債務整理・過払い
+          <span class="free-badge">相談無料</span>
+        </h3>
+        <p class="service-desc">借金問題を一人で抱えないでください。任意整理・個人再生・自己破産・過払い金返還請求など、お客様の状況に最適な解決方法をご提案します。</p>
+        <span class="service-tag">任意整理</span>
+        <span class="service-tag">個人再生</span>
+        <span class="service-tag">自己破産</span>
+        <span class="service-tag">過払い金返還</span>
+      </div>
+      <div class="service-card">
+        <p class="service-number">SERVICE 03</p>
+        <h3 class="service-name">会社設立・変更</h3>
+        <p class="service-desc">株式会社・合同会社の設立から、商号変更・本社移転・有限会社から株式会社への変更手続きまで対応。古物商の許可申請と合わせた起業サポートも承ります。</p>
+        <span class="service-tag">株式会社設立</span>
+        <span class="service-tag">合同会社設立</span>
+        <span class="service-tag">商号変更</span>
+        <span class="service-tag">古物商許可</span>
+      </div>
+      <div class="service-card">
+        <p class="service-number">SERVICE 04</p>
+        <h3 class="service-name">成年後見</h3>
+        <p class="service-desc">認知症や知的障害などで判断能力が低下したご家族の財産管理や生活保護を支援するための成年後見制度の申立て手続きをサポートします。</p>
+        <span class="service-tag">後見申立て</span>
+        <span class="service-tag">財産管理</span>
+        <span class="service-tag">任意後見</span>
+      </div>
+      <div class="service-card">
+        <p class="service-number">SERVICE 05</p>
+        <h3 class="service-name">抵当権抹消</h3>
+        <p class="service-desc">住宅ローンを完済した際に必要な抵当権抹消登記の手続きを代行いたします。書類の準備から法務局への申請まで、すべてお任せください。</p>
+        <span class="service-tag">住宅ローン完済後</span>
+        <span class="service-tag">抵当権抹消登記</span>
+      </div>
+      <div class="service-card">
+        <p class="service-number">SERVICE 06</p>
+        <h3 class="service-name">不動産登記</h3>
+        <p class="service-desc">マンション・一戸建ての購入に伴う所有権移転登記を承ります。台東区・墨田区はもちろん、葛飾区・荒川区・足立区・千葉・埼玉の不動産登記も対応します。</p>
+        <span class="service-tag">所有権移転</span>
+        <span class="service-tag">売買</span>
+        <span class="service-tag">贈与</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA BAND ========== -->
+<section class="cta-band">
+  <div class="container">
+    <h2 class="section-title">まずはお気軽にご相談ください</h2>
+    <p>
+      「何から手を付けていいのか分からない」という方でも大丈夫です。<br>
+      些細なことでも、専門家が丁寧にお答えします。
+    </p>
+    <a href="tel:0358307417" class="cta-tel">03-5830-7417</a>
+    <span class="cta-tel-label">平日 10:00〜20:00 ／ 土・日・祝も予約制にて対応</span>
+    <br>
+    <a href="mailto:info@asakusa-shihou.jp" class="btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      メールで相談する
+    </a>
+    <a href="tel:0358307417" class="btn-solid">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      今すぐ電話する
+    </a>
+  </div>
+</section>
+
+<!-- ========== INFO ========== -->
+<section class="info" id="info">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Access & Hours</span>
+      <h2 class="section-title">営業時間・アクセス</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="info-grid">
+      <div>
+        <table class="info-table">
+          <tr>
+            <th>事務所名</th>
+            <td>浅草雷門司法事務所<br>浅草雷門行政書士事務所</td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>〒111-0033<br>東京都台東区花川戸1-15-1<br>フェスタ花川戸604</td>
+          </tr>
+          <tr>
+            <th>電話</th>
+            <td><a href="tel:0358307417">03-5830-7417</a></td>
+          </tr>
+          <tr>
+            <th>E-mail</th>
+            <td><a href="mailto:info@asakusa-shihou.jp">info@asakusa-shihou.jp</a></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>
+              平日　10:00〜20:00<br>
+              土・日・祝　要予約
+            </td>
+          </tr>
+          <tr>
+            <th>対応地域</th>
+            <td>台東区・墨田区・葛飾区・荒川区・足立区・千葉県・埼玉県</td>
+          </tr>
+        </table>
+        <p class="hours-note">
+          ※ 債務整理の電話受付：平日 10:00〜20:00 / 土日祝 〜18:00<br>
+          ※ 平日夜間・土日祝は完全予約制です<br>
+          ※ 出張相談も承ります
+        </p>
+      </div>
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.7!2d139.7951!3d35.7146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ec27c17b8b1%3A0x1!2z5p2x5Lqs6YO95Y-w5p2x5Ymz5Zu955S677yR4oiS77yR77yV4oiS77yR!5e0!3m2!1sja!2sjp!4v1"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="浅草雷門司法事務所 地図">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <p class="footer-logo">浅草雷門司法事務所</p>
+  <p class="footer-logo-sub">Asakusa Kaminarimon Judicial Scrivener Office</p>
+  <p class="footer-info">
+    〒111-0033 東京都台東区花川戸1-15-1 フェスタ花川戸604<br>
+    TEL: 03-5830-7417 　E-mail: info@asakusa-shihou.jp
+  </p>
+  <nav class="footer-nav">
+    <a href="#top">トップ</a>
+    <a href="#features">特徴</a>
+    <a href="#services">相続・遺言</a>
+    <a href="#services">債務整理</a>
+    <a href="#services">会社設立</a>
+    <a href="#services">成年後見</a>
+    <a href="#info">事務所情報</a>
+  </nav>
+  <p class="footer-copy">© 2024 浅草雷門司法事務所 All Rights Reserved.</p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+
+  function closeMobileNav() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }
+
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.style.background = 'rgba(26, 39, 68, 0.98)';
+    } else {
+      header.style.background = 'rgba(26, 39, 68, 0.96)';
+    }
+  });
+</script>
+
+</body>
+</html>
