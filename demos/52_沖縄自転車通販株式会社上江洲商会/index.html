@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沖縄自転車通販｜株式会社上江洲商会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ocean: #0a4f6e;
+    --ocean-light: #1a7a9a;
+    --sky: #e8f4f8;
+    --coral: #e85d26;
+    --coral-light: #f4784a;
+    --sand: #f7f3ee;
+    --charcoal: #2b2b2b;
+    --gray: #666;
+    --light-gray: #f0f0f0;
+    --white: #fff;
+    --font-serif: 'Noto Serif JP', serif;
+    --font-sans: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--charcoal);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10, 79, 110, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .logo-main {
+    font-family: var(--font-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-size: 10px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.06em;
+  }
+
+  nav {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    font-weight: 400;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  nav a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--coral);
+    color: var(--white) !important;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--coral-light) !important; }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(10, 79, 110, 0.98);
+    z-index: 999;
+    padding: 20px 0;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-menu a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    padding: 14px 28px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.2s;
+  }
+
+  .mobile-menu a:hover { background: rgba(255,255,255,0.08); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+
+  #hero:hover .hero-bg { transform: scale(1.0); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(10, 49, 70, 0.82) 0%,
+      rgba(10, 79, 110, 0.65) 50%,
+      rgba(10, 49, 70, 0.55) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--coral);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    padding: 6px 18px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 6vw, 62px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  .hero-title span {
+    display: block;
+    font-size: clamp(20px, 3.5vw, 34px);
+    font-weight: 300;
+    opacity: 0.85;
+    margin-bottom: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-sub {
+    font-size: clamp(14px, 2vw, 18px);
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-note {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--coral);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 36px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: all 0.25s;
+    box-shadow: 0 4px 16px rgba(232, 93, 38, 0.4);
+  }
+
+  .btn-primary:hover {
+    background: var(--coral-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(232, 93, 38, 0.5);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    padding: 13px 36px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1.5px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0%, 100% { opacity: 0.5; transform: scaleY(1); transform-origin: top; }
+    50% { opacity: 1; }
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 90px 20px; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--coral);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 700;
+    color: var(--ocean);
+    line-height: 1.35;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--gray);
+    max-width: 600px;
+    line-height: 1.85;
+    margin-bottom: 56px;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--coral);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  /* ─── FEATURES ─── */
+  #features {
+    background: var(--sand);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid transparent;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border-top-color: var(--coral);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--sky);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+
+  .feature-number {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-family: var(--font-serif);
+    font-size: 52px;
+    font-weight: 700;
+    color: rgba(10, 79, 110, 0.06);
+    line-height: 1;
+  }
+
+  .feature-card h3 {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ocean);
+    margin-bottom: 12px;
+    line-height: 1.45;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.85;
+  }
+
+  .feature-highlight {
+    display: inline-block;
+    background: var(--sky);
+    color: var(--ocean-light);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-top: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── PRODUCTS ─── */
+  #products {
+    background: var(--white);
+  }
+
+  .products-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .products-header .section-desc {
+    margin: 0 auto;
+  }
+
+  .products-header .divider {
+    margin: 16px auto 20px;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .product-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 36px rgba(0,0,0,0.13);
+  }
+
+  .product-img {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .product-card:hover .product-img img { transform: scale(1.06); }
+
+  .product-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    background: var(--ocean);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+  }
+
+  .product-tag.hot { background: var(--coral); }
+
+  .product-body {
+    padding: 22px 24px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-body h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    line-height: 1.45;
+  }
+
+  .product-body p {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.75;
+    flex: 1;
+  }
+
+  .product-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ocean-light);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: gap 0.2s, color 0.2s;
+  }
+
+  .product-link:hover { gap: 10px; color: var(--coral); }
+
+  .product-link::after { content: '→'; }
+
+  /* ─── REPAIR ─── */
+  #repair {
+    background: var(--ocean);
+    color: var(--white);
+    padding: 80px 20px;
+  }
+
+  .repair-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .repair-content .section-label { color: #7ecde0; }
+  .repair-content .section-title { color: var(--white); }
+
+  .repair-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .repair-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+  }
+
+  .repair-list li::before {
+    content: '✓';
+    color: #7ecde0;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .repair-note {
+    background: rgba(255,255,255,0.08);
+    border-left: 3px solid #7ecde0;
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+  }
+
+  .repair-visual {
+    position: relative;
+  }
+
+  .repair-visual img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  }
+
+  .repair-card {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 18px 22px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.2);
+  }
+
+  .repair-card .number {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--ocean);
+    line-height: 1;
+  }
+
+  .repair-card .label {
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* ─── INFO ─── */
+  #info {
+    background: var(--sand);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .info-table-wrap {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  .info-table-head {
+    background: var(--ocean);
+    color: var(--white);
+    padding: 18px 28px;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 16px 24px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+
+  th {
+    color: var(--gray);
+    font-weight: 500;
+    width: 36%;
+    white-space: nowrap;
+    background: #fafafa;
+  }
+
+  td { color: var(--charcoal); line-height: 1.65; }
+
+  td strong {
+    color: var(--ocean);
+    font-size: 17px;
+  }
+
+  .map-wrap {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    background: var(--white);
+  }
+
+  .map-head {
+    background: var(--ocean);
+    color: var(--white);
+    padding: 18px 28px;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .map-placeholder {
+    height: 280px;
+    background: linear-gradient(135deg, #d0eaf4 0%, #b8dded 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--ocean-light);
+  }
+
+  .map-placeholder .pin {
+    font-size: 44px;
+  }
+
+  .map-placeholder p {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .map-placeholder small {
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .map-address {
+    padding: 18px 24px;
+    font-size: 14px;
+    color: var(--gray);
+    border-top: 1px solid #eee;
+    line-height: 1.75;
+  }
+
+  .map-address strong { color: var(--charcoal); display: block; margin-bottom: 4px; }
+
+  /* ─── CTA BAND ─── */
+  #cta {
+    background: linear-gradient(135deg, var(--ocean) 0%, #0d6d94 100%);
+    padding: 70px 20px;
+    text-align: center;
+  }
+
+  #cta h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 3.5vw, 34px);
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 0.04em;
+  }
+
+  #cta p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 36px;
+    letter-spacing: 0.04em;
+  }
+
+  .cta-contacts {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .cta-tel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cta-tel span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .cta-tel a {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .cta-tel a:hover { color: #7ecde0; }
+
+  .cta-email a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255,255,255,0.35);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .cta-email a:hover { color: var(--white); }
+
+  .cta-hours {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0b1a24;
+    padding: 48px 24px 28px;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 24px;
+  }
+
+  .footer-brand h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-brand .corp {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 16px;
+    letter-spacing: 0.06em;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+  }
+
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .footer-col ul li a:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .repair-inner { grid-template-columns: 1fr; gap: 40px; }
+    .repair-visual { order: -1; }
+    .repair-visual img { height: 280px; }
+  }
+
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hamburger { display: flex; }
+    section { padding: 64px 20px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .repair-card { display: none; }
+    .cta-contacts { flex-direction: column; align-items: center; gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .logo-main { font-size: 14px; }
+    .hero-buttons { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-outline { width: 240px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="logo">
+    <span class="logo-main">沖縄自転車通販</span>
+    <span class="logo-sub">株式会社上江洲商会</span>
+  </div>
+  <nav>
+    <a href="#features">当社の特徴</a>
+    <a href="#products">商品カテゴリ</a>
+    <a href="#repair">修理・サービス</a>
+    <a href="#info">営業案内</a>
+    <a href="#cta" class="nav-cta">お問い合わせ</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="closeMenu()">当社の特徴</a>
+  <a href="#products" onclick="closeMenu()">商品カテゴリ</a>
+  <a href="#repair" onclick="closeMenu()">修理・サービス</a>
+  <a href="#info" onclick="closeMenu()">営業案内</a>
+  <a href="#cta" onclick="closeMenu()">お問い合わせ</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">Okinawa's Bicycle Specialist Since 1951</span>
+    <h1 class="hero-title">
+      <span>沖縄で自転車を買うなら</span>
+      沖縄自転車通販
+    </h1>
+    <p class="hero-sub">Panasonic沖縄県総代理店 ／ 在庫約6,000台</p>
+    <p class="hero-note">創業70年超の信頼と実績。完全組立・整備でお届けします。</p>
+    <div class="hero-buttons">
+      <a href="#products" class="btn-primary">商品を見る</a>
+      <a href="#cta" class="btn-outline">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section id="features">
+  <div class="section-inner">
+    <span class="section-label">Our Strengths</span>
+    <div class="divider"></div>
+    <h2 class="section-title">60年以上の実績が証明する<br>沖縄最大の自転車専門店</h2>
+    <p class="section-desc">1951年創業。沖縄県内最大の自転車卸売業者として積み上げてきた技術力・在庫力・サービスで、お客様の「ぴったりの一台」をお届けします。</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-number">01</div>
+        <div class="feature-icon">🏅</div>
+        <h3>創業70年超の<br>豊富な経験と実績</h3>
+        <p>1951年の創業以来、沖縄県内において最大の自転車卸売業者として営業。長年の経験と実績から、通販でも自社便配達に対応しています（沖縄本島内限定）。</p>
+        <span class="feature-highlight">沖縄県内最大手</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">02</div>
+        <div class="feature-icon">🔧</div>
+        <h3>有資格ベテランスタッフに<br>よる高い技術力</h3>
+        <p>10年以上のキャリアを持つベテランスタッフが揃い、自転車安全整備士の有資格者が組立・整備を担当。安心・信頼のサービスをご提供します。</p>
+        <span class="feature-highlight">自転車安全整備士在籍</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">03</div>
+        <div class="feature-icon">📦</div>
+        <h3>完全組立・整備で<br>すぐに乗れる状態でお届け</h3>
+        <p>通常の通販では到着後に組立が必要ですが、当社では沖縄県内に限り完全組立・整備済みで納品。届いてすぐに安全に乗り出せます。</p>
+        <span class="feature-highlight">在庫約6,000台</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">04</div>
+        <div class="feature-icon">⚡</div>
+        <h3>Panasonic<br>沖縄県総代理店</h3>
+        <p>パナソニックサイクルテック株式会社の沖縄県総代理店として、豊富な電動アシスト自転車を取り扱い。保証・修理まで安心のワンストップ対応。</p>
+        <span class="feature-highlight">Panasonic正規代理店</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">05</div>
+        <div class="feature-icon">🏪</div>
+        <h3>那覇営業所での<br>店頭受け取りも対応</h3>
+        <p>ネット注文後、那覇市曙の営業所にて店頭受け取りが可能です。ハンドル等の調整も承ります。遠方からでもご安心ください。</p>
+        <span class="feature-highlight">那覇市曙3-11-1</span>
+      </div>
+      <div class="feature-card">
+        <div class="feature-number">06</div>
+        <div class="feature-icon">🛡️</div>
+        <h3>クラブハイビー会員<br>サービス</h3>
+        <p>クラブハイビーマーク付きの自転車は、入会1年以内の盗難時に格安で同車を再購入可能。修理代も特別価格でご提供します。</p>
+        <span class="feature-highlight">盗難補償サービス</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRODUCTS ─── -->
+<section id="products">
+  <div class="section-inner">
+    <div class="products-header">
+      <span class="section-label">Product Categories</span>
+      <div class="divider"></div>
+      <h2 class="section-title">豊富な品揃えで<br>あなたにぴったりの一台を</h2>
+      <p class="section-desc">子ども向けから電動アシスト、スポーツ車まで幅広くラインナップ。沖縄の地形・気候に合った最適な自転車をご提案します。</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80" alt="電動アシスト自転車">
+          <span class="product-tag hot">人気No.1</span>
+        </div>
+        <div class="product-body">
+          <h3>電動アシスト自転車</h3>
+          <p>Panasonic沖縄県総代理店として豊富な電動アシスト車を取り扱い。通勤・通学・買い物に快適で経済的。3年間の交通費と比較すれば断然コストパフォーマンス抜群。</p>
+          <a href="#cta" class="product-link">詳細を見る</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=600&q=80" alt="シティ・軽快車">
+          <span class="product-tag">通勤・通学</span>
+        </div>
+        <div class="product-body">
+          <h3>シティ・軽快車・ファッションサイクル</h3>
+          <p>通勤・通学・お買い物に最適なシティバイク・ママチャリ・ファッションサイクルを多数ラインナップ。日常の移動を快適にする一台が見つかります。</p>
+          <a href="#cta" class="product-link">詳細を見る</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?w=600&q=80" alt="スポーツ車">
+          <span class="product-tag">スポーツ</span>
+        </div>
+        <div class="product-body">
+          <h3>スポーツ車（26インチ〜700C）</h3>
+          <p>本格的なスポーツ走行を楽しみたい方に。クロスバイク・マウンテンバイクなど26インチ〜700Cまで幅広いスポーツ車を取り揃えています。</p>
+          <a href="#cta" class="product-link">詳細を見る</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&q=80" alt="折りたたみ自転車">
+          <span class="product-tag">コンパクト</span>
+        </div>
+        <div class="product-body">
+          <h3>折りたたみ自転車</h3>
+          <p>収納スペースを取らずマンションや車のトランクにも収まるコンパクト設計。レジャーや旅行にも活躍する折りたたみモデルを豊富に揃えています。</p>
+          <a href="#cta" class="product-link">詳細を見る</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=600&q=80" alt="こども車・ジュニア車">
+          <span class="product-tag">キッズ</span>
+        </div>
+        <div class="product-body">
+          <h3>こども車・ジュニア車</h3>
+          <p>安全性と乗り心地にこだわったキッズ・ジュニア向け自転車。補助輪付きから本格ジュニアモデルまで、成長に合わせた一台をご提案します。</p>
+          <a href="#cta" class="product-link">詳細を見る</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80" alt="訳あり・中古車">
+          <span class="product-tag">お買い得</span>
+        </div>
+        <div class="product-body">
+          <h3>訳あり・中古車コーナー</h3>
+          <p>運送中の微細な傷・長期在庫品・中古車など良品をお得な価格でご提供。品揃えは不定期に入れ替わりますので、こまめなチェックがおすすめです。</p>
+          <a href="#cta" class="product-link">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REPAIR ─── -->
+<section id="repair">
+  <div class="repair-inner">
+    <div class="repair-content">
+      <span class="section-label">Repair & Service</span>
+      <div class="divider" style="background:#7ecde0;"></div>
+      <h2 class="section-title">ベテラン整備士による<br>自転車修理・整備</h2>
+      <ul class="repair-list">
+        <li>有資格スタッフ（自転車安全整備士）が対応</li>
+        <li>Panasonic・SANYO・MIYATA製電動自転車の修理受付</li>
+        <li>一般修理の見積もり目安をご案内</li>
+        <li>修理期間中の代車サービスあり（希望者）</li>
+        <li>自転車のお手入れ方法のご案内も対応</li>
+        <li>自転車関連保険のご案内</li>
+      </ul>
+      <div class="repair-note">
+        ※ 電動自転車の修理はPanasonic・SANYO・MIYATA製のみ受付可。長期放置で全体的な修理が必要な状態の車両はお断りする場合があります。
+      </div>
+    </div>
+    <div class="repair-visual">
+      <img src="https://images.unsplash.com/photo-1601925228358-e7b7ff7a4a36?w=700&q=80" alt="自転車修理">
+      <div class="repair-card">
+        <div class="number">70<span style="font-size:20px;color:#666;">年</span></div>
+        <div class="label">創業からの<br>修理実績</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INFO ─── -->
+<section id="info">
+  <div class="section-inner">
+    <span class="section-label">Access & Hours</span>
+    <div class="divider"></div>
+    <h2 class="section-title">営業案内・アクセス</h2>
+    <p class="section-desc">那覇市曙の営業所へのアクセス情報と受付時間のご案内です。</p>
+    <div class="info-grid">
+      <div class="info-table-wrap">
+        <div class="info-table-head">那覇営業所　店舗情報</div>
+        <table>
+          <tr>
+            <th>店舗名</th>
+            <td>沖縄自転車通販<br><small style="color:#999;">（株式会社上江洲商会）</small></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>〒900-0002<br>沖縄県那覇市曙3-11-1<br><small style="color:#999;">※釣り具アクアさん隣</small></td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><strong><a href="tel:0988681475" style="color:var(--ocean);text-decoration:none;">098-868-1475</a></strong></td>
+          </tr>
+          <tr>
+            <th>メール</th>
+            <td><a href="mailto:uzbike1954@gmail.com" style="color:var(--ocean-light);font-size:13px;">uzbike1954@gmail.com</a></td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td><strong style="color:var(--ocean);font-size:inherit;">9:00 〜 17:00</strong></td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td>日曜日・祝祭日</td>
+          </tr>
+          <tr>
+            <th>受け取り</th>
+            <td>ネット注文後の店頭受け取り可<br><small style="color:#999;">※店頭での展示・販売はございません</small></td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="map-wrap">
+          <div class="map-head">所在地マップ</div>
+          <div class="map-placeholder">
+            <div class="pin">📍</div>
+            <p>沖縄県那覇市曙3-11-1</p>
+            <small>Google マップで確認する</small>
+          </div>
+          <div class="map-address">
+            <strong>那覇営業所</strong>
+            〒900-0002 沖縄県那覇市曙3-11-1<br>
+            釣り具アクアさん隣 / 営業時間 9:00〜17:00（日祝定休）
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta">
+  <h2>お気軽にお問い合わせください</h2>
+  <p>自転車選びのご相談・修理の見積もり・ご注文など、何でもお気軽にどうぞ。</p>
+  <div class="cta-contacts">
+    <div class="cta-tel">
+      <span>Phone</span>
+      <a href="tel:0988681475">098-868-1475</a>
+    </div>
+  </div>
+  <div class="cta-email" style="margin-bottom:16px;">
+    <a href="mailto:uzbike1954@gmail.com">✉ uzbike1954@gmail.com</a>
+  </div>
+  <p class="cta-hours">受付時間 9:00〜17:00（日曜・祝祭日を除く）</p>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>沖縄自転車通販</h3>
+      <p class="corp">株式会社上江洲商会　沖縄自転車通信販売部</p>
+      <p>1951年創業。沖縄県内最大の自転車卸売業者として70年以上、地域の皆様の自転車ライフをサポートしてきました。Panasonic沖縄県総代理店として電動アシスト自転車も豊富に取り扱っています。</p>
+    </div>
+    <div class="footer-col">
+      <h4>商品カテゴリ</h4>
+      <ul>
+        <li><a href="#products">電動アシスト自転車</a></li>
+        <li><a href="#products">シティ・軽快車</a></li>
+        <li><a href="#products">スポーツ車</a></li>
+        <li><a href="#products">折りたたみ自転車</a></li>
+        <li><a href="#products">こども車・ジュニア車</a></li>
+        <li><a href="#products">訳あり・中古車</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>サービス・案内</h4>
+      <ul>
+        <li><a href="#repair">自転車修理</a></li>
+        <li><a href="#repair">代車サービス</a></li>
+        <li><a href="#repair">自転車保険</a></li>
+        <li><a href="#repair">クラブハイビー</a></li>
+        <li><a href="#info">店頭受け取り</a></li>
+        <li><a href="#cta">お問い合わせ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 株式会社上江洲商会　沖縄自転車通販. All rights reserved.</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.2);">〒900-0002 沖縄県那覇市曙3-11-1　TEL: 098-868-1475</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 64;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 80) {
+      header.style.background = 'rgba(10, 49, 70, 0.98)';
+    } else {
+      header.style.background = 'rgba(10, 79, 110, 0.97)';
+    }
+  });
+</script>
+</body>
+</html>

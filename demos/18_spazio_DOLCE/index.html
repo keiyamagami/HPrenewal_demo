@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>spazio DOLCE | 葛飾区青戸のヘアサロン</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg:       #FAFAF8;
+      --color-primary:  #B8967E;
+      --color-dark:     #2A2523;
+      --color-mid:      #6B5B52;
+      --color-blush:    #EDE0D4;
+      --color-line:     #D4BBA8;
+      --color-white:    #FFFFFF;
+      --font-serif:     'Noto Serif JP', serif;
+      --font-en:        'Cormorant Garamond', serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-serif);
+      background: var(--color-bg);
+      color: var(--color-dark);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* ─── NAV ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 40px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--color-line);
+      transition: background 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-en {
+      font-family: var(--font-en);
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      color: var(--color-dark);
+      font-weight: 400;
+    }
+    .logo-sub {
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: var(--color-primary);
+      margin-top: 3px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    nav a {
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--color-mid);
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--color-primary); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--color-dark);
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0; bottom: 0;
+      background: rgba(250,250,248,0.98);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.25em;
+      color: var(--color-dark);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1920&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      filter: brightness(0.55) saturate(0.8);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: var(--color-white);
+      padding: 0 20px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-en);
+      font-size: 0.8rem;
+      letter-spacing: 0.35em;
+      color: var(--color-blush);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero-title {
+      font-family: var(--font-en);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .hero-title-sub {
+      font-family: var(--font-en);
+      font-size: clamp(1rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      font-style: italic;
+      color: var(--color-blush);
+      margin-bottom: 28px;
+    }
+
+    .hero-desc {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 48px;
+      line-height: 2;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 48px;
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      transition: all 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .btn-primary:hover {
+      background: var(--color-white);
+      color: var(--color-dark);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.4);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(0.6); }
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 96px 40px; }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      color: var(--color-primary);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+      margin-bottom: 48px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--color-primary);
+      margin: 20px 0 40px;
+    }
+
+    /* ─── CONCEPT ─── */
+    #concept { background: var(--color-white); }
+
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .concept-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: saturate(0.9);
+    }
+
+    .concept-text { }
+
+    .concept-body {
+      font-size: 0.88rem;
+      line-height: 2.2;
+      color: var(--color-mid);
+      margin-bottom: 32px;
+    }
+
+    .concept-tagline {
+      font-family: var(--font-en);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--color-primary);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FEATURES ─── */
+    #features { background: var(--color-blush); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: var(--color-white);
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-title {
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .feature-body {
+      font-size: 0.78rem;
+      line-height: 2;
+      color: var(--color-mid);
+    }
+
+    /* ─── MENU ─── */
+    #menu { background: var(--color-white); }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--color-line);
+    }
+
+    .menu-item {
+      background: var(--color-white);
+      padding: 32px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu-name {
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .menu-note {
+      font-size: 0.7rem;
+      color: var(--color-mid);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .menu-price {
+      font-family: var(--font-en);
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+
+    .menu-price small {
+      font-size: 0.65rem;
+      color: var(--color-mid);
+      font-family: var(--font-serif);
+      letter-spacing: 0;
+    }
+
+    .menu-note-bottom {
+      margin-top: 24px;
+      font-size: 0.72rem;
+      color: var(--color-mid);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── RESERVE ─── */
+    #reserve {
+      background: var(--color-dark);
+      color: var(--color-white);
+      text-align: center;
+      padding: 80px 40px;
+    }
+
+    #reserve .section-label { color: var(--color-primary); }
+    #reserve .section-title { color: var(--color-white); margin-bottom: 16px; }
+
+    .reserve-sub {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      margin-bottom: 48px;
+    }
+
+    .reserve-methods {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .reserve-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      transition: all 0.3s;
+      border: 1px solid;
+    }
+
+    .reserve-btn.tel {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: var(--color-white);
+    }
+    .reserve-btn.mail {
+      background: transparent;
+      border-color: rgba(255,255,255,0.3);
+      color: var(--color-white);
+    }
+    .reserve-btn.line {
+      background: #00B900;
+      border-color: #00B900;
+      color: var(--color-white);
+    }
+
+    .reserve-btn:hover { opacity: 0.8; }
+
+    /* ─── ACCESS ─── */
+    #access { background: var(--color-bg); }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .access-info { }
+
+    .info-row {
+      display: flex;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-line);
+      font-size: 0.83rem;
+    }
+
+    .info-label {
+      width: 90px;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--color-primary);
+      padding-top: 2px;
+    }
+
+    .info-value {
+      color: var(--color-dark);
+      line-height: 1.9;
+      letter-spacing: 0.06em;
+    }
+
+    .map-wrap {
+      width: 100%;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 360px;
+      border: 0;
+      display: block;
+    }
+
+    .access-hint {
+      margin-top: 16px;
+      font-size: 0.72rem;
+      color: var(--color-mid);
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--color-dark);
+      color: rgba(255,255,255,0.4);
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: var(--font-en);
+      font-size: 1.8rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.12em;
+      font-weight: 300;
+      margin-bottom: 4px;
+    }
+
+    .footer-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--color-primary);
+      margin-bottom: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--color-primary); }
+
+    .footer-copy {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 72px 24px; }
+
+      .concept-grid,
+      .access-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .concept-img { aspect-ratio: 4/3; }
+
+      .features-grid { grid-template-columns: 1fr; }
+
+      .menu-grid { grid-template-columns: 1fr; }
+
+      .reserve-methods { flex-direction: column; align-items: center; }
+      .reserve-btn { width: 280px; justify-content: center; }
+
+      footer { padding: 40px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { letter-spacing: 0.04em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ■ HEADER -->
+<header>
+  <div class="logo">
+    <span class="logo-en">spazio DOLCE</span>
+    <span class="logo-sub">HAIR SALON — KATSUSHIKA</span>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#features">特徴</a></li>
+      <li><a href="#menu">MENU</a></li>
+      <li><a href="#reserve">予約</a></li>
+      <li><a href="#access">ACCESS</a></li>
+    </ul>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- モバイルメニュー -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#concept" class="mobile-link">CONCEPT</a>
+  <a href="#features" class="mobile-link">こだわり</a>
+  <a href="#menu" class="mobile-link">MENU</a>
+  <a href="#reserve" class="mobile-link">ご予約</a>
+  <a href="#access" class="mobile-link">ACCESS</a>
+</div>
+
+<!-- ■ HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">HAIR SALON — AOTO, KATSUSHIKA</span>
+    <h1 class="hero-title">spazio<br>DOLCE</h1>
+    <p class="hero-title-sub">スパーツィオ ドルチェ</p>
+    <p class="hero-desc">
+      あなたの髪質・ライフスタイルに寄り添い、<br>
+      毎日が楽しくなるスタイルをご提案します。
+    </p>
+    <a href="#reserve" class="btn-primary">RESERVATION</a>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ■ CONCEPT -->
+<section id="concept">
+  <div class="section-inner">
+    <div class="concept-grid">
+      <img
+        class="concept-img"
+        src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80"
+        alt="サロン内観"
+        loading="lazy"
+      >
+      <div class="concept-text">
+        <span class="section-label">CONCEPT</span>
+        <h2 class="section-title">あなたらしさを、<br>もっと美しく。</h2>
+        <div class="divider"></div>
+        <p class="concept-body">
+          髪質・顔の輪郭はもちろん、お好みのファッションや再現性、ライフスタイルに合ったスタイルに流行を取り入れつつ、ご提案し続けていきます。
+        </p>
+        <p class="concept-body">
+          葛飾区青戸に佇む隠れ家的ヘアサロン。京成青砥駅から徒歩1分のアクセスながら、ゆったりとした時間の流れる上質な空間でお迎えします。
+        </p>
+        <p class="concept-tagline">"Dolce" — sweet moments for your beauty</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ■ FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <span class="section-label">OUR PROMISE</span>
+    <h2 class="section-title">spazio DOLCEの<br>こだわり</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <h3 class="feature-title">あなた専用の提案</h3>
+        <p class="feature-body">髪質・輪郭・ファッション・ライフスタイルを丁寧にヒアリングし、再現性の高いスタイルをご提案します。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <h3 class="feature-title">駅チカの隠れ家空間</h3>
+        <p class="feature-body">京成青砥駅から徒歩1分。日常の喧騒を離れ、非日常のリラックス空間でゆったりとお過ごしください。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <h3 class="feature-title">多彩な予約手段</h3>
+        <p class="feature-body">お電話・メール・LINEの3つの方法でご予約いただけます。ご都合に合わせてお気軽にどうぞ。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <h3 class="feature-title">初回特典あり</h3>
+        <p class="feature-body">初めてご来店のお客様には特別な割引特典をご用意しております。まずはお気軽にご相談ください。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <h3 class="feature-title">学生割引</h3>
+        <p class="feature-body">学生の方にも嬉しい割引制度をご用意。学生証提示でお得にご利用いただけます。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">✦</span>
+        <h3 class="feature-title">クレジットカード対応</h3>
+        <p class="feature-body">各種クレジットカードがご利用いただけます。キャッシュレスでお支払いが可能です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ■ MENU -->
+<section id="menu">
+  <div class="section-inner">
+    <span class="section-label">PRICE MENU</span>
+    <h2 class="section-title">メニュー</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div>
+          <div class="menu-name">カット</div>
+          <div class="menu-note">シャンプー・ブロー込み</div>
+        </div>
+        <div class="menu-price">¥4,400<small>〜</small></div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="menu-name">カラー</div>
+          <div class="menu-note">リタッチ / 全体</div>
+        </div>
+        <div class="menu-price">¥6,600<small>〜</small></div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="menu-name">パーマ</div>
+          <div class="menu-note">コールドパーマ</div>
+        </div>
+        <div class="menu-price">¥8,800<small>〜</small></div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="menu-name">縮毛矯正</div>
+          <div class="menu-note">ストレートパーマ</div>
+        </div>
+        <div class="menu-price">¥16,500<small>〜</small></div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="menu-name">トリートメント</div>
+          <div class="menu-note">集中ケア</div>
+        </div>
+        <div class="menu-price">¥3,300<small>〜</small></div>
+      </div>
+      <div class="menu-item">
+        <div>
+          <div class="menu-name">ヘッドスパ</div>
+          <div class="menu-note">30分</div>
+        </div>
+        <div class="menu-price">¥4,400<small>〜</small></div>
+      </div>
+    </div>
+    <p class="menu-note-bottom">※ 料金は税込表示です。髪の長さ・状態により変動する場合がございます。詳細はお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- ■ RESERVE -->
+<section id="reserve">
+  <span class="section-label">RESERVATION</span>
+  <h2 class="section-title">ご予約</h2>
+  <p class="reserve-sub">お電話・メール・LINEにてご予約を承っております</p>
+  <div class="reserve-methods">
+    <a href="tel:0336027217" class="reserve-btn tel">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.89 9.11a19.79 19.79 0 01-3.07-8.68A2 2 0 012.81 2H5.8a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.27a16 16 0 006.83 6.83l1.63-1.63a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      03-3602-7217
+    </a>
+    <a href="mailto:info@dolce-salon.com" class="reserve-btn mail">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      メールで予約
+    </a>
+    <a href="https://line.me/R/ti/p/@spaziodolce" class="reserve-btn line" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.03 2 11c0 3.44 1.97 6.44 4.93 8.18L6 22l3.29-1.72C10.14 20.73 11.05 21 12 21c5.52 0 10-4.03 10-9S17.52 2 12 2z"/></svg>
+      LINEで予約 @spaziodolce
+    </a>
+  </div>
+</section>
+
+<!-- ■ ACCESS -->
+<section id="access">
+  <div class="section-inner">
+    <span class="section-label">ACCESS</span>
+    <h2 class="section-title">店舗情報・アクセス</h2>
+    <div class="access-grid">
+      <div class="access-info">
+        <div class="info-row">
+          <span class="info-label">店舗名</span>
+          <span class="info-value">spazio DOLCE（スパーツィオ ドルチェ）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">住所</span>
+          <span class="info-value">東京都葛飾区青戸3-35-12<br>NKビル 3F</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">電話</span>
+          <span class="info-value"><a href="tel:0336027217" style="color:inherit;text-decoration:none;">03-3602-7217</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">アクセス</span>
+          <span class="info-value">京成線 青砥駅 徒歩1分</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">営業時間</span>
+          <span class="info-value">10:00 〜 19:00（最終受付 20:00）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">定休日</span>
+          <span class="info-value">毎週月曜日・隔週火曜日</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">お支払い</span>
+          <span class="info-value">クレジットカード 可</span>
+        </div>
+        <p class="access-hint">
+          ※ コンビニ（デイリーヤマザキ）とHOTELヴィラの間のビル3階です。<br>
+          ※ 1階は南葛商事不動産が入っています。
+        </p>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3237.0!2d139.8535!3d35.7458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d7e3b3b3b3b%3A0x0!2z5p2x5Lqs6YO95rWm6aaZ5Yy65pil5oi45LiA5LiT55S677yT77yT!5e0!3m2!1sja!2sjp!4v1600000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="spazio DOLCE 地図"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ■ FOOTER -->
+<footer>
+  <div class="footer-logo">spazio DOLCE</div>
+  <div class="footer-sub">HAIR SALON — AOTO, KATSUSHIKA, TOKYO</div>
+  <ul class="footer-links">
+    <li><a href="#concept">CONCEPT</a></li>
+    <li><a href="#features">こだわり</a></li>
+    <li><a href="#menu">MENU</a></li>
+    <li><a href="#reserve">ご予約</a></li>
+    <li><a href="#access">ACCESS</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 spazio DOLCE. All rights reserved.</p>
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      btn.classList.remove('open');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+
+</body>
+</html>

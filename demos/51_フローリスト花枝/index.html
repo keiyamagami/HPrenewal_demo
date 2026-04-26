@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>フローリスト花枝 | 沖縄・那覇市首里のお花屋さん</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:      #c9707a;
+      --rose-light:#f2dde0;
+      --rose-pale: #fdf5f6;
+      --green:     #6b8f71;
+      --green-light:#d6e8d8;
+      --gold:      #b8975a;
+      --dark:      #2c2420;
+      --mid:       #6b5c58;
+      --light:     #f9f4f2;
+      --white:     #ffffff;
+      --serif:     'Noto Serif JP', serif;
+      --sans:      'Noto Sans JP', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.8;
+    }
+
+    /* ─── NAV ─── */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(201,112,122,0.15);
+      transition: box-shadow .3s;
+    }
+    header.scrolled { box-shadow: 0 2px 20px rgba(44,36,32,.1); }
+
+    nav {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 64px;
+    }
+
+    .logo {
+      font-family: var(--serif); font-size: 1.25rem; font-weight: 600;
+      color: var(--rose); text-decoration: none; letter-spacing: .05em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .logo-icon { font-size: 1.4rem; }
+
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: .85rem; color: var(--mid); text-decoration: none;
+      letter-spacing: .08em; font-weight: 500;
+      position: relative; padding-bottom: 3px;
+      transition: color .2s;
+    }
+    .nav-links a::after {
+      content:''; position: absolute; bottom:0; left:0;
+      width:0; height:1.5px; background: var(--rose);
+      transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--rose); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--rose); color: var(--white) !important;
+      padding: 8px 20px; border-radius: 50px;
+      font-size: .8rem !important; letter-spacing: .1em !important;
+      transition: background .2s !important;
+    }
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: #b5636d !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--dark); border-radius: 2px;
+      transition: transform .3s, opacity .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; width: 100%;
+      background: var(--white); z-index: 999;
+      border-bottom: 1px solid var(--rose-light);
+      padding: 16px 0;
+      box-shadow: 0 8px 24px rgba(44,36,32,.08);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu ul { list-style: none; }
+    .mobile-menu ul li a {
+      display: block; padding: 14px 32px;
+      font-size: .9rem; color: var(--dark); text-decoration: none;
+      letter-spacing: .06em; border-left: 3px solid transparent;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .mobile-menu ul li a:hover {
+      border-left-color: var(--rose);
+      color: var(--rose); background: var(--rose-pale);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1487530811015-780780fc4e03?w=1600&q=80&fit=crop');
+      background-size: cover; background-position: center;
+      transform: scale(1.06);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(44,36,32,.55) 0%,
+        rgba(201,112,122,.35) 50%,
+        rgba(44,36,32,.60) 100%
+      );
+    }
+    .hero-content {
+      position: relative; text-align: center; color: var(--white);
+      padding: 0 24px; max-width: 760px;
+    }
+    .hero-badge {
+      display: inline-block; font-size: .78rem; letter-spacing: .2em;
+      border: 1px solid rgba(255,255,255,.6); padding: 6px 20px;
+      border-radius: 50px; margin-bottom: 24px;
+      font-family: var(--serif); color: rgba(255,255,255,.9);
+    }
+    .hero-title {
+      font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 600; letter-spacing: .08em; line-height: 1.3;
+      margin-bottom: 12px;
+      text-shadow: 0 2px 16px rgba(44,36,32,.4);
+    }
+    .hero-sub {
+      font-family: var(--serif); font-size: clamp(.85rem, 2vw, 1rem);
+      letter-spacing: .15em; color: rgba(255,255,255,.85);
+      margin-bottom: 32px;
+    }
+    .hero-desc {
+      font-size: clamp(.85rem, 2vw, .95rem); line-height: 2;
+      color: rgba(255,255,255,.88); margin-bottom: 40px;
+      text-shadow: 0 1px 6px rgba(44,36,32,.5);
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--rose); color: var(--white);
+      padding: 14px 36px; border-radius: 50px;
+      text-decoration: none; font-size: .9rem; letter-spacing: .1em;
+      font-weight: 500; transition: background .2s, transform .2s;
+      box-shadow: 0 4px 16px rgba(201,112,122,.45);
+    }
+    .btn-primary:hover { background: #b5636d; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.8);
+      padding: 14px 36px; border-radius: 50px;
+      text-decoration: none; font-size: .9rem; letter-spacing: .1em;
+      font-weight: 500; transition: background .2s, transform .2s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,.15); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.7); font-size: .72rem; letter-spacing: .2em;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.6), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%,100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: .4; transform: scaleY(.6); }
+    }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 100px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      display: inline-block; font-size: .72rem; letter-spacing: .25em;
+      color: var(--rose); text-transform: uppercase;
+      background: var(--rose-light); padding: 4px 14px; border-radius: 50px;
+      margin-bottom: 14px; font-weight: 500;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600; color: var(--dark); letter-spacing: .05em;
+      line-height: 1.4; margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: .95rem; color: var(--mid); max-width: 600px;
+      line-height: 2; margin-bottom: 60px;
+    }
+    .divider {
+      width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--gold));
+      margin: 16px 0 32px; border-radius: 2px;
+    }
+
+    /* ─── FEATURES ─── */
+    .features { background: var(--light); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .feature-card {
+      background: var(--white); border-radius: 20px;
+      padding: 40px 32px; text-align: center;
+      box-shadow: 0 4px 24px rgba(44,36,32,.06);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(44,36,32,.12);
+    }
+    .feature-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--rose-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; font-size: 2rem;
+    }
+    .feature-card h3 {
+      font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 10px; letter-spacing: .04em;
+    }
+    .feature-card p {
+      font-size: .85rem; color: var(--mid); line-height: 1.9;
+    }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--white); }
+    .services-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .tab-btn {
+      padding: 9px 22px; border-radius: 50px; border: 1.5px solid var(--rose-light);
+      background: var(--white); color: var(--mid); cursor: pointer;
+      font-size: .85rem; font-family: var(--sans); letter-spacing: .06em;
+      transition: all .2s; font-weight: 500;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--rose); color: var(--white); border-color: var(--rose);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .service-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(44,36,32,.07);
+      transition: transform .3s, box-shadow .3s;
+      background: var(--white);
+    }
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(44,36,32,.13);
+    }
+    .service-img {
+      height: 200px; overflow: hidden;
+      background: var(--rose-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .service-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .5s;
+    }
+    .service-card:hover .service-img img { transform: scale(1.06); }
+    .service-img-placeholder {
+      font-size: 3.5rem; opacity: .4;
+    }
+    .service-body { padding: 20px 22px; }
+    .service-body h3 {
+      font-family: var(--serif); font-size: 1rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 6px;
+    }
+    .service-meta {
+      font-size: .78rem; color: var(--mid); margin-bottom: 10px; line-height: 1.7;
+    }
+    .service-price {
+      display: inline-block; font-size: .8rem;
+      background: var(--rose-pale); color: var(--rose);
+      padding: 3px 12px; border-radius: 50px; font-weight: 600;
+    }
+    .service-note {
+      font-size: .78rem; color: var(--mid); margin-top: 32px;
+      padding: 16px 20px; background: var(--light);
+      border-radius: 10px; border-left: 3px solid var(--rose-light);
+      line-height: 2;
+    }
+
+    /* wedding banner */
+    .wedding-banner {
+      border-radius: 20px; overflow: hidden;
+      position: relative; min-height: 360px;
+      display: flex; align-items: center;
+    }
+    .wedding-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&q=80&fit=crop');
+      background-size: cover; background-position: center;
+    }
+    .wedding-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(100deg, rgba(44,36,32,.7) 0%, rgba(201,112,122,.45) 100%);
+    }
+    .wedding-content {
+      position: relative; color: var(--white);
+      padding: 48px 48px; max-width: 560px;
+    }
+    .wedding-content h3 {
+      font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 600; margin-bottom: 16px; letter-spacing: .05em;
+    }
+    .wedding-content p {
+      font-size: .9rem; line-height: 2; color: rgba(255,255,255,.88);
+      margin-bottom: 28px;
+    }
+
+    /* ─── DELIVERY ─── */
+    .delivery { background: var(--rose-pale); }
+    .delivery-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .delivery-map {
+      border-radius: 20px; overflow: hidden; height: 380px;
+      box-shadow: 0 8px 32px rgba(44,36,32,.12);
+    }
+    .delivery-map iframe {
+      width: 100%; height: 100%; border: none;
+    }
+    .delivery-info h2 {
+      font-family: var(--serif); font-size: 1.8rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .delivery-area {
+      display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0;
+    }
+    .area-tag {
+      background: var(--green-light); color: var(--green);
+      padding: 6px 16px; border-radius: 50px;
+      font-size: .82rem; font-weight: 500; letter-spacing: .05em;
+    }
+    .access-routes { margin-top: 28px; }
+    .route-item {
+      padding: 16px 0; border-bottom: 1px solid rgba(201,112,122,.15);
+    }
+    .route-item:last-child { border-bottom: none; }
+    .route-item h4 {
+      font-size: .82rem; font-weight: 600; color: var(--rose);
+      margin-bottom: 4px; letter-spacing: .05em;
+    }
+    .route-item p { font-size: .82rem; color: var(--mid); line-height: 1.8; }
+
+    /* ─── CONTACT ─── */
+    .contact { background: var(--white); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    }
+    .contact-info { padding: 40px; background: var(--light); border-radius: 20px; }
+    .contact-info h3 {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 24px;
+    }
+    .contact-row {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 14px 0; border-bottom: 1px solid rgba(44,36,32,.07);
+    }
+    .contact-row:last-of-type { border-bottom: none; }
+    .contact-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--rose-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; flex-shrink: 0;
+    }
+    .contact-row dt {
+      font-size: .75rem; color: var(--rose); font-weight: 600;
+      letter-spacing: .1em; margin-bottom: 2px;
+    }
+    .contact-row dd {
+      font-size: .9rem; color: var(--dark);
+    }
+    .contact-row dd a { color: var(--dark); text-decoration: none; }
+    .contact-row dd a:hover { color: var(--rose); }
+
+    .contact-form-wrap {
+      padding: 40px; background: var(--rose-pale); border-radius: 20px;
+    }
+    .contact-form-wrap h3 {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 600;
+      color: var(--dark); margin-bottom: 8px;
+    }
+    .contact-form-wrap p {
+      font-size: .83rem; color: var(--mid); margin-bottom: 24px; line-height: 1.8;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: .78rem; font-weight: 600; color: var(--mid);
+      letter-spacing: .08em; margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; padding: 12px 16px; border-radius: 10px;
+      border: 1.5px solid rgba(201,112,122,.25);
+      background: var(--white); font-family: var(--sans);
+      font-size: .88rem; color: var(--dark);
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--rose); }
+    .form-group textarea { height: 110px; resize: vertical; }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: var(--rose); color: var(--white);
+      border: none; border-radius: 50px; cursor: pointer;
+      font-size: .9rem; font-family: var(--sans); font-weight: 500;
+      letter-spacing: .1em; transition: background .2s, transform .2s;
+    }
+    .form-submit:hover { background: #b5636d; transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,.7);
+    }
+    .footer-top {
+      max-width: 1100px; margin: 0 auto;
+      padding: 60px 24px 40px;
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 48px;
+    }
+    .footer-brand .logo-f {
+      font-family: var(--serif); font-size: 1.4rem; font-weight: 600;
+      color: var(--white); margin-bottom: 12px; display: flex;
+      align-items: center; gap: 8px;
+    }
+    .footer-brand p { font-size: .82rem; line-height: 2; }
+    .footer-col h4 {
+      font-size: .75rem; letter-spacing: .2em; color: var(--rose-light);
+      text-transform: uppercase; margin-bottom: 16px; font-weight: 600;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: rgba(255,255,255,.65); text-decoration: none;
+      font-size: .83rem; transition: color .2s;
+    }
+    .footer-col ul li a:hover { color: var(--rose-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: center; padding: 20px 24px;
+      font-size: .75rem; color: rgba(255,255,255,.35);
+    }
+
+    /* ─── SCROLL ANIMATION ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 72px 20px; }
+      .section-lead { margin-bottom: 40px; }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr; }
+
+      .delivery-inner { grid-template-columns: 1fr; }
+      .delivery-map { height: 280px; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .wedding-content { padding: 32px 24px; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header id="header">
+  <nav>
+    <a class="logo" href="#">
+      <span class="logo-icon">🌸</span>
+      フローリスト花枝
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">特徴</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#access">アクセス</a></li>
+      <li><a href="#contact" class="nav-cta">お問い合わせ</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#features" class="menu-link">特徴・こだわり</a></li>
+    <li><a href="#services" class="menu-link">サービス・商品</a></li>
+    <li><a href="#access" class="menu-link">アクセス・配達</a></li>
+    <li><a href="#contact" class="menu-link">お問い合わせ</a></li>
+  </ul>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">創業40年 / 沖縄・那覇市首里</div>
+    <h1 class="hero-title">想いを、花に。</h1>
+    <p class="hero-sub">Florist Hanae — 那覇市首里 城下町のお花屋さん</p>
+    <p class="hero-desc">
+      ウェディング・冠婚葬祭・誕生日・送別会まで、<br>
+      大切な方への「想い」を花に託してお届けします。
+    </p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">サービスを見る</a>
+      <a href="#contact" class="btn-outline">お問い合わせ</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="fade-up">
+      <span class="section-label">Features</span>
+      <h2 class="section-title">フローリスト花枝の<br>３つのこだわり</h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        沖縄の古都・首里城下町で、創業40年。<br>
+        お客様の「想い」をしっかり聞いて、世界にひとつのお花をお作りします。
+      </p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💐</div>
+        <h3>丁寧なヒアリング</h3>
+        <p>まずはお花のご用途・ご予算・贈るお相手のことをじっくりお聞かせください。イメージを共有してから、一緒にお花を制作していきます。</p>
+      </div>
+      <div class="feature-card fade-up" style="transition-delay:.1s">
+        <div class="feature-icon">🌺</div>
+        <h3>創業40年の実績</h3>
+        <p>那覇市首里で40年。ウェディング・冠婚葬祭・日常のギフトまで、あらゆるシーンで信頼いただいてきた経験と技術をお届けします。</p>
+      </div>
+      <div class="feature-card fade-up" style="transition-delay:.2s">
+        <div class="feature-icon">🚚</div>
+        <h3>広い配達エリア</h3>
+        <p>那覇市内（一部対応不可）をはじめ、西原・浦添・南風原まで配達対応。遠方の方もお気軽にご相談ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="fade-up">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">サービス・商品のご案内</h2>
+      <div class="divider"></div>
+      <p class="section-lead">
+        ギフト用アレンジメントからスタンド花・ウェディングまで、幅広いシーンに対応しています。
+      </p>
+    </div>
+
+    <div class="services-tabs fade-up">
+      <button class="tab-btn active" data-tab="arrangement">アレンジメント</button>
+      <button class="tab-btn" data-tab="bouquet">花束・ブーケ</button>
+      <button class="tab-btn" data-tab="stand">スタンド花</button>
+      <button class="tab-btn" data-tab="wedding">ウェディング</button>
+    </div>
+
+    <!-- アレンジメント -->
+    <div class="tab-panel active" id="tab-arrangement">
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=600&q=75&fit=crop" alt="アレンジメント" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>アレンジメント（小）</h3>
+            <p class="service-meta">高さ 60cm × 横幅 40cm</p>
+            <span class="service-price">参考価格 ¥5,000〜</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=75&fit=crop" alt="アレンジメント" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>アレンジメント（中）</h3>
+            <p class="service-meta">高さ 60cm × 横幅 40cm</p>
+            <span class="service-price">参考価格 ¥10,000〜</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1487530811015-780780fc4e03?w=600&q=75&fit=crop" alt="アレンジメント" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>アレンジメント（大）</h3>
+            <p class="service-meta">高さ 60cm × 横幅 40cm</p>
+            <span class="service-price">参考価格 ¥20,000〜</span>
+          </div>
+        </div>
+      </div>
+      <p class="service-note">
+        ※ 価格・大きさはあくまで参考です。使用する花や時期によっても価格は変わりますので、何卒ご了承ください。<br>
+        ※ 写真はイメージです。使用する花材や花器は、季節により異なる場合がございます。
+      </p>
+    </div>
+
+    <!-- 花束・ブーケ -->
+    <div class="tab-panel" id="tab-bouquet">
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1562690868-60bbe7cf5ba2?w=600&q=75&fit=crop" alt="ラウンドブーケ" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>ラウンドブーケ</h3>
+            <p class="service-meta">高さ 20cm × 横幅 20cm</p>
+            <span class="service-price">参考価格 ¥20,000〜</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1520552159191-e28a1d9f0d5e?w=600&q=75&fit=crop" alt="花束" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>花束</h3>
+            <p class="service-meta">高さ 70cm × 横幅 45cm</p>
+            <span class="service-price">参考価格 ¥6,000〜</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1490750967868-88df5691cc9c?w=600&q=75&fit=crop" alt="バルーンフラワー" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>バルーンフラワー</h3>
+            <p class="service-meta">誕生日・お祝いに最適</p>
+            <span class="service-price">参考価格 ¥20,000〜</span>
+          </div>
+        </div>
+      </div>
+      <p class="service-note">
+        ※ 価格・大きさはあくまで参考です。使用する花や時期によっても価格は変わりますので、何卒ご了承ください。<br>
+        ※ 写真はイメージです。使用する花材や花器は、季節により異なる場合がございます。
+      </p>
+    </div>
+
+    <!-- スタンド花 -->
+    <div class="tab-panel" id="tab-stand">
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1550159930-40066082a4fc?w=600&q=75&fit=crop" alt="1段スタンド" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>1段スタンド花</h3>
+            <p class="service-meta">開店祝い・受賞祝いなどに</p>
+            <span class="service-price">参考価格 ¥10,000〜</span>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="service-img">
+            <img src="https://images.unsplash.com/photo-1465765786345-be1b3f8a5f5c?w=600&q=75&fit=crop" alt="2段スタンド" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3>2段スタンド花</h3>
+            <p class="service-meta">華やかな演出に最適</p>
+            <span class="service-price">参考価格 ¥30,000〜</span>
+          </div>
+        </div>
+      </div>
+      <p class="service-note">
+        ※ 価格・大きさはあくまで参考です。使用する花や時期によっても価格は変わりますので、何卒ご了承ください。<br>
+        ※ 写真はイメージです。使用する花材や花器は、季節により異なる場合がございます。
+      </p>
+    </div>
+
+    <!-- ウェディング -->
+    <div class="tab-panel" id="tab-wedding">
+      <div class="wedding-banner">
+        <div class="wedding-bg"></div>
+        <div class="wedding-overlay"></div>
+        <div class="wedding-content">
+          <h3>ウェディングフラワー</h3>
+          <p>
+            ブーケだけでなく、会場コーディネートまでトータルでご相談ください。「特別な日」だからこそ、しっかりヒアリングをして、おふたりのウェディングを演出いたします。<br><br>
+            まずは、お二人がイメージする理想の結婚式についてお聞かせください。
+          </p>
+          <a href="#contact" class="btn-primary">ご相談はこちら</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACCESS ─── -->
+<section class="delivery" id="access">
+  <div class="section-inner">
+    <div class="delivery-inner">
+      <div class="delivery-map fade-up">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.2!2d127.7197!3d26.2175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e56be3b3a5b5e7%3A0x0!2z5rK-5bed5b2x6YeO5bKh5biC6aaZ6YeO5bKh5biC5a-6!5e0!3m2!1sja!2sjp!4v1000000000000"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="フローリスト花枝 地図"
+        ></iframe>
+      </div>
+      <div class="delivery-info fade-up" style="transition-delay:.1s">
+        <span class="section-label">Access &amp; Delivery</span>
+        <h2 class="section-title">アクセス・<br>配達エリア</h2>
+        <div class="divider"></div>
+        <p style="font-size:.88rem;color:var(--mid);line-height:2;margin-bottom:16px;">
+          〒903-0825 沖縄県那覇市首里山川町1丁目7<br>
+          TEL: <a href="tel:0988874187" style="color:var(--rose);font-weight:600;">098-887-4187</a>
+          &nbsp;/&nbsp; FAX: 098-887-4197
+        </p>
+        <p style="font-size:.82rem;color:var(--mid);margin-bottom:8px;font-weight:600;">配達対応エリア</p>
+        <div class="delivery-area">
+          <span class="area-tag">那覇市内</span>
+          <span class="area-tag">西原</span>
+          <span class="area-tag">浦添</span>
+          <span class="area-tag">南風原</span>
+        </div>
+        <div class="access-routes">
+          <div class="route-item">
+            <h4>🚗 松川方面からお越しの場合</h4>
+            <p>首里方面に進み、都ホテルを越えて首里城方面へ。山川交差点を右折し300m弱進んだ左手。</p>
+          </div>
+          <div class="route-item">
+            <h4>🚗 儀保方面からお越しの場合</h4>
+            <p>首里城方面に道なりに進み、山川交差点（三叉路）を左折。300m弱進んだ左手。</p>
+          </div>
+          <div class="route-item">
+            <h4>🚗 鳥掘方面からお越しの場合</h4>
+            <p>首里城方面へ進み、池端交差点をそのまま直進。150mほど進んだ右手。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center;margin-bottom:48px;">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="divider" style="margin:16px auto 0;"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <h3>店舗情報</h3>
+        <dl>
+          <div class="contact-row">
+            <div class="contact-icon">📍</div>
+            <div>
+              <dt>住所</dt>
+              <dd>〒903-0825<br>沖縄県那覇市首里山川町1丁目7</dd>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">📞</div>
+            <div>
+              <dt>電話 / FAX</dt>
+              <dd>
+                <a href="tel:0988874187">098-887-4187</a><br>
+                FAX: 098-887-4197
+              </dd>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <dt>メール</dt>
+              <dd><a href="mailto:info@fs-hanae.com">info@fs-hanae.com</a></dd>
+            </div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-icon">🚚</div>
+            <div>
+              <dt>配達エリア</dt>
+              <dd>那覇市内（一部対応不可）<br>西原・浦添・南風原</dd>
+            </div>
+          </div>
+        </dl>
+      </div>
+
+      <div class="contact-form-wrap fade-up" style="transition-delay:.1s">
+        <h3>メッセージを送る</h3>
+        <p>商品のご相談・ご注文・配達のご依頼など、お気軽にお問い合わせください。</p>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>お名前 *</label>
+            <input type="text" placeholder="山田 花子" required>
+          </div>
+          <div class="form-group">
+            <label>電話番号</label>
+            <input type="tel" placeholder="090-0000-0000">
+          </div>
+          <div class="form-group">
+            <label>用途 *</label>
+            <select required>
+              <option value="">選択してください</option>
+              <option>ウェディング・ブーケ</option>
+              <option>会場装花</option>
+              <option>冠婚葬祭</option>
+              <option>誕生日・お祝い</option>
+              <option>スタンド花</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>メッセージ *</label>
+            <textarea placeholder="ご予算・贈るお相手・ご希望のイメージなどをお聞かせください" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-f">🌸 フローリスト花枝</div>
+      <p>沖縄の古都・那覇市首里で創業40年。<br>大切な方への「想い」を花に託してお届けします。<br><br>〒903-0825 沖縄県那覇市首里山川町1-7<br>TEL: 098-887-4187</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#features">こだわり・特徴</a></li>
+        <li><a href="#services">サービス・商品</a></li>
+        <li><a href="#access">アクセス・配達</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">アレンジメント</a></li>
+        <li><a href="#services">花束・ブーケ</a></li>
+        <li><a href="#services">スタンド花</a></li>
+        <li><a href="#services">ウェディング</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2024 フローリスト花枝 All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Header scroll
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hero BG
+  document.getElementById('heroBg').classList.add('loaded');
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = '送信しました ✓';
+    btn.style.background = 'var(--green)';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>

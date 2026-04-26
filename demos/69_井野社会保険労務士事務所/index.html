@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>井野社会保険労務士事務所 | 東京都江東区</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2a4a;
+    --navy-light: #243558;
+    --navy-dark: #111c33;
+    --gold: #b8963e;
+    --gold-light: #d4af5a;
+    --cream: #f8f5ef;
+    --gray: #6b7280;
+    --light-gray: #f1f0ed;
+    --white: #ffffff;
+    --text: #2d3748;
+    --text-light: #4a5568;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.7;
+  }
+
+  /* ── NAV ─────────────────────────────── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 42, 74, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184,150,62,0.3);
+  }
+
+  nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    line-height: 1.3;
+  }
+  .logo span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .nav-tel {
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.3s, opacity 0.3s;
+    border-radius: 2px;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: var(--navy-dark);
+    padding: 24px;
+    z-index: 999;
+    border-bottom: 2px solid var(--gold);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  /* ── HERO ────────────────────────────── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(17,28,51,0.4) 0%,
+      rgba(17,28,51,0.6) 60%,
+      rgba(17,28,51,0.85) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 24px;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    padding: 6px 20px;
+    margin-bottom: 28px;
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  .hero-content h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-content h1 em {
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-content p {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: rgba(255,255,255,0.78);
+    max-width: 580px;
+    margin: 0 auto 36px;
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 16px 36px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .hero-cta svg { flex-shrink: 0; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    z-index: 1;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%,100% { opacity: 0.3; transform: scaleY(0.6); }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ── SECTION BASE ────────────────────── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .section-eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+  .section-line {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 16px auto 0;
+  }
+
+  /* ── FEATURES ────────────────────────── */
+  #features { background: var(--cream); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    padding: 40px 32px;
+    border-top: 3px solid var(--navy);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .feature-icon svg { color: var(--gold-light); }
+
+  .feature-card h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+  }
+  .feature-card p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.85;
+  }
+
+  /* ── SERVICES ────────────────────────── */
+  #services { background: var(--white); }
+
+  .services-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid #e2e0da;
+    overflow: hidden;
+  }
+
+  .service-panel {
+    padding: 48px 44px;
+  }
+  .service-panel:first-child {
+    background: var(--navy);
+    border-right: 2px solid var(--gold);
+  }
+  .service-panel:last-child {
+    background: var(--cream);
+  }
+
+  .service-panel-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    padding: 4px 14px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .service-panel:first-child .service-panel-label {
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+  }
+  .service-panel:last-child .service-panel-label {
+    border: 1px solid var(--navy);
+    color: var(--navy);
+  }
+
+  .service-panel h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+  }
+  .service-panel:first-child h3 { color: var(--white); }
+  .service-panel:last-child h3 { color: var(--navy); }
+
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .service-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.88rem;
+    line-height: 1.7;
+  }
+  .service-panel:first-child .service-list li { color: rgba(255,255,255,0.85); }
+  .service-panel:last-child .service-list li { color: var(--text-light); }
+
+  .service-list li::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .service-panel:first-child .service-list li::before { background: var(--gold); }
+  .service-panel:last-child .service-list li::before { background: var(--navy); }
+
+  /* ── NEWS ────────────────────────────── */
+  #news { background: var(--light-gray); }
+
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #dedad3;
+    background: var(--white);
+    overflow: hidden;
+  }
+
+  .news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 28px;
+    border-bottom: 1px solid #eee9e1;
+    transition: background 0.15s;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-item:hover { background: var(--cream); }
+
+  .news-date {
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 500;
+    white-space: nowrap;
+    padding-top: 2px;
+    min-width: 90px;
+    letter-spacing: 0.05em;
+  }
+  .news-text {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* ── ACCESS ──────────────────────────── */
+  #access { background: var(--navy); }
+  #access .section-title { color: var(--white); }
+  #access .section-eyebrow { color: var(--gold-light); }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .access-info { color: rgba(255,255,255,0.85); }
+
+  .info-block {
+    margin-bottom: 32px;
+  }
+  .info-block:last-child { margin-bottom: 0; }
+
+  .info-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .info-value {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--white);
+  }
+  .info-value.tel {
+    font-size: 1.6rem;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.04em;
+  }
+
+  .map-placeholder {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+  }
+
+  .map-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    color: var(--gold-light);
+    font-size: 0.82rem;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid rgba(184,150,62,0.4);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .map-link:hover { color: var(--white); }
+
+  /* ── CTA BANNER ──────────────────────── */
+  #cta-banner {
+    background: var(--gold);
+    padding: 56px 24px;
+    text-align: center;
+  }
+  #cta-banner h2 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+  #cta-banner p {
+    font-size: 0.9rem;
+    color: rgba(17,28,51,0.75);
+    margin-bottom: 28px;
+  }
+  .cta-tel-link {
+    display: inline-block;
+    background: var(--navy-dark);
+    color: var(--white);
+    font-size: 1.4rem;
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 18px 48px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .cta-tel-link:hover { background: var(--navy); }
+
+  /* ── FOOTER ──────────────────────────── */
+  footer {
+    background: var(--navy-dark);
+    padding: 40px 24px;
+    text-align: center;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    line-height: 2;
+  }
+  footer strong {
+    display: block;
+    color: rgba(255,255,255,0.7);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  /* ── RESPONSIVE ──────────────────────── */
+  @media (max-width: 768px) {
+    .nav-links, .nav-tel { display: none; }
+    .hamburger { display: flex; }
+
+    section { padding: 60px 20px; }
+
+    .features-grid { grid-template-columns: 1fr; gap: 20px; }
+
+    .services-tabs { grid-template-columns: 1fr; }
+    .service-panel:first-child { border-right: none; border-bottom: 2px solid var(--gold); }
+    .service-panel { padding: 36px 28px; }
+
+    .access-grid { grid-template-columns: 1fr; gap: 36px; }
+
+    .map-placeholder { height: 240px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content h1 { font-size: 1.75rem; }
+    .feature-card { padding: 32px 24px; }
+    .news-item { flex-direction: column; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ───────────────────────────── -->
+<header>
+  <nav>
+    <div class="logo">
+      井野社会保険労務士事務所
+      <span>SOCIAL INSURANCE &amp; LABOR CONSULTANT</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#features">特徴</a></li>
+      <li><a href="#services">業務内容</a></li>
+      <li><a href="#news">お知らせ</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+    <a href="tel:0356097253" class="nav-tel">03-5609-7253</a>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="closeMobile()">特徴・こだわり</a>
+  <a href="#services" onclick="closeMobile()">業務内容</a>
+  <a href="#news" onclick="closeMobile()">お知らせ</a>
+  <a href="#access" onclick="closeMobile()">アクセス・お問い合わせ</a>
+  <a href="tel:0356097253" style="color:var(--gold-light);font-weight:600;">📞 03-5609-7253</a>
+</div>
+
+<!-- ── HERO ─────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">東京都江東区　社会保険労務士</div>
+    <h1>
+      経験と信頼で<br>
+      <em>労務・年金問題</em>を<br>
+      確かに解決します
+    </h1>
+    <p>
+      社会保険・労働保険・年金・各種助成金の申請まで、<br>
+      企業と個人のあらゆる労務課題に丁寧にお応えします。
+    </p>
+    <a href="#services" class="hero-cta">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      業務内容を見る
+    </a>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ── FEATURES ──────────────────────────── -->
+<section id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">OUR STRENGTHS</span>
+      <h2 class="section-title">選ばれる3つの理由</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>豊富な経験と実績</h3>
+        <p>社労士会・江東支部に所属し、長年にわたり東京都江東区の中小企業・個人のお客様の労務・社会保険手続きを支援。時代の流れを熟知したスペシャリストが対応します。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3>法人・個人どちらも対応</h3>
+        <p>企業の就業規則整備から従業員教育、個人の年金相談・定年後のライフプランまで、幅広いニーズにワンストップで対応。ご相談は無料で承ります。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>最新情報を迅速に提供</h3>
+        <p>法改正・保険料率改定・助成金情報など、刻々と変わる労務関連法令の最新動向をいち早くキャッチし、わかりやすくお伝えします。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────── -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">SERVICES</span>
+      <h2 class="section-title">業務内容</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="services-tabs">
+
+      <div class="service-panel">
+        <span class="service-panel-label">FOR CORPORATIONS</span>
+        <h3>法人のお客様へ</h3>
+        <ul class="service-list">
+          <li>社会保険（健康保険・厚生年金）に関する相談・手続き</li>
+          <li>労働保険（労災保険・雇用保険）の申請・管理</li>
+          <li>就業規則・給与規定・退職金規定の作成</li>
+          <li>社員教育・労務研修・各種講習会の講師</li>
+          <li>各種助成金の申請・提出代行サポート</li>
+          <li>契約書の作成・各種行政手続きの代行</li>
+        </ul>
+      </div>
+
+      <div class="service-panel">
+        <span class="service-panel-label">FOR INDIVIDUALS</span>
+        <h3>個人のお客様へ</h3>
+        <ul class="service-list">
+          <li>年金相談（老齢・障害・遺族年金）</li>
+          <li>労働問題（解雇・残業・ハラスメント）の相談</li>
+          <li>定年後の生活設計・年金受給のサポート</li>
+          <li>傷病手当金・育児休業給付金の申請サポート</li>
+          <li>各種助成金の申請・提出代行</li>
+          <li>フリーランス・個人事業主の社会保険相談</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWS ──────────────────────────────── -->
+<section id="news">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">INFORMATION</span>
+      <h2 class="section-title">最新のお知らせ・法改正情報</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="news-list">
+      <div class="news-item">
+        <span class="news-date">2025.04</span>
+        <span class="news-text">令和8年3月分から健康保険料率が引き下げ。4月分より子ども・子育て支援金の徴収も開始されます。</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2025.04</span>
+        <span class="news-text">19歳以上23歳未満の社会保険（健保・厚年）被扶養者の年間収入基準が変更されました。</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2025.04</span>
+        <span class="news-text">育児休業給付金の延長手続きが令和7年4月より厳格化。要件の確認をお早めに。</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2024.10</span>
+        <span class="news-text">厚生年金の「養育特例」制度について詳しい情報をご提供しています。お気軽にご相談ください。</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">2024.04</span>
+        <span class="news-text">「労働条件通知書」の記載内容が令和6年度より変更されました。就業規則の見直しをご検討の方はご相談ください。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ACCESS ─────────────────────────────── -->
+<section id="access">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">ACCESS</span>
+      <h2 class="section-title">アクセス・お問い合わせ</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="access-grid">
+
+      <div class="access-info">
+        <div class="info-block">
+          <span class="info-label">事務所名</span>
+          <span class="info-value">井野社会保険労務士事務所</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">所在地</span>
+          <span class="info-value">
+            〒136-0072<br>
+            東京都江東区大島3-26-2-503
+          </span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">電話番号</span>
+          <span class="info-value tel">03-5609-7253</span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">受付時間</span>
+          <span class="info-value">
+            平日 9:00〜18:00<br>
+            <small style="font-size:0.8rem;color:rgba(255,255,255,0.5);">土日・祝日は事前にご連絡ください</small>
+          </span>
+        </div>
+        <div class="info-block">
+          <span class="info-label">所属</span>
+          <span class="info-value" style="font-size:0.88rem;">
+            東京都社会保険労務士会 江東支部
+          </span>
+        </div>
+        <a href="https://maps.google.com/?q=東京都江東区大島3-26-2" target="_blank" rel="noopener" class="map-link">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Google マップで開く
+        </a>
+      </div>
+
+      <div class="map-placeholder">
+        <iframe
+          src="https://maps.google.com/maps?q=東京都江東区大島3-26-2&output=embed&z=16&hl=ja"
+          title="井野社会保険労務士事務所 地図"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ────────────────────────── -->
+<section id="cta-banner">
+  <div class="container">
+    <h2>労務・年金のことなら、まずはご相談ください</h2>
+    <p>初回相談無料 ／ お電話でのご予約も承っております</p>
+    <a href="tel:0356097253" class="cta-tel-link">
+      📞　03-5609-7253
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────── -->
+<footer>
+  <strong>井野社会保険労務士事務所</strong>
+  東京都江東区大島3-26-2-503　／　TEL: 03-5609-7253<br>
+  東京都社会保険労務士会 江東支部所属<br>
+  <br>
+  &copy; 2025 井野社会保険労務士事務所. All Rights Reserved.
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMobile();
+    }
+  });
+
+  // Smooth header shrink on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    header.style.boxShadow = window.scrollY > 40
+      ? '0 4px 24px rgba(0,0,0,0.35)'
+      : 'none';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山田時計店 | 沖縄の時計修理・貴金属加工専門店</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --gold-dark: #9e7c2e;
+    --navy: #0e1628;
+    --navy-mid: #1a2540;
+    --navy-light: #253055;
+    --cream: #f8f4ed;
+    --cream-dark: #ede8df;
+    --text-dark: #1a1a1a;
+    --text-mid: #4a4a4a;
+    --text-light: #7a7a7a;
+    --white: #ffffff;
+    --serif: 'Noto Serif JP', serif;
+    --sans: 'Noto Sans JP', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--text-dark);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER / NAV ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(14, 22, 40, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .logo-ja {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+  }
+
+  .logo-en {
+    font-size: 0.6rem;
+    color: rgba(201,168,76,0.65);
+    letter-spacing: 0.22em;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.82);
+    letter-spacing: 0.1em;
+    transition: color 0.25s;
+    position: relative;
+  }
+
+  nav ul a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.25s;
+  }
+
+  nav ul a:hover { color: var(--gold); }
+  nav ul a:hover::after { width: 100%; }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 8px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    background: rgba(14, 22, 40, 0.98);
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .mobile-menu.open { display: block; }
+
+  .mobile-menu ul {
+    list-style: none;
+    padding: 16px 0;
+  }
+
+  .mobile-menu ul li a {
+    display: block;
+    padding: 14px 28px;
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .mobile-menu ul li a:hover {
+    color: var(--gold);
+    padding-left: 36px;
+  }
+
+  /* ===== NOTICE BANNER ===== */
+  .notice-banner {
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+    color: var(--navy);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 9px 20px;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    z-index: 999;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 108px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.28) saturate(0.8);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(14,22,40,0.7) 0%,
+      rgba(14,22,40,0.3) 50%,
+      rgba(14,22,40,0.6) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 860px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    padding: 7px 20px;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.12em;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: rgba(255,255,255,0.72);
+    letter-spacing: 0.14em;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.58);
+    letter-spacing: 0.05em;
+    line-height: 1.9;
+    margin-bottom: 48px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(201,168,76,0.7);
+    color: var(--gold);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(201,168,76,0.12);
+    border-color: var(--gold);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ===== SECTIONS COMMON ===== */
+  section { padding: 100px 24px; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .section-label span {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    color: var(--navy);
+  }
+
+  .section-title.light { color: var(--white); }
+
+  .section-lead {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 2.0;
+    letter-spacing: 0.04em;
+    max-width: 680px;
+  }
+
+  .section-lead.light { color: rgba(255,255,255,0.7); }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 28px 0;
+  }
+
+  /* ===== FEATURES ===== */
+  #features { background: var(--cream); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 64px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    padding: 44px 36px;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .feature-card:hover {
+    border-bottom-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(14,22,40,0.1);
+  }
+
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    font-size: 2.4rem;
+    margin-bottom: 22px;
+    display: block;
+  }
+
+  .feature-card h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+  }
+
+  .feature-card p {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+  }
+
+  /* ===== SERVICES ===== */
+  #services { background: var(--navy); }
+
+  .services-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .services-image {
+    position: relative;
+  }
+
+  .services-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .services-image::before {
+    content: '';
+    position: absolute;
+    inset: -12px -12px 12px 12px;
+    border: 1px solid rgba(201,168,76,0.3);
+    z-index: -1;
+  }
+
+  .services-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .service-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 32px 28px;
+    transition: background 0.3s, border-color 0.3s;
+    position: relative;
+  }
+
+  .service-item:hover {
+    background: rgba(201,168,76,0.07);
+    border-color: rgba(201,168,76,0.5);
+  }
+
+  .service-num {
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .service-item h3 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  .service-item p {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.52);
+    line-height: 1.85;
+    letter-spacing: 0.03em;
+  }
+
+  .service-price {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.72rem;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 4px 12px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== CRAFTSMEN ===== */
+  #craftsmen { background: var(--cream); }
+
+  .craftsmen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px;
+    margin-top: 60px;
+  }
+
+  .craftsman-card {
+    background: var(--white);
+    padding: 36px 28px;
+    text-align: center;
+    border-top: 3px solid var(--gold);
+  }
+
+  .craftsman-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.6rem;
+    border: 2px solid var(--gold);
+  }
+
+  .craftsman-role {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .craftsman-card h3 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .craftsman-card p {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* ===== SECURITY / PAYMENT ===== */
+  .trust-bar {
+    background: var(--navy-mid);
+    padding: 40px 24px;
+  }
+
+  .trust-bar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+  }
+
+  .trust-item .icon { font-size: 1.4rem; }
+
+  /* ===== ACCESS ===== */
+  #access { background: var(--white); }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    margin-top: 56px;
+    align-items: start;
+  }
+
+  .access-info dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+  }
+
+  .access-info dt {
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    font-weight: 600;
+    padding: 18px 20px 18px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    white-space: nowrap;
+  }
+
+  .access-info dd {
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    padding: 18px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    line-height: 1.8;
+    letter-spacing: 0.04em;
+  }
+
+  .access-info dd a {
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .access-info dd a:hover { color: var(--gold); }
+
+  .notice-box {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 22px 24px;
+    margin-top: 32px;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  .notice-box strong {
+    color: var(--navy);
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.84rem;
+    letter-spacing: 0.08em;
+  }
+
+  .map-wrap {
+    position: relative;
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 420px;
+    border: none;
+    display: block;
+    filter: grayscale(20%) contrast(1.05);
+  }
+
+  .map-frame {
+    border: 1px solid var(--cream-dark);
+    position: relative;
+  }
+
+  .map-frame::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    right: 8px; bottom: 8px;
+    border: 1px solid rgba(201,168,76,0.3);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ===== CONTACT CTA ===== */
+  .contact-cta {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-cta::before {
+    content: '時計';
+    position: absolute;
+    font-family: var(--serif);
+    font-size: 18rem;
+    color: rgba(201,168,76,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .contact-cta h2 {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--white);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .contact-cta p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.06em;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .contact-tel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  .contact-tel:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .contact-email {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(201,168,76,0.6);
+    color: var(--gold);
+    text-decoration: none;
+    padding: 16px 40px;
+    font-size: 0.88rem;
+    letter-spacing: 0.08em;
+    transition: all 0.25s;
+  }
+
+  .contact-email:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    padding: 48px 24px 32px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 28px;
+  }
+
+  .footer-logo .logo-ja { font-size: 1.3rem; }
+  .footer-logo .logo-en { font-size: 0.62rem; }
+
+  .footer-info {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 2.0;
+    margin-top: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: right;
+  }
+
+  .footer-nav ul a {
+    text-decoration: none;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+  }
+
+  .footer-nav ul a:hover { color: var(--gold); }
+
+  .footer-copy {
+    text-align: center;
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.1em;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+
+    section { padding: 72px 20px; }
+
+    .services-intro {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .services-image { display: none; }
+
+    .services-list {
+      grid-template-columns: 1fr;
+    }
+
+    .access-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .footer-nav ul {
+      text-align: left;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2rem; }
+    .craftsmen-grid { grid-template-columns: 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <span class="logo-ja">山田時計店</span>
+      <span class="logo-en">Yamada Tokeiten · Est. Okinawa</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#features">こだわり</a></li>
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#craftsmen">職人</a></li>
+        <li><a href="#access">アクセス</a></li>
+        <li><a href="#contact">お問い合せ</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburgerBtn" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#features" onclick="closeMobileMenu()">こだわり</a></li>
+      <li><a href="#services" onclick="closeMobileMenu()">サービス</a></li>
+      <li><a href="#craftsmen" onclick="closeMobileMenu()">職人紹介</a></li>
+      <li><a href="#access" onclick="closeMobileMenu()">営業時間・アクセス</a></li>
+      <li><a href="#contact" onclick="closeMobileMenu()">お問い合せ</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ===== NOTICE BANNER ===== -->
+<div class="notice-banner">
+  📢 ゴールデンウィーク休業：2026年5月3日（日）〜5月6日（水）｜ゼンマイ式オーバーホールの納期は現在1年以上のご案内となります
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Okinawa — Watch Repair &amp; Jewelry</div>
+    <h1>時を刻む、<br><span>技を継ぐ。</span></h1>
+    <p class="hero-sub">沖縄の時計修理・貴金属加工修理専門店</p>
+    <p class="hero-desc">
+      ROLEX・OMEGAをはじめとするブランド時計の修理から日常使いの電池交換まで、<br>
+      また指輪のサイズ直し・リフォームなど、熟練の職人が丁寧に承ります。
+    </p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">サービスを見る</a>
+      <a href="#access" class="btn-outline">アクセス・営業時間</a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label"><span>Our Features</span></div>
+    <h2 class="section-title">山田時計店が<br>選ばれる理由</h2>
+    <div class="divider"></div>
+    <p class="section-lead">
+      長年にわたり沖縄で愛され続ける時計修理・貴金属加工の専門店として、<br>
+      確かな技術と誠実なサービスをお届けしています。
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔬</span>
+        <h3>店内修理工房を完備</h3>
+        <p>時計修理室・貴金属修理室を店内に設置。修理の様子をガラス越しにご覧いただけるオープンな環境で、安心して修理をお任せいただけます。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⌚</span>
+        <h3>ブランド時計に精通した技術</h3>
+        <p>ROLEX・OMEGAなど高級ブランド時計のオーバーホール・修理に豊富な実績。クロック・ウォッチ・ゼンマイ式と幅広く対応いたします。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💍</span>
+        <h3>貴金属加工のプロが在籍</h3>
+        <p>指輪のサイズ直しからジュエリーリフォームまで、専門の貴金属加工修理師が丁寧に対応。大切なアクセサリーを新たな輝きに蘇らせます。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>SECOMセキュリティで安心保管</h3>
+        <p>お預かりした修理品はSECOMのセキュリティシステムで厳重に管理。大切なお品物を責任を持ってお預かりいたします。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💳</span>
+        <h3>各種決済に対応</h3>
+        <p>現金はもちろん、各種クレジットカード・電子マネーEdy（お支払いのみ）にも対応。お客様のご都合に合わせた決済方法をお選びください。</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📍</span>
+        <h3>沖縄・嘉手納に根ざした専門店</h3>
+        <p>地域のお客様から長年ご愛顧いただいている時計・貴金属の専門店。お気軽にご相談ください。メールでのお問い合せも承っております。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label"><span>Services</span></div>
+    <h2 class="section-title light">修理・加工<br>サービス一覧</h2>
+    <div class="divider"></div>
+    <p class="section-lead light">時計の修理から貴金属加工まで、幅広いご依頼に対応しております。<br>まずはお気軽にお問い合せください。</p>
+
+    <div class="services-intro">
+      <div>
+        <div class="services-list">
+          <div class="service-item">
+            <span class="service-num">01</span>
+            <h3>オーバーホール</h3>
+            <p>機械式・クォーツ・ゼンマイ式など各種時計の分解点検・洗浄・注油を行います。</p>
+            <span class="service-price">※ゼンマイ式は現在納期1年以上</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">02</span>
+            <h3>電池交換</h3>
+            <p>各メーカーの腕時計電池交換を承ります。消費税込みで承っております。</p>
+            <span class="service-price">通常 ¥1,200 / G-SHOCK ¥1,500〜</span>
+          </div>
+          <div class="service-item">
+            <span class="service-num">03</span>
+            <h3>ブランド時計修理</h3>
+            <p>ROLEX・OMEGAをはじめとするブランド時計の各種修理・メンテナンスを対応いたします。</p>
+          </div>
+          <div class="service-item">
+            <span class="service-num">04</span>
+            <h3>指輪サイズ直し</h3>
+            <p>大切な指輪のサイズ調整を専門の貴金属加工師が丁寧に施工いたします。</p>
+          </div>
+          <div class="service-item">
+            <span class="service-num">05</span>
+            <h3>ジュエリーリフォーム</h3>
+            <p>古くなった貴金属アクセサリーを現代のデザインに生まれ変わらせるリフォームも承ります。</p>
+          </div>
+          <div class="service-item">
+            <span class="service-num">06</span>
+            <h3>貴金属加工・修理</h3>
+            <p>ネックレス・ブレスレットなど各種貴金属の修理・加工を専門職人が対応します。</p>
+          </div>
+        </div>
+      </div>
+      <div class="services-image">
+        <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?w=800&q=80" alt="時計修理の様子">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="icon">🛡️</span> SECOMセキュリティ導入済み</div>
+    <div class="trust-item"><span class="icon">💳</span> クレジットカード対応</div>
+    <div class="trust-item"><span class="icon">📱</span> 電子マネーEdy対応</div>
+    <div class="trust-item"><span class="icon">🔍</span> 店内修理工房（作業見学可）</div>
+    <div class="trust-item"><span class="icon">📧</span> メールお問い合せ可</div>
+  </div>
+</div>
+
+<!-- ===== CRAFTSMEN ===== -->
+<section id="craftsmen">
+  <div class="section-inner">
+    <div class="section-label"><span>Our Craftsmen</span></div>
+    <h2 class="section-title">職人紹介</h2>
+    <div class="divider"></div>
+    <p class="section-lead">
+      経験豊富な専門職人が、お客様の大切なお品物と向き合います。
+    </p>
+    <div class="craftsmen-grid">
+      <div class="craftsman-card">
+        <div class="craftsman-avatar">⚙️</div>
+        <span class="craftsman-role">Clock &amp; Watch</span>
+        <h3>山田 義明</h3>
+        <p>クロック・ウォッチ担当<br>時計修理師として長年の経験を持ち、機械式からクォーツまで幅広く対応。</p>
+      </div>
+      <div class="craftsman-card">
+        <div class="craftsman-avatar">⌚</div>
+        <span class="craftsman-role">Watch Specialist</span>
+        <h3>山田 義幸</h3>
+        <p>ウォッチ担当<br>腕時計修理のスペシャリストとして、ブランド時計のオーバーホールを中心に担当。</p>
+      </div>
+      <div class="craftsman-card">
+        <div class="craftsman-avatar">💍</div>
+        <span class="craftsman-role">Jewelry Craftsman</span>
+        <h3>有銘 政治</h3>
+        <p>貴金属加工修理担当<br>指輪のサイズ直しからジュエリーリフォームまで、卓越した技術で対応。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCESS ===== -->
+<section id="access">
+  <div class="section-inner">
+    <div class="section-label"><span>Access &amp; Hours</span></div>
+    <h2 class="section-title">営業時間・アクセス</h2>
+    <div class="divider"></div>
+    <div class="access-grid">
+      <div>
+        <div class="access-info">
+          <dl>
+            <dt>店舗名</dt>
+            <dd>山田時計店</dd>
+            <dt>住所</dt>
+            <dd>〒904-0203<br>沖縄県中頭郡嘉手納町字嘉手納463-13</dd>
+            <dt>電話</dt>
+            <dd><a href="tel:0989573579">098-957-3579</a></dd>
+            <dt>メール</dt>
+            <dd><a href="mailto:info@yamada-tokeiten.com">info@yamada-tokeiten.com</a><br><small style="font-size:0.74rem;color:var(--text-light);">※通常3営業日以内にご返信いたします</small></dd>
+            <dt>定休日</dt>
+            <dd>店舗にお問い合せください</dd>
+            <dt>決済方法</dt>
+            <dd>現金／各種クレジットカード／電子マネーEdy（支払のみ）</dd>
+          </dl>
+        </div>
+        <div class="notice-box">
+          <strong>⏳ ゼンマイ式腕時計のオーバーホールについて</strong>
+          現在、大変混み合っており納期が1年以上となっております。見積もりに約2週間のお時間をいただいております。誠に申し訳ございませんが、ご了承のうえお問い合せください。
+        </div>
+        <div class="notice-box" style="margin-top:16px;">
+          <strong>📅 ゴールデンウィーク休業のお知らせ</strong>
+          2026年5月3日（日）〜5月6日（水）は休業いたします。ご不便をおかけいたしますが、何卒ご了承ください。
+        </div>
+      </div>
+      <div class="map-wrap">
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7!2d127.7495!3d26.3665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDIxJzU5LjQiTiAxMjfCsDQ0JzU4LjIiRQ!5e0!3m2!1sja!2sjp!4v1600000000000!5m2!1sja!2sjp"
+            allowfullscreen=""
+            loading="lazy"
+            title="山田時計店の地図">
+          </iframe>
+        </div>
+        <p style="margin-top:14px;font-size:0.76rem;color:var(--text-light);letter-spacing:0.05em;">
+          📍 沖縄県中頭郡嘉手納町字嘉手納463-13
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT CTA ===== -->
+<div class="contact-cta" id="contact">
+  <h2>お気軽にご相談ください</h2>
+  <p>時計の修理・貴金属加工に関するご質問・お見積もりはお気軽にどうぞ</p>
+  <div class="contact-links">
+    <a href="tel:0989573579" class="contact-tel">
+      📞 098-957-3579
+    </a>
+    <a href="mailto:info@yamada-tokeiten.com" class="contact-email">
+      ✉️ info@yamada-tokeiten.com
+    </a>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="logo footer-logo">
+        <span class="logo-ja">山田時計店</span>
+        <span class="logo-en">Yamada Tokeiten · Okinawa</span>
+      </a>
+      <p class="footer-info">
+        〒904-0203 沖縄県中頭郡嘉手納町字嘉手納463-13<br>
+        TEL: 098-957-3579 ／ info@yamada-tokeiten.com<br>
+        時計修理・貴金属加工修理専門店
+      </p>
+    </div>
+    <nav class="footer-nav">
+      <ul>
+        <li><a href="#features">こだわり</a></li>
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#craftsmen">職人紹介</a></li>
+        <li><a href="#access">アクセス</a></li>
+        <li><a href="#contact">お問い合せ</a></li>
+      </ul>
+    </nav>
+  </div>
+  <p class="footer-copy">Copyright &copy; 2024 YAMADA TOKEITEN All Rights Reserved.</p>
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('mobileMenu');
+
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+
+  function closeMobileMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+  }
+
+  // Smooth header on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.style.background = 'rgba(14,22,40,0.98)';
+    } else {
+      header.style.background = 'rgba(14,22,40,0.95)';
+    }
+  });
+</script>
+</body>
+</html>

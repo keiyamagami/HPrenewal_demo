@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>篠崎事務所｜社会保険労務士・行政書士｜東京都北区赤羽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243259;
+    --gold: #c9a84c;
+    --gold-light: #e8c87a;
+    --cream: #f8f5f0;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --text: #1f2937;
+    --text-light: #4b5563;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    line-height: 1.7;
+    background: var(--white);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  /* ===== HEADER / NAV ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 39, 68, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+  }
+
+  nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .nav-logo .logo-sub {
+    font-size: 10px;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+  }
+
+  .nav-logo .logo-main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+    position: relative;
+    padding-bottom: 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-tel {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--gold-light);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: 1px solid rgba(201,168,76,0.5);
+    padding: 6px 14px;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .nav-tel:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px; height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: var(--navy);
+    z-index: 999;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 24px;
+    transform: translateY(-100%);
+    transition: transform 0.35s ease;
+  }
+
+  .mobile-menu.open {
+    display: block;
+    transform: translateY(0);
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-menu ul li a {
+    display: block;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 15px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    letter-spacing: 0.06em;
+  }
+
+  .mobile-menu .mobile-tel {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: var(--gold-light);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(201,168,76,0.5);
+    padding: 12px;
+    border-radius: 3px;
+    text-decoration: none;
+  }
+
+  /* ===== HERO ===== */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+
+  #hero:hover .hero-bg { transform: scale(1.0); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(10, 18, 40, 0.82) 0%,
+      rgba(26, 39, 68, 0.75) 60%,
+      rgba(10, 18, 40, 0.70) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    padding: 0 24px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid rgba(201,168,76,0.7);
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    padding: 6px 20px;
+    margin-bottom: 28px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+  }
+
+  .hero-title {
+    font-size: clamp(30px, 5vw, 54px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.4;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  .hero-title span { color: var(--gold-light); }
+
+  .hero-sub {
+    font-size: clamp(13px, 2vw, 16px);
+    color: rgba(255,255,255,0.80);
+    line-height: 1.9;
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 36px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,168,76,0.45);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.6);
+    color: var(--white);
+    padding: 14px 36px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: var(--white);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    z-index: 1;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(201,168,76,0.7), transparent);
+    animation: scrollLine 1.8s ease infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+    50% { opacity: 1; }
+    100% { opacity: 0; transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* ===== SECTION COMMON ===== */
+  section { padding: 90px 24px; }
+
+  .section-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-en {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 3.5vw, 34px);
+    color: var(--navy);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .section-line {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    margin: 0 auto;
+  }
+
+  .section-desc {
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.9;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== ABOUT / GREETING ===== */
+  #about {
+    background: var(--cream);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .about-image {
+    position: relative;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+  }
+
+  .about-image::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: -12px;
+    right: 12px; bottom: 12px;
+    border: 2px solid var(--gold);
+    border-radius: 2px;
+    z-index: 0;
+  }
+
+  .about-image img { position: relative; z-index: 1; }
+
+  .about-text {}
+
+  .about-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 300;
+    margin-bottom: 12px;
+    display: block;
+    text-transform: uppercase;
+  }
+
+  .about-title {
+    font-size: clamp(20px, 2.5vw, 28px);
+    color: var(--navy);
+    font-weight: 600;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+  }
+
+  .about-body {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 2;
+    margin-bottom: 16px;
+  }
+
+  .about-sign {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .about-sign .role {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--gray);
+  }
+
+  .about-sign .name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 20px;
+    color: var(--navy);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== FEATURES ===== */
+  #features {
+    background: var(--white);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .feature-card {
+    background: var(--cream);
+    padding: 40px 32px;
+    border-radius: 2px;
+    border-top: 3px solid var(--gold);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 48px rgba(26,39,68,0.1);
+  }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .feature-title {
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  .feature-text {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  /* ===== SERVICES ===== */
+  #services {
+    background: var(--navy);
+    padding: 90px 24px;
+  }
+
+  #services .section-title { color: var(--white); }
+  #services .section-en { color: var(--gold-light); }
+  #services .section-desc { color: rgba(255,255,255,0.65); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 36px 32px;
+    border-radius: 2px;
+    transition: all 0.25s;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .service-card:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(201,168,76,0.5);
+    transform: translateY(-3px);
+  }
+
+  .service-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.6;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 44px;
+  }
+
+  .service-body {}
+
+  .service-title {
+    font-size: 15px;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 0.04em;
+    line-height: 1.5;
+  }
+
+  .service-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.9;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+  }
+
+  .service-tag {
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ===== FREE DIAGNOSIS ===== */
+  #diagnosis {
+    background: var(--cream);
+  }
+
+  .diagnosis-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .diagnosis-card {
+    background: var(--white);
+    padding: 36px 32px;
+    border-radius: 2px;
+    box-shadow: 0 4px 24px rgba(26,39,68,0.07);
+    border-left: 4px solid var(--gold);
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+
+  .diagnosis-card:hover {
+    box-shadow: 0 12px 40px rgba(26,39,68,0.12);
+    transform: translateY(-3px);
+  }
+
+  .diagnosis-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    padding: 4px 12px;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .diagnosis-title {
+    font-size: 17px;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+  }
+
+  .diagnosis-text {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .diagnosis-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--navy);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .diagnosis-link:hover { color: var(--gold); }
+
+  .diagnosis-link::after {
+    content: '→';
+  }
+
+  /* ===== ACCESS ===== */
+  #access {
+    background: var(--white);
+  }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .access-info {}
+
+  .access-block {
+    margin-bottom: 32px;
+  }
+
+  .access-block-title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  .access-block-content {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .access-block-content a {
+    color: var(--navy);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 22px;
+    letter-spacing: 0.05em;
+  }
+
+  .access-block-content a:hover {
+    color: var(--gold);
+  }
+
+  .access-area {
+    background: var(--cream);
+    padding: 20px 24px;
+    border-radius: 2px;
+    border-left: 3px solid var(--gold);
+    margin-top: 12px;
+  }
+
+  .access-area-title {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--gray);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .access-area-text {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #ddd;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(26,39,68,0.1);
+  }
+
+  .access-map iframe {
+    width: 100%; height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .access-map-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 32px;
+  }
+
+  .access-map-placeholder .map-icon {
+    font-size: 40px;
+  }
+
+  .access-map-placeholder p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .access-map-placeholder strong {
+    display: block;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ===== CTA ===== */
+  #cta {
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1629 100%);
+    padding: 90px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 50%;
+  }
+
+  #cta::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 50%;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .cta-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .cta-title {
+    font-size: clamp(22px, 3.5vw, 34px);
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+  }
+
+  .cta-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+    margin-bottom: 40px;
+  }
+
+  .cta-tel-block {
+    margin-bottom: 32px;
+  }
+
+  .cta-tel-label {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 8px;
+  }
+
+  .cta-tel {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    color: var(--gold-light);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+
+  .cta-tel:hover { color: var(--white); }
+
+  .cta-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 8px;
+  }
+
+  .cta-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 12px 28px;
+    border-radius: 2px;
+    transition: all 0.25s;
+    margin-top: 8px;
+  }
+
+  .cta-email:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.4);
+    color: var(--white);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0a1020;
+    padding: 48px 24px 24px;
+  }
+
+  .footer-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-brand .brand-sub {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    margin-bottom: 6px;
+    display: block;
+    font-weight: 300;
+  }
+
+  .footer-brand .brand-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 18px;
+    color: var(--white);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .footer-brand p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 2;
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col ul li a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-col ul li a::before {
+    content: '— ';
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  .footer-col ul li a:hover { color: rgba(255,255,255,0.85); }
+
+  .footer-col address {
+    font-style: normal;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    line-height: 2;
+  }
+
+  .footer-bottom {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.06em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .about-grid,
+    .access-grid { grid-template-columns: 1fr; gap: 40px; }
+
+    .about-image { order: -1; }
+
+    .about-image img { height: 320px; }
+
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .services-grid { grid-template-columns: 1fr; }
+
+    .diagnosis-grid { grid-template-columns: 1fr; }
+
+    .footer-top { grid-template-columns: 1fr 1fr; }
+
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 640px) {
+    section { padding: 64px 20px; }
+
+    .nav-links, .nav-tel { display: none; }
+
+    .hamburger { display: flex; }
+
+    .features-grid { grid-template-columns: 1fr; }
+
+    .footer-top { grid-template-columns: 1fr; }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .hero-buttons { flex-direction: column; align-items: center; }
+
+    .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+
+    .service-card { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <nav>
+    <div class="nav-logo">
+      <span class="logo-sub">社会保険労務士・行政書士</span>
+      <span class="logo-main">篠崎事務所</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">事務所について</a></li>
+      <li><a href="#features">当事務所の強み</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#diagnosis">無料診断</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+    <a href="tel:0352493912" class="nav-tel">
+      ☎ 03-5249-3912
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#about" class="menu-link">事務所について</a></li>
+    <li><a href="#features" class="menu-link">当事務所の強み</a></li>
+    <li><a href="#services" class="menu-link">サービス</a></li>
+    <li><a href="#diagnosis" class="menu-link">無料診断</a></li>
+    <li><a href="#access" class="menu-link">アクセス</a></li>
+  </ul>
+  <a href="tel:0352493912" class="mobile-tel">☎ 03-5249-3912</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">SHINOZAKI OFFICE ｜ 東京都北区赤羽</div>
+    <h1 class="hero-title">
+      企業様の<span>人事労務</span>を、<br>
+      トータルでサポートします。
+    </h1>
+    <p class="hero-sub">
+      社会保険・労働保険手続から助成金申請・就業規則作成まで。<br>
+      社会保険労務士・行政書士の国家資格者が、貴社の経営を後方支援します。
+    </p>
+    <div class="hero-buttons">
+      <a href="#cta" class="btn-primary">初回相談・無料</a>
+      <a href="#services" class="btn-outline">サービス一覧を見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80" alt="篠崎事務所">
+      </div>
+      <div class="about-text">
+        <span class="about-label">Representative Message</span>
+        <h2 class="about-title">
+          企業様の躍進を実現する<br>
+          トータルパッケージ型の<br>
+          顧問業務を提供します。
+        </h2>
+        <p class="about-body">
+          当事務所は、社会保険・労務管理・各種許認可申請等に精通した社会保険労務士・行政書士などの国家資格者や、産業カウンセラーなどの専門家で構成されています。
+        </p>
+        <p class="about-body">
+          人事制度の策定や事務手続はもちろん、メンタルヘルス等の問題までサポートします。日々発生する労務上の対応・人事制度の見直し・社内規則の整備により労使紛争を予防し、適正な業務運営を実現します。
+        </p>
+        <p class="about-body">
+          初回のご相談・お問い合わせ・御見積は無料です。お気軽にご連絡ください。
+        </p>
+        <div class="about-sign">
+          <span class="role">社会保険労務士・行政書士　篠崎事務所　代表</span>
+          <span class="name">篠崎　俊</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-en">Our Strengths</span>
+      <h2 class="section-title">当事務所の強み</h2>
+      <div class="section-line"></div>
+      <p class="section-desc">国家資格者・専門家チームが、貴社の人事労務課題を多角的に解決します。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3 class="feature-title">国家資格者による専門対応</h3>
+        <p class="feature-text">社会保険労務士・行政書士・産業カウンセラーなど複数の国家資格者・専門家が在籍。複雑な問題も多角的な視点で対応します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3 class="feature-title">トータルパッケージ型の顧問</h3>
+        <p class="feature-text">社会保険手続から就業規則・助成金申請・許認可まで。煩雑な事務をまとめてアウトソーシングできる一元対応体制を提供します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3 class="feature-title">助成金活用で経営をサポート</h3>
+        <p class="feature-text">受給可能な助成金を無料で診断し、申請代行まで一貫対応。中小企業が活用できる助成金・給付金の情報を積極的にご提案します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3 class="feature-title">労使紛争の予防と解決</h3>
+        <p class="feature-text">就業規則の整備・人事制度の見直しで労使トラブルを予防。労働基準監督官の臨検への立ち会いや個別労働関係紛争解決もサポートします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3 class="feature-title">広域対応・迅速レスポンス</h3>
+        <p class="feature-text">東京都23区全域および埼玉県等での顧問契約に対応。日常的な労務相談にも迅速に回答する体制を整えています。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3 class="feature-title">初回相談・見積は完全無料</h3>
+        <p class="feature-text">「相談しにくい」と感じる必要はありません。まずはお気軽にお電話・メールください。費用のご説明も丁寧に行います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-en">Services</span>
+      <h2 class="section-title">サービス内容</h2>
+      <div class="section-line"></div>
+      <p class="section-desc">社会保険労務士・行政書士業務を中心に、人事労務に関するあらゆるご相談に対応します。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-body">
+          <h3 class="service-title">社会保険・労働保険手続</h3>
+          <p class="service-text">厚生年金・健康保険・労災保険・雇用保険の加入・脱退手続から、毎年の年度更新・算定基礎届まで代行します。</p>
+          <div class="service-tags">
+            <span class="service-tag">社会保険</span>
+            <span class="service-tag">労働保険</span>
+            <span class="service-tag">年度更新</span>
+            <span class="service-tag">算定基礎届</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-body">
+          <h3 class="service-title">助成金申請代行</h3>
+          <p class="service-text">雇用保険二事業の助成金を中心に、貴社が受給できる助成金を調査・診断し、申請から受給まで一貫サポートします。</p>
+          <div class="service-tags">
+            <span class="service-tag">助成金診断</span>
+            <span class="service-tag">申請代行</span>
+            <span class="service-tag">無料診断あり</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-body">
+          <h3 class="service-title">就業規則の作成・見直し</h3>
+          <p class="service-text">会社を守る就業規則を一から作成。既存の就業規則の問題点を診断し、法改正や労務リスクに対応した内容に整備します。</p>
+          <div class="service-tags">
+            <span class="service-tag">就業規則作成</span>
+            <span class="service-tag">規則診断</span>
+            <span class="service-tag">法改正対応</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-body">
+          <h3 class="service-title">人事労務コンサルティング</h3>
+          <p class="service-text">人事制度の策定・見直しから個別労働関係紛争解決、労働基準監督官の臨検立ち会いまで。生産性向上と職場環境改善を支援します。</p>
+          <div class="service-tags">
+            <span class="service-tag">人事制度</span>
+            <span class="service-tag">紛争解決</span>
+            <span class="service-tag">臨検対応</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-body">
+          <h3 class="service-title">行政書士業務（許認可・ビザ等）</h3>
+          <p class="service-text">各種許認可の申請代行、外国人労働者のビザ申請手続を行います。相続手続サポート・遺言書作成等の民事業務にも対応します。</p>
+          <div class="service-tags">
+            <span class="service-tag">許認可申請</span>
+            <span class="service-tag">外国人ビザ</span>
+            <span class="service-tag">相続・遺言</span>
+          </div>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-body">
+          <h3 class="service-title">研修・メンタルヘルス対策</h3>
+          <p class="service-text">産業カウンセラーによるメンタルヘルス研修や各種社員教育研修カリキュラムを提供。職場環境の改善を多角的に支援します。</p>
+          <div class="service-tags">
+            <span class="service-tag">メンタルヘルス</span>
+            <span class="service-tag">社員研修</span>
+            <span class="service-tag">産業カウンセラー</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FREE DIAGNOSIS ===== -->
+<section id="diagnosis">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-en">Free Diagnosis</span>
+      <h2 class="section-title">無料診断サービス</h2>
+      <div class="section-line"></div>
+      <p class="section-desc">まずは現状を把握することが大切です。2つの無料診断をご活用ください。</p>
+    </div>
+    <div class="diagnosis-grid">
+      <div class="diagnosis-card">
+        <span class="diagnosis-badge">完全無料</span>
+        <h3 class="diagnosis-title">助成金 無料診断</h3>
+        <p class="diagnosis-text">
+          「どんな助成金が受けられるの？」とお悩みの事業主様へ。個々の事業主様が受給可能な助成金を精査し、無料診断レポートにまとめてご提供します。受給可能額が分かります。
+        </p>
+        <a href="#cta" class="diagnosis-link">診断を申し込む</a>
+      </div>
+      <div class="diagnosis-card">
+        <span class="diagnosis-badge">完全無料</span>
+        <h3 class="diagnosis-title">就業規則 無料診断</h3>
+        <p class="diagnosis-text">
+          雛型の就業規則をそのまま使っていませんか？Yes/Noのアンケートに答えるだけで問題点が明確になります。法改正・労務リスク回避の観点から貴社の就業規則を点検します。
+        </p>
+        <a href="#cta" class="diagnosis-link">診断を申し込む</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCESS ===== -->
+<section id="access">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-en">Access &amp; Contact</span>
+      <h2 class="section-title">アクセス・お問い合わせ</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="access-grid">
+      <div class="access-info">
+        <div class="access-block">
+          <div class="access-block-title">Tel</div>
+          <div class="access-block-content">
+            <a href="tel:0352493912">03-5249-3912</a>
+          </div>
+        </div>
+        <div class="access-block">
+          <div class="access-block-title">Fax</div>
+          <div class="access-block-content">03-5249-3913</div>
+        </div>
+        <div class="access-block">
+          <div class="access-block-title">Email</div>
+          <div class="access-block-content">
+            <a href="mailto:mail@shinozaki-office.com" style="font-size:15px;font-weight:500;">mail@shinozaki-office.com</a>
+          </div>
+        </div>
+        <div class="access-block">
+          <div class="access-block-title">Address</div>
+          <div class="access-block-content">
+            〒115-0045<br>
+            東京都北区赤羽1-19-7 葵ビル305
+          </div>
+        </div>
+        <div class="access-block">
+          <div class="access-block-title">Access</div>
+          <div class="access-block-content">
+            JR赤羽駅　徒歩約5分<br>
+            東京メトロ南北線　赤羽岩淵駅　徒歩約5分
+          </div>
+        </div>
+        <div class="access-area">
+          <div class="access-area-title">顧問契約の対応エリア</div>
+          <div class="access-area-text">
+            東京都23区（北区・板橋区・台東区・墨田区・江東区・荒川区・足立区・葛飾区・江戸川区・新宿区・文京区・渋谷区・豊島区・千代田区・中央区・港区・品川区・目黒区・大田区・世田谷区・中野区・杉並区・練馬区）、埼玉県 等
+          </div>
+        </div>
+      </div>
+      <div class="access-map">
+        <div class="access-map-placeholder">
+          <div class="map-icon">📍</div>
+          <div>
+            <strong>篠崎事務所</strong>
+            東京都北区赤羽1-19-7 葵ビル305<br>
+            JR赤羽駅 徒歩約5分<br>
+            東京メトロ南北線 赤羽岩淵駅 徒歩約5分
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section id="cta">
+  <div class="cta-inner">
+    <span class="cta-label">Contact Us — 初回相談無料</span>
+    <h2 class="cta-title">
+      まずはお気軽に<br>ご相談ください
+    </h2>
+    <p class="cta-text">
+      初回のご相談・お問い合わせ・御見積は費用をいただいておりません。<br>
+      そんなに堅苦しい事務所ではないので、お気軽にご相談ください。
+    </p>
+    <div class="cta-tel-block">
+      <div class="cta-tel-label">お電話でのお問い合わせ</div>
+      <a href="tel:0352493912" class="cta-tel">03-5249-3912</a>
+      <div class="cta-note">受付時間：平日 9:00〜18:00（土日祝はご相談ください）</div>
+    </div>
+    <a href="mailto:mail@shinozaki-office.com" class="cta-email">
+      ✉ メールでのお問い合わせ
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-sub">社会保険労務士・行政書士</span>
+        <span class="brand-name">篠崎事務所</span>
+        <p>東京都北区を拠点に、中小企業様の人事労務・助成金申請・就業規則作成・各種許認可申請を専門家チームがトータルサポートします。</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">社会保険・労働保険手続</a></li>
+          <li><a href="#services">助成金申請代行</a></li>
+          <li><a href="#services">就業規則の作成・見直し</a></li>
+          <li><a href="#services">人事労務コンサルティング</a></li>
+          <li><a href="#services">行政書士業務（許認可・ビザ）</a></li>
+          <li><a href="#services">研修・メンタルヘルス</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <address>
+          〒115-0045<br>
+          東京都北区赤羽<br>
+          1-19-7 葵ビル305<br><br>
+          TEL：03-5249-3912<br>
+          FAX：03-5249-3913<br>
+          mail@shinozaki-office.com
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 篠崎事務所 All Rights Reserved.</span>
+      <span>社会保険労務士・行政書士　篠崎事務所</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // Smooth scroll offset for fixed header
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 68;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.feature-card, .service-card, .diagnosis-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
