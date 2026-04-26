@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>徳山事務所｜社会保険労務士・行政書士 赤羽</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2744;
+      --navy-light: #243260;
+      --gold: #b8965a;
+      --gold-light: #d4af7a;
+      --cream: #f8f5f0;
+      --white: #ffffff;
+      --text-dark: #1e1e2e;
+      --text-mid: #4a4a5a;
+      --text-light: #7a7a8a;
+      --border: #e0dbd2;
+      --section-gap: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(26, 39, 68, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184, 150, 90, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      color: var(--gold-light);
+      letter-spacing: 0.12em;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 36px;
+    }
+    nav a {
+      text-decoration: none;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.1em;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+    nav a:hover { color: var(--gold-light); }
+    nav a:hover::after { width: 100%; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(26, 39, 68, 0.98);
+      padding: 24px 32px 32px;
+      z-index: 999;
+      border-top: 1px solid rgba(184,150,90,0.2);
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav ul { list-style: none; }
+    .mobile-nav li { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .mobile-nav a {
+      display: block;
+      padding: 14px 0;
+      text-decoration: none;
+      color: rgba(255,255,255,0.88);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+    .mobile-nav a:hover { color: var(--gold-light); }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,39,68,0.85) 0%, rgba(36,50,96,0.6) 50%, rgba(26,39,68,0.75) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(184,150,90,0.2);
+      border: 1px solid rgba(184,150,90,0.5);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      padding: 6px 16px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+
+    .hero-desc {
+      font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+      color: rgba(255,255,255,0.78);
+      max-width: 560px;
+      line-height: 2;
+      margin-bottom: 44px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 16px 36px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 24px rgba(184,150,90,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(184,150,90,0.45);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      padding: 16px 36px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: flex;
+      gap: 2px;
+    }
+    .stat-item {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(184,150,90,0.2);
+      padding: 24px 20px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ===== SECTION BASE ===== */
+    section { padding: var(--section-gap) 0; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      line-height: 1.5;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin: 20px auto 0;
+    }
+
+    /* ===== FEATURES ===== */
+    #features {
+      background: var(--cream);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 48px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+    .feature-card:hover::before { height: 100%; }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 52px; height: 52px;
+      background: var(--navy);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      font-size: 1.4rem;
+    }
+
+    .feature-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .feature-text {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    /* ===== GREETING ===== */
+    #greeting {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    #greeting::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -10%;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: rgba(184,150,90,0.05);
+    }
+
+    .greeting-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .greeting-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .greeting-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      letter-spacing: 0.04em;
+    }
+
+    .greeting-text {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 2.1;
+      margin-bottom: 20px;
+    }
+
+    .greeting-sig {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(184,150,90,0.3);
+    }
+    .greeting-sig-role {
+      font-size: 0.75rem;
+      color: var(--gold-light);
+      letter-spacing: 0.15em;
+      margin-bottom: 6px;
+    }
+    .greeting-sig-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .greeting-visual {
+      position: relative;
+    }
+    .greeting-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 2px;
+      filter: grayscale(20%) brightness(0.9);
+    }
+    .greeting-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(184,150,90,0.08) 100%);
+      border: 1px solid rgba(184,150,90,0.2);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .greeting-img-placeholder span {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.15em;
+    }
+
+    .greeting-deco {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border: 2px solid rgba(184,150,90,0.3);
+      border-radius: 2px;
+    }
+
+    /* ===== SERVICES ===== */
+    #services {
+      background: var(--white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .service-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .service-card-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: rgba(184,150,90,0.2);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .service-card-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .service-card-title::before {
+      content: '';
+      display: block;
+      width: 20px; height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .service-card-text {
+      font-size: 0.85rem;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    .service-list {
+      margin-top: 14px;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .service-list li {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      padding-left: 14px;
+      position: relative;
+    }
+    .service-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 0.7rem;
+    }
+
+    /* ===== PROBLEMS ===== */
+    #problems {
+      background: var(--cream);
+    }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .problem-item {
+      background: var(--white);
+      padding: 32px 28px;
+      border-left: 3px solid var(--gold);
+    }
+
+    .problem-icon {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .problem-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .problem-text {
+      font-size: 0.8rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    /* ===== ACCESS ===== */
+    #access {
+      background: var(--white);
+    }
+
+    .access-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .access-info {
+      padding-top: 8px;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 36px;
+    }
+    .info-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .info-table th {
+      padding: 16px 0;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      width: 100px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .info-table td {
+      padding: 16px 0;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    .tel-box {
+      background: var(--navy);
+      padding: 28px 32px;
+      border-radius: 2px;
+      text-align: center;
+    }
+    .tel-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .tel-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+    .tel-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+    }
+
+    .map-wrap {
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    }
+    .map-wrap iframe {
+      width: 100%;
+      height: 420px;
+      display: block;
+      border: none;
+    }
+
+    /* ===== CTA BANNER ===== */
+    #cta-banner {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta-banner::before, #cta-banner::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(184,150,90,0.06);
+    }
+    #cta-banner::before { width: 400px; height: 400px; top: -200px; left: -100px; }
+    #cta-banner::after { width: 300px; height: 300px; bottom: -150px; right: -50px; }
+
+    .cta-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #101726;
+      padding: 56px 0 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .footer-brand-sub {
+      font-size: 0.72rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+    .footer-brand-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.9;
+    }
+
+    .footer-col-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(184,150,90,0.2);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-cert {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .cert-badge {
+      font-size: 0.7rem;
+      color: var(--gold);
+      border: 1px solid rgba(184,150,90,0.3);
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.08em;
+    }
+
+    .copyright {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== SCROLL TO TOP ===== */
+    .scroll-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--navy);
+      border: 1px solid rgba(184,150,90,0.4);
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 2px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 900;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: auto; }
+    .scroll-top:hover { background: var(--navy-light); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      :root { --section-gap: 72px; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      .features-grid { grid-template-columns: 1fr; gap: 2px; }
+      .feature-card { padding: 36px 28px; }
+
+      .greeting-inner { grid-template-columns: 1fr; gap: 48px; }
+      .greeting-visual { order: -1; }
+      .greeting-img-placeholder { aspect-ratio: 16/7; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .problems-grid { grid-template-columns: 1fr 1fr; }
+
+      .access-inner { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+
+      .hero-stats { flex-direction: row; overflow-x: auto; }
+      .stat-item { min-width: 110px; }
+    }
+
+    @media (max-width: 600px) {
+      :root { --section-gap: 56px; }
+      .problems-grid { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; }
+      .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-main">徳山事務所</span>
+      <span class="logo-sub">TOKUYAMA OFFICE — SR & ADMINISTRATIVE SCRIVENER</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#greeting">ごあいさつ</a></li>
+        <li><a href="#services">業務内容</a></li>
+        <li><a href="#problems">よくあるお悩み</a></li>
+        <li><a href="#access">事務所案内</a></li>
+        <li><a href="#access">お問合わせ</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="#greeting" class="mobile-link">ごあいさつ</a></li>
+    <li><a href="#services" class="mobile-link">業務内容</a></li>
+    <li><a href="#problems" class="mobile-link">よくあるお悩み</a></li>
+    <li><a href="#access" class="mobile-link">事務所案内</a></li>
+    <li><a href="#access" class="mobile-link">お問合わせ</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div style="position:relative;z-index:2;width:100%;">
+    <div class="hero-content">
+      <div class="hero-badge">社会保険労務士・行政書士</div>
+      <h1 class="hero-title">
+        企業家の<em>ベストパートナー</em>として、<br>
+        労務問題を解決する。
+      </h1>
+      <p class="hero-desc">
+        徳山事務所は、赤羽を拠点とする特定社会保険労務士・行政書士事務所です。<br>
+        中小零細企業の労務管理・行政手続きを、外部の専門家として力強く支援いたします。
+      </p>
+      <div class="hero-cta">
+        <a href="tel:0359635585" class="btn-primary">
+          📞 03-5963-5585
+        </a>
+        <a href="#services" class="btn-outline">
+          サービスを見る →
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">30<span style="font-size:1rem">年+</span></div>
+        <div class="stat-label">豊富な実務経験</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2<span style="font-size:1rem">資格</span></div>
+        <div class="stat-label">特定SR・行政書士</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">全国</div>
+        <div class="stat-label">対応可能</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">初回</div>
+        <div class="stat-label">相談無料</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Our Strengths</span>
+      <h2 class="section-title">徳山事務所が選ばれる理由</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <div class="feature-num">STRENGTH 01</div>
+        <h3 class="feature-title">特定社会保険労務士として<br>紛争解決まで対応</h3>
+        <p class="feature-text">一般の社労士では扱えない個別労働紛争のあっせん代理が可能。労務トラブルが発生した際も、解決まで一貫してサポートします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-num">STRENGTH 02</div>
+        <h3 class="feature-title">行政書士資格も保有する<br>ワンストップ対応</h3>
+        <p class="feature-text">外国人雇用の在留資格申請から、会社設立・就業規則作成まで。社労士と行政書士の両方の視点から企業を包括的に支援します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-num">STRENGTH 03</div>
+        <h3 class="feature-title">巡回訪問による<br>きめ細かなサポート</h3>
+        <p class="feature-text">顧問契約先への定期巡回を実施。現場に足を運ぶことで、経営者が気づかない労務リスクを早期に発見・対処します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREETING -->
+<section id="greeting">
+  <div class="container">
+    <div class="greeting-inner">
+      <div class="greeting-text-col">
+        <div class="greeting-label">GREETING — ごあいさつ</div>
+        <h2 class="greeting-title">
+          労務管理の専門家として、<br>
+          必要な能力を必要なだけ<br>企業に提供いたします。
+        </h2>
+        <p class="greeting-text">
+          顧問先の中小零細企業を巡回しますと、経済の沈滞化が社会全体に蔓延し企業経営にも波及している現状を目の当たりにいたします。追い打ちをかけるように企業業績が低迷し、労務管理においても適正な管理ができず、その場を取り繕うだけの場当たり的な解決で済ませていることを痛切に感じております。
+        </p>
+        <p class="greeting-text">
+          賃金カット・残業代未払い・ハラスメント・外国人雇用・育児介護休暇など、労働分野の問題は複雑化・多様化しています。法改正も頻繁に行われ、自前での対応は難しいのが実情です。
+        </p>
+        <p class="greeting-text">
+          私どもノア労働法務事務所は、外部の労務管理専門家として、企業の前向きな事業活動を応援いたします。
+        </p>
+        <div class="greeting-sig">
+          <div class="greeting-sig-role">特定社会保険労務士・行政書士　代表</div>
+          <div class="greeting-sig-name">徳山　義行</div>
+        </div>
+      </div>
+      <div class="greeting-visual">
+        <div class="greeting-img-placeholder">
+          <span>事務所外観・代表写真</span>
+        </div>
+        <div class="greeting-deco"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">業務内容</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-card-num">01</div>
+        <h3 class="service-card-title">労務管理・顧問契約</h3>
+        <p class="service-card-text">就業規則の整備から日常的な労務相談まで、企業の労務管理全般をサポートします。定期巡回により現場の課題を早期発見・解決します。</p>
+        <ul class="service-list">
+          <li>就業規則・各種規程の作成・改訂</li>
+          <li>労働条件の整備・見直しアドバイス</li>
+          <li>人事・労務に関する日常相談</li>
+          <li>定期訪問による労務診断</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-num">02</div>
+        <h3 class="service-card-title">社会保険・労働保険手続き</h3>
+        <p class="service-card-text">入退社時の各種保険手続きから給付申請まで、煩雑な行政手続きを代行。事業主の負担を大幅に軽減します。</p>
+        <ul class="service-list">
+          <li>健康保険・厚生年金保険の手続き</li>
+          <li>雇用保険・労働保険の手続き</li>
+          <li>給与計算・賞与計算のサポート</li>
+          <li>算定基礎届・月額変更届の作成</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-num">03</div>
+        <h3 class="service-card-title">助成金・補助金申請</h3>
+        <p class="service-card-text">育児・介護休暇取得支援、雇用促進など、貴社が活用できる助成金を的確に提案・申請代行いたします。</p>
+        <ul class="service-list">
+          <li>雇用関係助成金の申請代行</li>
+          <li>育児・介護休業助成金</li>
+          <li>キャリアアップ助成金</li>
+          <li>人材開発支援助成金</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-num">04</div>
+        <h3 class="service-card-title">労働問題・紛争解決支援</h3>
+        <p class="service-card-text">特定社会保険労務士として、個別労働紛争のあっせん代理が可能。ハラスメント・解雇・未払い賃金などの問題を法的根拠をもって解決します。</p>
+        <ul class="service-list">
+          <li>労働紛争のあっせん代理</li>
+          <li>ハラスメント対策・研修</li>
+          <li>解雇・雇止め問題の対応</li>
+          <li>未払い残業代問題の対処</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-num">05</div>
+        <h3 class="service-card-title">外国人雇用支援</h3>
+        <p class="service-card-text">行政書士資格を活かし、在留資格申請から採用後の労務管理まで、外国人雇用に関わるあらゆる手続きをワンストップで対応します。</p>
+        <ul class="service-list">
+          <li>在留資格（ビザ）申請・変更</li>
+          <li>外国人雇用の届出・手続き</li>
+          <li>雇用契約書の多言語対応サポート</li>
+          <li>就労ルールに関する従業員教育</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-card-num">06</div>
+        <h3 class="service-card-title">メンタルヘルス・ハラスメント対策</h3>
+        <p class="service-card-text">職場のメンタルヘルス管理やハラスメント防止体制の整備を支援。安全配慮義務履行のためのリスク管理から研修実施まで対応します。</p>
+        <ul class="service-list">
+          <li>ストレスチェック制度の導入支援</li>
+          <li>ハラスメント防止規程の整備</li>
+          <li>管理職向けハラスメント研修</li>
+          <li>休職・復職支援のルール整備</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section id="problems">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Your Concerns</span>
+      <h2 class="section-title">こんなお悩みはありませんか？</h2>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-item">
+        <div class="problem-icon">💴</div>
+        <div class="problem-title">残業代の未払いを<br>指摘されてしまった</div>
+        <p class="problem-text">適切な労働時間管理・賃金体系の整備と、過去の未払い分の整理まで丁寧にサポートします。</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">😰</div>
+        <div class="problem-title">ハラスメント問題が<br>社内で発生してしまった</div>
+        <p class="problem-text">初動対応から再発防止策の策定まで。特定社労士として紛争解決まで一貫してお手伝いします。</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🌏</div>
+        <div class="problem-title">外国人を雇いたいが<br>手続きがわからない</div>
+        <p class="problem-text">在留資格申請（行政書士）から採用後の社会保険手続き（社労士）までワンストップで対応します。</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">📄</div>
+        <div class="problem-title">就業規則を整備したいが<br>何から始めればよいか</div>
+        <p class="problem-text">会社の実態に合った就業規則・各種規程を作成。労働基準監督署への届出まで代行します。</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">🏥</div>
+        <div class="problem-title">社員が精神的に不調で<br>休業したいと言っている</div>
+        <p class="problem-text">休職・傷病手当金の手続きから、職場復帰支援プランの策定まで、会社と本人双方をサポートします。</p>
+      </div>
+      <div class="problem-item">
+        <div class="problem-icon">💼</div>
+        <div class="problem-title">助成金を活用したいが<br>種類が多くて把握できない</div>
+        <p class="problem-text">貴社の状況・課題に合った助成金を的確にご提案。受給要件の確認から申請書類の作成まで対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section id="cta-banner">
+  <div class="container">
+    <p class="cta-title">初回相談は無料です。<br>まずはお気軽にお問合わせください。</p>
+    <p class="cta-sub">東京都北区赤羽より、首都圏全域の中小企業を力強くサポートします。</p>
+    <div class="cta-btns">
+      <a href="tel:0359635585" class="btn-primary">
+        📞 03-5963-5585 に電話する
+      </a>
+      <a href="#access" class="btn-outline">
+        事務所へのアクセス →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Access &amp; Information</span>
+      <h2 class="section-title">事務所案内</h2>
+    </div>
+    <div class="access-inner">
+      <div class="access-info">
+        <table class="info-table">
+          <tr>
+            <th>事務所名</th>
+            <td>ノア労働法務事務所<br><span style="font-size:0.8rem;color:var(--text-light)">（徳山事務所）</span></td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td>〒115-0055<br>東京都北区赤羽西1-5-1<br>赤羽アボードⅠビル1305号</td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td>03-5963-5585</td>
+          </tr>
+          <tr>
+            <th>代表者</th>
+            <td>徳山　義行<br><span style="font-size:0.8rem;color:var(--text-light)">特定社会保険労務士・行政書士</span></td>
+          </tr>
+          <tr>
+            <th>業務内容</th>
+            <td>労務管理・社会保険手続き<br>就業規則作成・助成金申請<br>行政書士業務全般</td>
+          </tr>
+          <tr>
+            <th>アクセス</th>
+            <td>JR京浜東北線「赤羽駅」西口<br>徒歩約3分</td>
+          </tr>
+        </table>
+        <div class="tel-box">
+          <div class="tel-label">お電話でのお問合わせ</div>
+          <a href="tel:0359635585" style="text-decoration:none;">
+            <div class="tel-num">03-5963-5585</div>
+          </a>
+          <div class="tel-note">受付時間：平日 9:00〜18:00（土日祝休）</div>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.7469879735927!2d139.71891!3d35.77836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ef9a1c2c4a0f%3A0x0!2z5p2x5Lqs6YO95YyX5Yy65LuK5YyJ6KW_77yR5LiB55uu77yV!5e0!3m2!1sja!2sjp!4v1680000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="徳山事務所 地図">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">徳山事務所</div>
+        <div class="footer-brand-sub">NOAH LABOR-LEGAL AFFAIRS OFFICE</div>
+        <p class="footer-brand-desc">
+          東京都北区赤羽を拠点に、中小零細企業の労務管理・行政手続きを専門的にサポートする社会保険労務士・行政書士事務所です。企業の前向きな事業活動を応援いたします。
+        </p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">NAVIGATION</div>
+        <ul>
+          <li><a href="#greeting">ごあいさつ</a></li>
+          <li><a href="#services">業務内容</a></li>
+          <li><a href="#problems">よくあるお悩み</a></li>
+          <li><a href="#access">事務所案内</a></li>
+          <li><a href="#access">お問合わせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">CONTACT</div>
+        <ul>
+          <li><a href="tel:0359635585">📞 03-5963-5585</a></li>
+          <li style="color:rgba(255,255,255,0.4);font-size:0.8rem;margin-top:8px;">〒115-0055<br>東京都北区赤羽西1-5-1<br>赤羽アボードⅠビル1305</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-cert">
+        <span class="cert-badge">特定社会保険労務士</span>
+        <span class="cert-badge">行政書士</span>
+      </div>
+      <p class="copyright">Copyright &copy; NOAH Labor-legal Affairs Office. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" aria-label="ページトップへ">↑</button>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // Scroll to top
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .service-card, .problem-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

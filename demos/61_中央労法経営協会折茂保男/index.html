@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中央労法経営協会 | 社会保険労務士 折茂保男事務所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #1a3560;
+    --navy-light: #254a84;
+    --gold: #b8963e;
+    --gold-light: #d4b06a;
+    --cream: #f7f4ee;
+    --gray-light: #f2f2f0;
+    --gray: #888;
+    --text: #1a1a2e;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.8;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(13, 31, 60, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 150, 62, 0.3);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .logo-main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.08em;
+    font-weight: 300;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+
+  nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    font-weight: 400;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.2s;
+  }
+
+  nav a:hover { color: var(--gold-light); }
+  nav a:hover::after { transform: scaleX(1); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    background: var(--navy);
+    border-top: 1px solid rgba(184,150,62,0.2);
+  }
+
+  .mobile-nav.open { display: block; }
+
+  .mobile-nav ul {
+    list-style: none;
+    padding: 8px 0 16px;
+  }
+
+  .mobile-nav li a {
+    display: block;
+    padding: 13px 24px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mobile-nav li a:hover {
+    background: rgba(184,150,62,0.1);
+    color: var(--gold-light);
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    transform: scale(1.04);
+    transition: transform 8s ease;
+  }
+
+  .hero:hover .hero-bg { transform: scale(1); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(13,31,60,0.7) 0%, rgba(26,53,96,0.4) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    padding: 5px 18px;
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 span {
+    color: var(--gold-light);
+  }
+
+  .hero-desc {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: rgba(255,255,255,0.78);
+    line-height: 1.9;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.88rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .hero-cta:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(184,150,62,0.7));
+    animation: scrollDown 2s infinite;
+  }
+
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ========== SECTIONS ========== */
+  section { padding: 96px 24px; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .section-label span {
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    font-weight: 500;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(184,150,62,0.4), transparent);
+    max-width: 200px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    margin-bottom: 48px;
+    line-height: 1.4;
+  }
+
+  /* ========== ABOUT / MOTTO ========== */
+  .about {
+    background: var(--cream);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .about-img {
+    position: relative;
+  }
+
+  .about-img img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-img::before {
+    content: '';
+    position: absolute;
+    top: -16px; left: -16px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--gold);
+    z-index: -1;
+  }
+
+  .about-body p {
+    color: #444;
+    font-size: 0.93rem;
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+
+  .motto-box {
+    background: var(--navy);
+    padding: 24px 28px;
+    margin-top: 32px;
+    border-left: 3px solid var(--gold);
+  }
+
+  .motto-box p {
+    color: rgba(255,255,255,0.9);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    margin: 0;
+    line-height: 1.9;
+  }
+
+  /* ========== FEATURES ========== */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    border: 1px solid #e8e4da;
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(13,31,60,0.1);
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--navy), var(--gold));
+  }
+
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .feature-icon svg {
+    width: 26px;
+    height: 26px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .feature-card h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .feature-card p {
+    font-size: 0.84rem;
+    color: #555;
+    line-height: 1.85;
+  }
+
+  /* ========== SERVICES ========== */
+  .services {
+    background: var(--navy);
+  }
+
+  .services .section-title {
+    color: var(--white);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+  }
+
+  .service-item {
+    background: rgba(255,255,255,0.04);
+    padding: 32px 36px;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.2s;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .service-item:hover {
+    background: rgba(184,150,62,0.1);
+  }
+
+  .service-num {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: rgba(184,150,62,0.4);
+    font-family: Georgia, serif;
+    line-height: 1;
+    min-width: 40px;
+  }
+
+  .service-body h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: 0.04em;
+  }
+
+  .service-body p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+  }
+
+  /* ========== ACCESS ========== */
+  .access {
+    background: var(--gray-light);
+  }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .info-item {
+    display: flex;
+    padding: 18px 0;
+    border-bottom: 1px solid #ddd;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .info-item:first-child {
+    border-top: 1px solid #ddd;
+  }
+
+  .info-label {
+    min-width: 90px;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    padding-top: 2px;
+  }
+
+  .info-value {
+    font-size: 0.92rem;
+    color: #333;
+    line-height: 1.7;
+  }
+
+  .info-value a {
+    color: var(--navy-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .info-value a:hover { color: var(--gold); }
+
+  .map-wrap {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 360px;
+    display: block;
+    border: 0;
+    filter: grayscale(20%);
+  }
+
+  .cta-tel {
+    margin-top: 32px;
+    background: var(--navy);
+    padding: 28px 32px;
+    text-align: center;
+  }
+
+  .cta-tel p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .cta-tel a {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: color 0.2s;
+  }
+
+  .cta-tel a:hover { color: var(--gold-light); }
+
+  .cta-tel a svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--gold);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  /* ========== FOOTER ========== */
+  footer {
+    background: #060e1c;
+    padding: 48px 24px 24px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .footer-sub {
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold-light); }
+
+  .footer-copy {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 20px;
+    margin-top: 4px;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .about-grid,
+    .access-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .about-img { display: none; }
+
+    .features-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    section { padding: 72px 20px; }
+
+    nav { display: none; }
+    .hamburger { display: flex; }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero h1 { font-size: 1.8rem; }
+
+    .cta-tel a { font-size: 1.45rem; }
+  }
+
+  /* Utility */
+  .gold { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-main">中央労法経営協会</span>
+      <span class="logo-sub">SOCIAL INSURANCE & LABOR CONSULTANT</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">事務所について</a></li>
+        <li><a href="#features">強み</a></li>
+        <li><a href="#services">業務内容</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <ul>
+      <li><a href="#about" onclick="closeMenu()">事務所について</a></li>
+      <li><a href="#features" onclick="closeMenu()">強み</a></li>
+      <li><a href="#services" onclick="closeMenu()">業務内容</a></li>
+      <li><a href="#access" onclick="closeMenu()">アクセス</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">SOCIAL INSURANCE LABOR CONSULTANT · TOKYO IKEBUKURO</div>
+    <h1>
+      企業と人を支える、<br>
+      <span>確かな専門知識</span>と信頼
+    </h1>
+    <p class="hero-desc">
+      経営の近代化・効率化から労使関係の構築まで。<br>
+      中央労法経営協会は、池袋を拠点に企業の継続と発展を支援する<br>
+      社会保険労務士事務所です。
+    </p>
+    <a href="#access" class="hero-cta">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.37 18a19.5 19.5 0 0 1-4.5-4.5 19.79 19.79 0 0 1-3.93-8.45A2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.91 10.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 24 18z"/></svg>
+      お問い合わせ・電話相談
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img">
+        <img
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&auto=format&fit=crop&q=80"
+          alt="オフィスイメージ"
+          loading="lazy"
+        >
+      </div>
+      <div class="about-body">
+        <div class="section-label"><span>ABOUT US</span></div>
+        <h2 class="section-title">今、経営に必要なことは</h2>
+        <p>
+          経済の多様化・複雑化は、めざましいスピードで進展しています。このような社会情勢に対応して、企業はその継続と発展のために、絶えず経営の近代化・効率化を図ることが要請されています。
+        </p>
+        <p>
+          "企業は人なり"といわれます。人財を育成しそして活用して、困難な経営環境の中で業績を向上させるとともに、労使共栄の成果を上げることが、企業経営者に課された社会的責務といえましょう。
+        </p>
+        <p>
+          さらに、人材尊重に基づく社会指向のために、各種社会保障制度の充実をめざして、関係諸法令の改正がなされています。企業においても、有能な社員確保のため、これに対応していかなければなりません。
+        </p>
+        <div class="motto-box">
+          <p>
+            変化の時代に、経営者の右腕として。<br>
+            中央労法経営協会は、労務と法の両面から<br>
+            企業の安定・発展を力強く支援します。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label"><span>OUR STRENGTHS</span></div>
+    <h2 class="section-title">当事務所の強み</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>豊富な実務経験</h3>
+        <p>社会保険・労働保険の届出から労務管理まで、長年にわたる実務経験で蓄積したノウハウで迅速・確実に対応します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>企業に寄り添うサポート</h3>
+        <p>経営者・人事担当者の立場に立ち、労使トラブルの予防から就業規則の整備まで、継続的なパートナーとして伴走します。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>法改正への迅速な対応</h3>
+        <p>労働関係法令・社会保障制度の改正情報を常にキャッチアップし、企業が適法かつ円滑に対応できるよう最新情報を提供します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label"><span>SERVICES</span></div>
+    <h2 class="section-title">業務内容</h2>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <div class="service-body">
+          <h3>社会保険・労働保険の手続き</h3>
+          <p>各種社会保険（健康保険・厚生年金等）および労働保険（労災・雇用保険）の加入・変更・喪失等の届出手続きを代行します。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <div class="service-body">
+          <h3>給与計算・労務管理</h3>
+          <p>毎月の給与計算から賞与・年末調整まで対応。正確かつ効率的な給与処理で、経営者の事務負担を軽減します。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <div class="service-body">
+          <h3>就業規則の作成・整備</h3>
+          <p>最新の法令に準拠した就業規則を作成・見直し。働き方改革への対応も含め、労使間のトラブルを未然に防ぎます。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">04</div>
+        <div class="service-body">
+          <h3>助成金申請サポート</h3>
+          <p>雇用関係助成金（キャリアアップ・両立支援等）の受給要件の確認から申請書類の作成・提出まで一貫して支援します。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">05</div>
+        <div class="service-body">
+          <h3>労務相談・問題解決</h3>
+          <p>残業・ハラスメント・解雇問題など、労使間のトラブルについて法的観点から迅速にアドバイス。紛争未然防止をサポートします。</p>
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-num">06</div>
+        <div class="service-body">
+          <h3>人事制度・賃金制度の構築</h3>
+          <p>企業の成長ステージに合わせた評価制度・賃金体系を設計。人材の確保・定着・育成につながる仕組みづくりを支援します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ACCESS ========== -->
+<section class="access" id="access">
+  <div class="section-inner">
+    <div class="section-label"><span>ACCESS</span></div>
+    <h2 class="section-title">アクセス・お問い合わせ</h2>
+    <div class="access-grid">
+      <div>
+        <ul class="info-list">
+          <li class="info-item">
+            <span class="info-label">事務所名</span>
+            <span class="info-value">中央労法経営協会<br>折茂保男 社会保険労務士事務所</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">所在地</span>
+            <span class="info-value">〒171-0014<br>東京都豊島区池袋4-6-1<br>菱和パレス池袋101</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">電話</span>
+            <span class="info-value"><a href="tel:0339800845">03-3980-0845</a></span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">FAX</span>
+            <span class="info-value">03-3980-6927</span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">メール</span>
+            <span class="info-value"><a href="mailto:chuoroho@muse.ocn.ne.jp">chuoroho@muse.ocn.ne.jp</a></span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">営業時間</span>
+            <span class="info-value">平日 9:00 〜 18:00<br><span style="font-size:0.8rem;color:#888;">土日祝日はお休みです（事前予約で応相談）</span></span>
+          </li>
+          <li class="info-item">
+            <span class="info-label">アクセス</span>
+            <span class="info-value">西武池袋線・東武東上線「池袋」駅<br>徒歩約8分</span>
+          </li>
+        </ul>
+        <div class="cta-tel">
+          <p>お気軽にお電話ください</p>
+          <a href="tel:0339800845">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.37 18a19.5 19.5 0 0 1-4.5-4.5 19.79 19.79 0 0 1-3.93-8.45A2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L9.91 10.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 24 18z"/></svg>
+            03-3980-0845
+          </a>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.3219854766715!2d139.70459!3d35.729!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d5b5bf2f8d9%3A0x0!2z5p2x5Lqs6YO95L2Q5bO25Yy65rGf896g77yU77yW77yR!5e0!3m2!1sja!2sjp!4v1620000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="中央労法経営協会 地図">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-logo">中央労法経営協会</div>
+  <div class="footer-sub">SOCIAL INSURANCE &amp; LABOR CONSULTANT · IKEBUKURO, TOKYO</div>
+  <div class="footer-links">
+    <a href="#about">事務所について</a>
+    <a href="#features">強み</a>
+    <a href="#services">業務内容</a>
+    <a href="#access">アクセス</a>
+    <a href="mailto:chuoroho@muse.ocn.ne.jp">個人情報保護方針</a>
+  </div>
+  <p class="footer-copy">Copyright &copy; 2004–2026 Chuoroho Keiei Kyoukai. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+
+  function closeMenu() {
+    hamburger.classList.remove('open');
+    mobileNav.classList.remove('open');
+  }
+
+  // Header shadow on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 40) {
+      header.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
+    } else {
+      header.style.boxShadow = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>石川輝雄司法書士事務所 | 板橋区の相続・遺言・不動産登記</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2744;
+      --navy-light: #243560;
+      --gold: #b8965a;
+      --gold-light: #d4b07a;
+      --cream: #f9f7f3;
+      --text: #2c2c2c;
+      --text-light: #666;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Serif JP', serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.8;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(26, 39, 68, 0.97);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 72px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .logo-main {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+    .logo-sub {
+      font-size: 0.65rem;
+      color: var(--gold-light);
+      letter-spacing: 0.1em;
+      font-weight: 300;
+    }
+
+    nav { display: flex; gap: 2rem; align-items: center; }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+    nav a:hover { color: var(--gold-light); }
+
+    .header-tel {
+      color: var(--gold-light);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== HAMBURGER ===== */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 1100;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(26,39,68,0.98);
+      z-index: 1050;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      border-bottom: 1px solid rgba(184,150,90,0.3);
+      padding-bottom: 0.8rem;
+      width: 70%;
+      text-align: center;
+    }
+    .mobile-menu .mob-tel {
+      color: var(--gold-light);
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,39,68,0.7) 0%, rgba(0,0,0,0.3) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      color: var(--white);
+      padding: 0 1.5rem;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      padding: 0.35rem 1.2rem;
+      margin-bottom: 1.8rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      letter-spacing: 0.06em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .hero-title span { color: var(--gold-light); }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      transition: background 0.3s, transform 0.2s;
+      border: 2px solid var(--gold);
+    }
+    .hero-cta:hover { background: transparent; transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollDown 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50% { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ===== SECTION COMMONS ===== */
+    section { padding: 6rem 1.5rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.4;
+      max-width: 60px;
+    }
+
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3.5rem;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+    }
+
+    /* ===== INTRO STRIP ===== */
+    #intro {
+      background: var(--navy);
+      padding: 3rem 1.5rem;
+    }
+    .intro-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .intro-text {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.92rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      flex: 1;
+      min-width: 260px;
+    }
+    .intro-text strong { color: var(--gold-light); font-weight: 600; }
+    .intro-tel-block { text-align: right; flex-shrink: 0; }
+    .intro-tel-label { color: rgba(255,255,255,0.6); font-size: 0.72rem; letter-spacing: 0.15em; margin-bottom: 0.3rem; }
+    .intro-tel-num { color: var(--gold-light); font-size: 1.6rem; font-weight: 700; letter-spacing: 0.05em; }
+    .intro-tel-hours { color: rgba(255,255,255,0.5); font-size: 0.7rem; margin-top: 0.2rem; }
+
+    /* ===== FEATURES ===== */
+    #features { background: var(--cream); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 12px 36px rgba(0,0,0,0.12); }
+
+    .feature-num {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.4;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    .feature-body {
+      font-size: 0.87rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    /* ===== SERVICES ===== */
+    #services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      position: relative;
+      background: var(--cream);
+      border: 1px solid rgba(184,150,90,0.25);
+      padding: 2rem 1.8rem;
+      transition: border-color 0.3s, transform 0.3s;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+      transform-origin: bottom;
+    }
+    .service-card:hover::before { transform: scaleY(1); }
+    .service-card:hover { border-color: var(--gold); transform: translateX(4px); }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.05em;
+    }
+
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    /* ===== CTA BANNER ===== */
+    #cta-banner {
+      background: var(--navy);
+      padding: 4rem 1.5rem;
+    }
+    .cta-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-title {
+      color: var(--white);
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+    .cta-examples {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+      margin-bottom: 2.5rem;
+      line-height: 2;
+      font-weight: 300;
+    }
+    .cta-examples span {
+      display: inline-block;
+      background: rgba(184,150,90,0.15);
+      border: 1px solid rgba(184,150,90,0.3);
+      padding: 0.2rem 0.8rem;
+      margin: 0.2rem;
+      font-size: 0.8rem;
+      color: var(--gold-light);
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 1.1rem 3rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      border: 2px solid var(--gold);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .cta-btn:hover { background: transparent; transform: translateY(-2px); }
+
+    /* ===== ACCESS / HOURS ===== */
+    #access { background: var(--cream); }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr { border-bottom: 1px solid rgba(0,0,0,0.08); }
+    .info-table th {
+      text-align: left;
+      padding: 1rem 0;
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      width: 7rem;
+      vertical-align: top;
+    }
+    .info-table td {
+      padding: 1rem 0;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .map-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #ddd;
+      border: 1px solid rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+    .area-note {
+      margin-top: 1.5rem;
+      background: var(--white);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.2rem;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111827;
+      color: rgba(255,255,255,0.7);
+      padding: 3rem 1.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 2.5rem;
+    }
+    .footer-name {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+    .footer-info { font-size: 0.8rem; line-height: 2; font-weight: 300; }
+    .footer-info a { color: var(--gold-light); text-decoration: none; }
+    .footer-links { display: flex; flex-direction: column; gap: 0.6rem; text-align: right; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.35);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav, .header-tel { display: none; }
+      .hamburger { display: flex; }
+
+      .features-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .access-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-links { text-align: left; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .intro-tel-block { text-align: left; }
+    }
+
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#hero" class="logo">
+    <span class="logo-main">石川輝雄司法書士事務所</span>
+    <span class="logo-sub">ISHIKAWA TERUO JUDICIAL SCRIVENER OFFICE</span>
+  </a>
+  <nav>
+    <a href="#features">事務所の特徴</a>
+    <a href="#services">サービス案内</a>
+    <a href="#access">アクセス</a>
+    <a href="tel:0359309416" class="header-tel">📞 03-5930-9416</a>
+  </nav>
+  <button class="hamburger" id="hamBtn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#features" onclick="closeMenu()">事務所の特徴</a>
+  <a href="#services" onclick="closeMenu()">サービス案内</a>
+  <a href="#access" onclick="closeMenu()">アクセス・営業時間</a>
+  <a href="tel:0359309416" class="mob-tel">📞 03-5930-9416</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">東京都板橋区の司法書士事務所</div>
+    <h1 class="hero-title">
+      <span>相続・遺言</span>のことなら<br>
+      石川輝雄司法書士事務所
+    </h1>
+    <p class="hero-sub">
+      親切・丁寧・迅速な対応で、お客様の大切な手続きをサポートいたします
+    </p>
+    <a href="tel:0359309416" class="hero-cta">
+      📞 03-5930-9416　無料相談はこちら
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div id="intro">
+  <div class="intro-inner">
+    <p class="intro-text">
+      日本大学医学部付属板橋病院より<strong>徒歩１分</strong>の板橋区の司法書士事務所です。<br>
+      遺産相続・生前贈与・不動産登記・会社設立まで、豊富な実績と経験をもとに迅速に対応いたします。
+    </p>
+    <div class="intro-tel-block">
+      <div class="intro-tel-label">お電話でのご相談</div>
+      <div class="intro-tel-num">03-5930-9416</div>
+      <div class="intro-tel-hours">受付 9:00〜18:00（土日祝祭日を除く）</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label">Our Policy</div>
+    <h2 class="section-title">当事務所の３つのこだわり</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <h3 class="feature-title">お客様との<br>意思疎通を大切に</h3>
+        <p class="feature-body">司法書士である前に一人の人間として、お客様と誠実に向き合います。ご要望をしっかりとお聞きし、最適な解決策をご提案いたします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <h3 class="feature-title">迅速な対応で<br>安心をお届け</h3>
+        <p class="feature-body">法律問題のお調べに時間を要する場合もございますが、常に迅速な対応を心がけております。お問い合わせには素早くお返事いたします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <h3 class="feature-title">時間をかけた<br>ていねいなご説明</h3>
+        <p class="feature-body">おひとりおひとりのお客様に対して、たっぷりと時間をとり、わかりやすくご説明します。納得できるまでお話を進めることはありません。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">Services</div>
+    <h2 class="section-title">サービス案内</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <div class="service-name">相続登記</div>
+        <p class="service-desc">相続による不動産の名義変更手続きをサポート。複雑な遺産分割協議も丁寧に対応いたします。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📜</div>
+        <div class="service-name">遺言書作成</div>
+        <p class="service-desc">公正証書遺言・自筆証書遺言の作成をお手伝い。将来の相続トラブルを防ぐため的確にアドバイスします。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <div class="service-name">生前贈与</div>
+        <p class="service-desc">「生きているうちに子どもに財産を渡したい」というご相談に、税務・登記の観点からサポートします。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <div class="service-name">起業・会社設立登記</div>
+        <p class="service-desc">株式会社・合同会社の設立登記から本店移転・役員変更まで、各種会社登記に幅広く対応します。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔑</div>
+        <div class="service-name">その他不動産登記</div>
+        <p class="service-desc">住宅ローン完済後の抵当権抹消登記や住所変更登記など、各種不動産登記に対応いたします。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚖️</div>
+        <div class="service-name">その他法律問題</div>
+        <p class="service-desc">借地の建物の相続登記など、複雑なケースも豊富な経験をもとにご相談を承ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div id="cta-banner">
+  <div class="cta-inner">
+    <h2 class="cta-title">こんなお悩み、まずはご相談ください</h2>
+    <p class="cta-examples">
+      <span>親の遺言書が見つかった</span>
+      <span>息子に家を渡したい</span>
+      <span>遺産分割協議が必要？</span>
+      <span>住宅ローンを完済した</span>
+      <span>借地の建物を相続したい</span>
+    </p>
+    <a href="tel:0359309416" class="cta-btn">お電話でのご相談はこちら</a>
+  </div>
+</div>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="section-inner">
+    <div class="section-label">Access & Hours</div>
+    <h2 class="section-title">営業時間・アクセス</h2>
+    <div class="access-grid">
+      <div>
+        <table class="info-table">
+          <tr>
+            <th>事務所名</th>
+            <td>石川輝雄司法書士事務所</td>
+          </tr>
+          <tr>
+            <th>代表者</th>
+            <td>司法書士　石川 輝雄</td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>〒173-0032<br>東京都板橋区大谷口上町15番10号</td>
+          </tr>
+          <tr>
+            <th>電話</th>
+            <td><a href="tel:0359309416" style="color:var(--navy);font-weight:600;">03-5930-9416</a></td>
+          </tr>
+          <tr>
+            <th>メール</th>
+            <td><a href="mailto:teruo@ktf.biglobe.ne.jp" style="color:var(--gold);">teruo@ktf.biglobe.ne.jp</a></td>
+          </tr>
+          <tr>
+            <th>受付時間</th>
+            <td>9:00〜18:00</td>
+          </tr>
+          <tr>
+            <th>定休日</th>
+            <td>土日祝祭日</td>
+          </tr>
+          <tr>
+            <th>アクセス</th>
+            <td>日本大学医学部付属板橋病院より徒歩１分</td>
+          </tr>
+        </table>
+        <div class="area-note">
+          <strong>主な業務エリア：</strong>板橋区を拠点に東京23区をはじめ都内全域、および埼玉県・神奈川県・他県もご相談承ります。
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=東京都板橋区大谷口上町15番10号&output=embed"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">石川輝雄司法書士事務所</div>
+      <div class="footer-info">
+        〒173-0032　東京都板橋区大谷口上町15番10号<br>
+        TEL: <a href="tel:0359309416">03-5930-9416</a>　
+        MAIL: <a href="mailto:teruo@ktf.biglobe.ne.jp">teruo@ktf.biglobe.ne.jp</a><br>
+        受付時間：9:00〜18:00（土日祝祭日を除く）
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#features">事務所の特徴</a>
+      <a href="#services">サービス案内</a>
+      <a href="#access">アクセス</a>
+      <a href="tel:0359309416">お電話でのご相談</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 石川輝雄司法書士事務所. All Rights Reserved.</span>
+    <span>東京都板橋区の相続・遺言・不動産登記</span>
+  </div>
+</footer>
+
+<script>
+  const hamBtn = document.getElementById('hamBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamBtn.addEventListener('click', () => {
+    hamBtn.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMenu() {
+    hamBtn.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Header shrink on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 60) {
+      header.style.height = '60px';
+      header.style.background = 'rgba(26,39,68,0.99)';
+    } else {
+      header.style.height = '72px';
+      header.style.background = 'rgba(26,39,68,0.97)';
+    }
+  });
+</script>
+</body>
+</html>
