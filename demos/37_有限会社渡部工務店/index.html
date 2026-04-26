@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有限会社渡部工務店｜東京都墨田区の木造住宅・リフォーム</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --wood: #8B6642;
+    --wood-light: #C4956A;
+    --wood-dark: #5C3D1E;
+    --cream: #FAF6F0;
+    --charcoal: #2C2C2C;
+    --slate: #4A4A4A;
+    --line: #DDD0C0;
+    --gold: #B8953A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.8;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 72px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow .3s;
+  }
+  header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .logo-sub {
+    font-size: 10px;
+    letter-spacing: .15em;
+    color: var(--wood);
+    font-weight: 400;
+  }
+  .logo-main {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--wood-dark);
+    letter-spacing: .05em;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+  nav a {
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: .12em;
+    color: var(--slate);
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 3px;
+    transition: color .25s;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--wood);
+    transition: width .3s;
+  }
+  nav a:hover { color: var(--wood); }
+  nav a:hover::after { width: 100%; }
+
+  .header-tel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .header-tel span { font-size: 10px; color: var(--wood); letter-spacing: .1em; }
+  .header-tel a {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--wood-dark);
+    text-decoration: none;
+    letter-spacing: .05em;
+  }
+
+  /* hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--wood-dark);
+    transition: transform .3s, opacity .3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0; bottom: 0;
+    background: rgba(44,28,12,0.97);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s;
+  }
+  .mobile-nav.open { opacity: 1; pointer-events: all; }
+  .mobile-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    letter-spacing: .15em;
+    font-weight: 500;
+    transition: color .2s;
+  }
+  .mobile-nav a:hover { color: var(--wood-light); }
+
+  /* ─── HERO ─── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(30,18,8,.72) 0%, rgba(30,18,8,.35) 60%, transparent 100%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    max-width: 680px;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: .3em;
+    color: var(--wood-light);
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 28px;
+    letter-spacing: .04em;
+  }
+  .hero-title em {
+    font-style: normal;
+    color: var(--wood-light);
+  }
+  .hero-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,.82);
+    font-weight: 300;
+    line-height: 2;
+    margin-bottom: 40px;
+    letter-spacing: .06em;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--wood);
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 36px;
+    font-size: 14px;
+    letter-spacing: .18em;
+    font-weight: 500;
+    transition: background .3s, transform .2s;
+  }
+  .hero-cta:hover { background: var(--wood-dark); transform: translateY(-2px); }
+  .hero-cta svg { width: 16px; height: 16px; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,.6);
+    font-size: 10px;
+    letter-spacing: .2em;
+    z-index: 2;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,.4);
+    animation: scrollDown 2s infinite;
+  }
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 100px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 64px; }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: .3em;
+    color: var(--wood);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    color: var(--wood-dark);
+    letter-spacing: .06em;
+    line-height: 1.5;
+  }
+  .section-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 20px auto 0;
+  }
+
+  /* ─── FEATURES ─── */
+  #features { background: #fff; }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .feature-card {
+    text-align: center;
+    padding: 48px 32px;
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--wood);
+    transition: height .4s;
+  }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+  .feature-card:hover::before { height: 100%; }
+  .feature-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    border-radius: 50%;
+  }
+  .feature-icon svg { width: 32px; height: 32px; stroke: var(--wood); fill: none; stroke-width: 1.5; }
+  .feature-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--wood-dark);
+    margin-bottom: 14px;
+    letter-spacing: .06em;
+  }
+  .feature-text {
+    font-size: 13.5px;
+    color: var(--slate);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ─── WOOD MERIT STRIP ─── */
+  #wood-merit {
+    background: var(--wood-dark);
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  #wood-merit::before {
+    content: 'WOOD';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 160px;
+    font-weight: 900;
+    color: rgba(255,255,255,.03);
+    letter-spacing: .2em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .wood-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .wood-text .section-label { color: var(--wood-light); }
+  .wood-text .section-title { color: #fff; text-align: left; }
+  .wood-text .section-rule { margin: 20px 0 0; }
+  .wood-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,.72);
+    line-height: 2;
+    margin-top: 28px;
+    font-weight: 300;
+  }
+  .wood-list {
+    list-style: none;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .wood-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,.85);
+  }
+  .wood-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    background: var(--wood-light);
+    border-radius: 50%;
+    margin-top: 9px;
+  }
+  .wood-image {
+    position: relative;
+  }
+  .wood-image img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+  .wood-image::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    right: -12px;
+    width: 60%;
+    height: 60%;
+    border: 2px solid var(--wood-light);
+    pointer-events: none;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--cream); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    position: relative;
+    overflow: hidden;
+    height: 360px;
+  }
+  .service-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s;
+  }
+  .service-card:hover img { transform: scale(1.06); }
+  .service-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(20,10,2,.8) 0%, rgba(20,10,2,.2) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px 28px;
+  }
+  .service-num {
+    font-size: 11px;
+    letter-spacing: .3em;
+    color: var(--wood-light);
+    margin-bottom: 8px;
+  }
+  .service-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: .06em;
+    margin-bottom: 10px;
+  }
+  .service-desc {
+    font-size: 12.5px;
+    color: rgba(255,255,255,.75);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── ACCESS ─── */
+  #access { background: #fff; }
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .access-info { }
+  .info-block { margin-bottom: 40px; }
+  .info-label {
+    font-size: 11px;
+    letter-spacing: .25em;
+    color: var(--wood);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .info-value {
+    font-size: 15px;
+    color: var(--charcoal);
+    line-height: 1.9;
+    font-weight: 400;
+  }
+  .info-tel a {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--wood-dark);
+    text-decoration: none;
+    letter-spacing: .05em;
+    transition: color .2s;
+  }
+  .info-tel a:hover { color: var(--wood); }
+  .info-tel small {
+    display: block;
+    font-size: 12px;
+    color: var(--slate);
+    margin-top: 4px;
+    font-weight: 300;
+    letter-spacing: .05em;
+  }
+  .access-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .access-table tr { border-bottom: 1px solid var(--line); }
+  .access-table td {
+    padding: 14px 0;
+    vertical-align: top;
+  }
+  .access-table td:first-child {
+    width: 110px;
+    color: var(--wood);
+    font-weight: 500;
+    letter-spacing: .05em;
+  }
+  .access-table td:last-child { color: var(--slate); }
+  .access-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 28px;
+    background: var(--wood);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px 28px;
+    font-size: 13px;
+    letter-spacing: .15em;
+    font-weight: 500;
+    transition: background .3s;
+  }
+  .access-cta:hover { background: var(--wood-dark); }
+  .map-wrap {
+    width: 100%;
+    height: 400px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(20%) contrast(1.05);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--wood-dark);
+    color: rgba(255,255,255,.7);
+    padding: 60px 40px 30px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .footer-logo .logo-sub { color: var(--wood-light); }
+  .footer-logo .logo-main { color: #fff; font-size: 20px; }
+  .footer-tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+    margin-top: 8px;
+    font-weight: 300;
+    letter-spacing: .08em;
+  }
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: .1em;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--wood-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-address {
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+    letter-spacing: .05em;
+    font-weight: 300;
+  }
+  .footer-copy {
+    font-size: 11px;
+    color: rgba(255,255,255,.35);
+    letter-spacing: .1em;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    header { padding: 0 24px; }
+    nav, .header-tel { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: flex; }
+
+    #hero { height: 90vh; }
+    .hero-content { padding: 0 28px; max-width: 100%; }
+
+    section { padding: 72px 24px; }
+
+    .features-grid { grid-template-columns: 1fr; gap: 24px; }
+    .feature-card { padding: 36px 24px; }
+
+    .wood-inner { grid-template-columns: 1fr; gap: 40px; }
+    .wood-image { order: -1; }
+    .wood-image img { height: 260px; }
+    .wood-image::after { display: none; }
+    .wood-text .section-title { text-align: center; }
+    .wood-text .section-rule { margin: 20px auto 0; }
+    .wood-text .section-label { display: block; text-align: center; }
+
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .service-card { height: 280px; }
+
+    .access-grid { grid-template-columns: 1fr; gap: 40px; }
+    .map-wrap { height: 280px; }
+
+    .footer-top { flex-direction: column; gap: 28px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: 26px; }
+    .footer-links { gap: 20px; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header id="main-header">
+  <div class="logo">
+    <span class="logo-sub">WATABE KOUMUTEN</span>
+    <span class="logo-main">渡部工務店</span>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="#features">こだわり</a></li>
+      <li><a href="#wood-merit">木の良さ</a></li>
+      <li><a href="#services">施工内容</a></li>
+      <li><a href="#access">アクセス</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-tel">
+    <span>お気軽にご相談ください</span>
+    <a href="tel:0336220868">03-3622-0868</a>
+  </div>
+
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- モバイルナビ -->
+<nav class="mobile-nav" id="mobile-nav">
+  <a href="#features" class="nav-link">こだわり</a>
+  <a href="#wood-merit" class="nav-link">木の良さ</a>
+  <a href="#services" class="nav-link">施工内容</a>
+  <a href="#access" class="nav-link">アクセス・お問い合わせ</a>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Sumida, Tokyo ─ Since Est.</p>
+    <h1 class="hero-title">
+      <em>木</em>の温もりで<br>
+      暮らしを、つくる。
+    </h1>
+    <p class="hero-desc">
+      東京都墨田区を拠点に、木造住宅の<br>
+      新築・リフォームを手がける渡部工務店。<br>
+      職人の技と、自然素材の誠実な仕事で<br>
+      お客様の大切な住まいをお守りします。
+    </p>
+    <a href="#access" class="hero-cta">
+      無料相談のご予約
+      <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-label">Our Promise</span>
+      <h2 class="section-title">渡部工務店の三つのこだわり</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">木造住宅専門の技術力</h3>
+        <p class="feature-text">木の特性を知り尽くした職人が、一棟一棟丁寧に施工。伝統的な木組みの技と現代工法を融合させ、長く愛される住まいをつくります。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 8v4l3 3"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">地域密着・迅速対応</h3>
+        <p class="feature-text">墨田区を中心に地域のお客様との信頼関係を第一に。「困ったときにすぐ来てくれる」安心感が、長年にわたりご愛顧いただける理由です。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">ご要望に寄り添う提案力</h3>
+        <p class="feature-text">「こんな暮らしがしたい」というお客様の想いを丁寧にヒアリング。施工ギャラリーをご覧いただきながら、暮らしに合ったプランをご提案します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WOOD MERIT ─── -->
+<section id="wood-merit">
+  <div class="wood-inner">
+    <div class="wood-text">
+      <span class="section-label">Why Wood</span>
+      <h2 class="section-title">木が与えてくれる<br>住まいの恵み</h2>
+      <div class="section-rule"></div>
+      <p class="wood-desc">
+        木は単なる建材ではありません。呼吸し、調湿し、年とともに味わいを増す——そんな生きた素材が、住む人の健康と暮らしを豊かにします。
+      </p>
+      <ul class="wood-list">
+        <li>断熱性に優れ、夏は涼しく冬は暖かい快適な室内環境をつくります</li>
+        <li>木の香り成分（フィトンチッド）がリラックス効果をもたらします</li>
+        <li>湿気を吸収・放出する調湿機能で結露やカビを抑制します</li>
+        <li>柔らかい踏み心地が膝や腰への負担を軽減し、体にやさしい</li>
+        <li>適切なメンテナンスで数十年・数百年の耐久性を誇ります</li>
+      </ul>
+    </div>
+    <div class="wood-image">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80" alt="木造住宅の内装">
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">施工内容</h2>
+      <div class="section-rule"></div>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80" alt="木造住宅新築">
+      <div class="service-overlay">
+        <span class="service-num">01</span>
+        <h3 class="service-name">木造住宅 新築</h3>
+        <p class="service-desc">土地の条件や家族の暮らし方に合わせた、一から創るオーダーメイドの木の家。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&auto=format&fit=crop&q=80" alt="リフォーム・改修">
+      <div class="service-overlay">
+        <span class="service-num">02</span>
+        <h3 class="service-name">リフォーム・改修</h3>
+        <p class="service-desc">キッチン・浴室・間取り変更から外壁・屋根まで、住まいの快適さを刷新します。</p>
+      </div>
+    </div>
+    <div class="service-card">
+      <img src="https://images.unsplash.com/photo-1503174971373-b1f69850bded?w=800&auto=format&fit=crop&q=80" alt="特殊施工・カスタムワーク">
+      <div class="service-overlay">
+        <span class="service-num">03</span>
+        <h3 class="service-name">特殊施工・カスタムワーク</h3>
+        <p class="service-desc">キャットウォーク設置など、お客様のユニークなご要望にも柔軟にお応えします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACCESS ─── -->
+<section id="access">
+  <div class="section-inner">
+    <div class="section-head">
+      <span class="section-label">Access &amp; Contact</span>
+      <h2 class="section-title">アクセス・お問い合わせ</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="access-grid">
+      <div class="access-info">
+        <div class="info-block info-tel">
+          <p class="info-label">お電話</p>
+          <a href="tel:0336220868">03-3622-0868</a>
+          <small>受付時間：平日 8:00〜18:00</small>
+        </div>
+        <div class="info-block">
+          <p class="info-label">所在地</p>
+          <p class="info-value">
+            〒130-0005<br>
+            東京都墨田区東駒形1丁目11番11号
+          </p>
+        </div>
+        <table class="access-table">
+          <tr>
+            <td>アクセス</td>
+            <td>都営浅草線「本所吾妻橋駅」より徒歩約5分<br>東武スカイツリーライン「浅草駅」より徒歩約10分</td>
+          </tr>
+          <tr>
+            <td>営業時間</td>
+            <td>平日 8:00〜18:00</td>
+          </tr>
+          <tr>
+            <td>定休日</td>
+            <td>土曜・日曜・祝日（要相談）</td>
+          </tr>
+        </table>
+        <a href="tel:0336220868" class="access-cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.96-1.96a2 2 0 0 1 2.11-.45c.9.369 1.852.606 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          今すぐ電話で相談する
+        </a>
+      </div>
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.1!2d139.8025!3d35.7089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601889673c34b7fb%3A0x0!2z5p2x5Lqs6YO95Z-O55Sw5Yy65p2x6am35b2i77yR5LiB55uu77yR77yR4oiS77yR77yR!5e0!3m2!1sja!2sjp!4v1600000000000"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="渡部工務店 地図">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <div class="logo">
+          <span class="logo-sub">WATABE KOUMUTEN Co., Ltd.</span>
+          <span class="logo-main">有限会社 渡部工務店</span>
+        </div>
+        <p class="footer-tagline">東京都墨田区の木造住宅・リフォーム専門店</p>
+      </div>
+      <div class="footer-links">
+        <a href="#features">こだわり</a>
+        <a href="#wood-merit">木が与えるメリット</a>
+        <a href="#services">施工内容</a>
+        <a href="#access">アクセス</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-address">〒130-0005 東京都墨田区東駒形1-11-11　TEL 03-3622-0868</p>
+      <p class="footer-copy">Copyright &copy; 2024 有限会社渡部工務店 All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // スクロール時ヘッダーシャドウ
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ハンバーガーメニュー
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('mobile-nav');
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.nav-link').forEach(a => {
+    a.addEventListener('click', () => {
+      btn.classList.remove('open');
+      nav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+</script>
+</body>
+</html>
