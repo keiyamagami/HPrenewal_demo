@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社会保険労務士 はら事務所 | 東京都練馬区</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:     #1a2a4a;
+      --navy-mid: #253660;
+      --accent:   #c8a84b;
+      --light-bg: #f7f8fc;
+      --white:    #ffffff;
+      --text:     #2c2c2c;
+      --text-sub: #5a6070;
+      --border:   #dde1ea;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Serif JP', serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.8;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(26, 42, 74, 0.95);
+      backdrop-filter: blur(6px);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid rgba(200,168,75,.25);
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: clamp(.85rem, 2vw, 1rem);
+      font-weight: 600;
+      letter-spacing: .06em;
+      line-height: 1.3;
+    }
+    .logo span { display: block; font-size: .7em; font-weight: 300; letter-spacing: .1em; color: var(--accent); }
+
+    nav { display: flex; gap: 2rem; }
+    nav a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: .85rem;
+      letter-spacing: .08em;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--accent); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: var(--navy);
+      flex-direction: column;
+      padding: 1.5rem 2rem;
+      gap: 1.2rem;
+      z-index: 99;
+      border-bottom: 2px solid var(--accent);
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: rgba(255,255,255,.9);
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: .1em;
+      padding-bottom: .8rem;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .mobile-nav a:last-child { border-bottom: none; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1800&auto=format&fit=crop&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(.35);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(26,42,74,.6) 0%, rgba(10,20,40,.4) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 1.5rem;
+    }
+
+    .hero-label {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: .75rem;
+      letter-spacing: .2em;
+      padding: .35rem 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .1em;
+      line-height: 1.3;
+      margin-bottom: .8rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: clamp(.9rem, 1.8vw, 1.1rem);
+      color: rgba(255,255,255,.8);
+      font-weight: 300;
+      letter-spacing: .1em;
+      margin-bottom: 2.4rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--navy);
+      font-family: 'Noto Serif JP', serif;
+      font-size: .9rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      padding: .9rem 2.6rem;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn:hover { background: #dfc060; transform: translateY(-2px); }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      color: rgba(255,255,255,.5);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      animation: bounce 2s infinite;
+    }
+    .scroll-down::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 90px 5%; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .section-label {
+      display: inline-block;
+      color: var(--accent);
+      font-size: .72rem;
+      letter-spacing: .25em;
+      margin-bottom: .7rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: .08em;
+      line-height: 1.4;
+    }
+    .section-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      margin: 1rem auto 0;
+    }
+
+    /* ─── FEATURES ─── */
+    .features { background: var(--light-bg); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--navy);
+      padding: 2.2rem 1.8rem;
+      transition: box-shadow .25s, transform .2s;
+    }
+    .feature-card:hover { box-shadow: 0 8px 28px rgba(26,42,74,.1); transform: translateY(-4px); }
+
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .7rem;
+      letter-spacing: .06em;
+    }
+    .feature-card p {
+      font-size: .87rem;
+      color: var(--text-sub);
+      line-height: 1.9;
+    }
+
+    /* ─── SERVICES ─── */
+    .services { background: var(--white); }
+
+    .services-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.6rem;
+      border: 1px solid var(--border);
+      background: var(--light-bg);
+    }
+
+    .service-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: var(--navy);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .service-item h3 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+    .service-item p {
+      font-size: .82rem;
+      color: var(--text-sub);
+      line-height: 1.8;
+    }
+
+    /* ─── ACCESS ─── */
+    .access { background: var(--navy); color: var(--white); }
+    .access .section-title { color: var(--white); }
+
+    .access-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr { border-bottom: 1px solid rgba(255,255,255,.1); }
+    .info-table tr:last-child { border-bottom: none; }
+    .info-table th {
+      text-align: left;
+      padding: .9rem 0;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      color: var(--accent);
+      font-weight: 500;
+      width: 30%;
+      vertical-align: top;
+    }
+    .info-table td {
+      padding: .9rem 0;
+      font-size: .88rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.8;
+    }
+
+    .tel-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+    }
+
+    .map-container {
+      width: 100%;
+      aspect-ratio: 4/3;
+      border: 2px solid rgba(200,168,75,.3);
+      overflow: hidden;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(30%);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #0f1a2e;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem 5%;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      line-height: 2;
+    }
+    footer strong { color: rgba(255,255,255,.8); font-size: .82rem; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 64px 5%; }
+
+      .access-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    社会保険労務士 はら事務所
+    <span>SR HARA OFFICE — NERIMA, TOKYO</span>
+  </div>
+  <nav>
+    <a href="#features">事務所の特徴</a>
+    <a href="#services">業務内容</a>
+    <a href="#access">アクセス</a>
+    <a href="tel:0339968387" class="btn" style="padding:.5rem 1.4rem;font-size:.8rem;">お電話でのご相談</a>
+  </nav>
+  <button class="hamburger" id="hamburgerBtn" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#features" onclick="closeMobileNav()">事務所の特徴</a>
+  <a href="#services" onclick="closeMobileNav()">業務内容</a>
+  <a href="#access" onclick="closeMobileNav()">アクセス・営業時間</a>
+  <a href="tel:0339968387">☎ 03-3996-8387</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">SHAKAI HOKEN ROUMUSHI</div>
+    <h1>労務の<em>プロ</em>として<br>あなたの会社を守る</h1>
+    <p>社会保険・労働保険・就業規則・助成金まで<br>練馬区で30年以上の信頼と実績</p>
+    <a href="#services" class="btn">業務内容を見る</a>
+  </div>
+  <div class="scroll-down">SCROLL</div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header">
+    <div class="section-label">WHY CHOOSE US</div>
+    <h2 class="section-title">はら事務所が<br>選ばれる理由</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏛️</div>
+      <h3>地域に根ざした信頼</h3>
+      <p>練馬区を拠点に、地域の中小企業・個人事業主の皆さまの労務問題に長年寄り添ってきました。顔の見える関係で丁寧にサポートします。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚖️</div>
+      <h3>法令遵守のプロ</h3>
+      <p>複雑化する労働法令・社会保険制度の変更を常にキャッチアップ。法律違反リスクを未然に防ぎ、企業を守る就業規則の整備を行います。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💬</div>
+      <h3>親身なワンストップ対応</h3>
+      <p>社会保険の手続きから助成金申請、労務トラブル対応まで、窓口を一本化。いつでも気軽にご相談いただける体制を整えています。</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>助成金活用の実績</h3>
+      <p>雇用調整助成金・キャリアアップ助成金など、活用できる助成金を積極的に提案。申請書類の作成から申請まで完全サポートします。</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div class="section-label">SERVICES</div>
+    <h2 class="section-title">主な業務内容</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-list">
+    <div class="service-item">
+      <div class="service-num">01</div>
+      <div>
+        <h3>社会保険・労働保険の手続き</h3>
+        <p>入退社時の資格取得・喪失、算定基礎届、月額変更届など各種届出を代行します。</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">02</div>
+      <div>
+        <h3>給与計算・賃金台帳整備</h3>
+        <p>正確な給与計算と法定帳簿の整備により、労務コンプライアンスを強化します。</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">03</div>
+      <div>
+        <h3>就業規則の作成・改訂</h3>
+        <p>会社の実態に合った就業規則を作成。法改正への対応も継続してサポートします。</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">04</div>
+      <div>
+        <h3>助成金・補助金の申請支援</h3>
+        <p>受給要件の確認から申請書類の作成まで、受給率を高めるトータルサポートを提供。</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">05</div>
+      <div>
+        <h3>労務相談・トラブル対応</h3>
+        <p>解雇・ハラスメント・労働紛争など、複雑な労務問題に経験豊富な社労士が対応します。</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-num">06</div>
+      <div>
+        <h3>年金・労災・雇用保険の給付</h3>
+        <p>各種保険給付の申請手続きを代行。従業員の方へ給付が速やかに届くよう尽力します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="section-header">
+    <div class="section-label">ACCESS & HOURS</div>
+    <h2 class="section-title">営業時間・アクセス</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="access-inner">
+    <div>
+      <table class="info-table">
+        <tr>
+          <th>TEL</th>
+          <td><a href="tel:0339968387" class="tel-link">03-3996-8387</a></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>〒177-0041<br>東京都練馬区石神井町<br>4-13-7-101</td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td>月〜金　9:00 – 18:00<br><span style="font-size:.8em;color:rgba(255,255,255,.5)">※土日祝は事前予約にて対応</span></td>
+        </tr>
+        <tr>
+          <th>アクセス</th>
+          <td>西武池袋線「石神井公園駅」より<br>徒歩約10分</td>
+        </tr>
+        <tr>
+          <th>対応エリア</th>
+          <td>練馬区・杉並区・板橋区<br>および都内全域</td>
+        </tr>
+      </table>
+    </div>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.2!2d139.6012!3d35.7402!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ef2c7b9b9b9b%3A0x1!2z5p2x5Lqs6YO95YaF椎5Yy65Yy65Yy65Yy6!5e0!3m2!1sja!2sjp!4v1"
+        src="https://www.google.com/maps?q=東京都練馬区石神井町4-13-7&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="はら事務所 地図">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>社会保険労務士 はら事務所（原 隆）</strong><br>
+  〒177-0041 東京都練馬区石神井町4-13-7-101　TEL: 03-3996-8387<br>
+  &copy; 2024 SR Hara Office. All Rights Reserved.
+</footer>
+
+<script>
+  const btn = document.getElementById('hamburgerBtn');
+  const nav = document.getElementById('mobileNav');
+
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    nav.classList.toggle('open');
+  });
+
+  function closeMobileNav() {
+    btn.classList.remove('open');
+    nav.classList.remove('open');
+  }
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !nav.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+</script>
+</body>
+</html>

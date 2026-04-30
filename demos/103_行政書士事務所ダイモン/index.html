@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行政書士事務所ダイモン｜上野・台東区｜風俗営業・建設業・会社設立</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #1a3260;
+    --navy-light: #2a4a82;
+    --gold: #b8934a;
+    --gold-light: #d4aa6a;
+    --cream: #f8f5f0;
+    --cream-dark: #ede9e2;
+    --text-dark: #1a1a1a;
+    --text-mid: #444444;
+    --text-light: #777777;
+    --white: #ffffff;
+    --border: #d8d0c4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ======= HEADER ======= */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(13, 31, 60, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 147, 74, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .logo-ja {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .logo-en {
+    font-size: 0.55rem;
+    font-weight: 300;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    font-family: 'Noto Sans JP', sans-serif;
+    text-transform: uppercase;
+  }
+
+  nav { display: flex; gap: 2rem; align-items: center; }
+
+  nav a {
+    text-decoration: none;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    font-weight: 400;
+    transition: color 0.2s;
+    font-family: 'Noto Sans JP', sans-serif;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  nav a:hover { color: var(--gold-light); }
+  nav a:hover::after { transform: scaleX(1); }
+
+  .header-tel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .header-tel-label {
+    font-size: 0.6rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .header-tel-number {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    font-family: 'Noto Sans JP', sans-serif;
+    text-decoration: none;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+    z-index: 1100;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 70px; left: 0; right: 0; bottom: 0;
+    background: var(--navy);
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .mobile-nav.open { display: flex; opacity: 1; }
+
+  .mobile-nav a {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(184,147,74,0.3);
+    padding-bottom: 0.5rem;
+    width: 200px;
+    text-align: center;
+  }
+
+  .mobile-nav .mobile-tel {
+    margin-top: 1rem;
+    color: var(--gold-light);
+    font-size: 1.3rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  /* ======= HERO ======= */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    transform: scale(1.05);
+    animation: subtle-zoom 18s ease-in-out infinite alternate;
+  }
+
+  @keyframes subtle-zoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(13,31,60,0.7) 0%, rgba(13,31,60,0.3) 50%, rgba(13,31,60,0.8) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(184,147,74,0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    padding: 5px 20px;
+    margin-bottom: 1.8rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold-light);
+    position: relative;
+  }
+
+  .hero-sub {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.18em;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 2;
+  }
+
+  .hero-divider {
+    width: 50px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: all 0.3s;
+    border: 2px solid var(--gold);
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(184,147,74,0.35);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.5);
+    display: inline-block;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.5));
+    animation: scroll-drop 1.8s ease-in-out infinite;
+  }
+
+  @keyframes scroll-drop {
+    0%, 100% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* ======= SECTION COMMON ======= */
+  section { padding: 90px 24px; }
+
+  .section-inner { max-width: 1060px; margin: 0 auto; }
+
+  .section-header { text-align: center; margin-bottom: 60px; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin: 0 auto;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+
+  .gold-line {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.2rem auto;
+  }
+
+  /* ======= INTRO ======= */
+  .intro-section {
+    background: var(--navy);
+    padding: 70px 24px;
+  }
+
+  .intro-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .intro-img-wrap {
+    position: relative;
+  }
+
+  .intro-img-wrap::before {
+    content: '';
+    position: absolute;
+    top: -12px; left: -12px;
+    right: 12px; bottom: 12px;
+    border: 1px solid rgba(184,147,74,0.4);
+    z-index: 0;
+  }
+
+  .intro-img-wrap img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+    filter: brightness(0.9) saturate(0.85);
+  }
+
+  .intro-text-side { color: var(--white); }
+
+  .intro-text-side .section-label { color: var(--gold-light); }
+
+  .intro-text-side .section-title { color: var(--white); font-size: 1.6rem; }
+
+  .intro-text-side p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.78);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 2.1;
+    margin-bottom: 1rem;
+  }
+
+  .intro-name-card {
+    margin-top: 2rem;
+    padding: 1.2rem 1.5rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(255,255,255,0.05);
+  }
+
+  .intro-name-card .name-title {
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .intro-name-card .name-ja {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.12em;
+    margin-top: 0.3rem;
+  }
+
+  .intro-name-card .name-en {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  /* ======= FEATURES ======= */
+  .features-section { background: var(--cream); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .feature-card {
+    background: var(--white);
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+
+  .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  .feature-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .feature-text {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+
+  /* ======= SERVICES ======= */
+  .services-section { background: var(--white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    cursor: default;
+    transition: all 0.3s;
+    background: var(--white);
+    position: relative;
+  }
+
+  .service-card:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(13,31,60,0.15);
+  }
+
+  .service-num {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-family: 'Noto Sans JP', sans-serif;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s;
+  }
+
+  .service-card:hover .service-num { color: var(--gold-light); }
+
+  .service-icon-wrap {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+    filter: none;
+    transition: transform 0.3s;
+  }
+
+  .service-card:hover .service-icon-wrap { transform: scale(1.1); }
+
+  .service-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.06em;
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .service-card:hover .service-name { color: var(--white); }
+
+  .service-sub {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    margin-top: 0.4rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .service-card:hover .service-sub { color: rgba(255,255,255,0.65); }
+
+  /* ======= CONSULTATION ======= */
+  .consult-section {
+    background: var(--navy);
+    padding: 80px 24px;
+  }
+
+  .consult-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .consult-inner .section-title { color: var(--white); }
+  .consult-inner .section-label { color: var(--gold-light); }
+
+  .consult-free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(184,147,74,0.15);
+    border: 1px solid var(--gold);
+    padding: 16px 40px;
+    margin: 2rem 0;
+  }
+
+  .consult-free-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+  }
+
+  .consult-free-sub {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1.8;
+  }
+
+  .consult-methods {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+  }
+
+  .consult-method {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 12px 24px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.8);
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.12em;
+  }
+
+  .consult-note {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.45);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 2;
+    margin-top: 1rem;
+  }
+
+  /* ======= ACCESS / HOURS ======= */
+  .access-section { background: var(--cream); }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+  }
+
+  .info-block { }
+
+  .info-block-title {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .info-table { width: 100%; border-collapse: collapse; }
+
+  .info-table tr { border-bottom: 1px solid var(--cream-dark); }
+
+  .info-table th {
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--navy);
+    padding: 12px 0;
+    width: 5.5rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.08em;
+    vertical-align: top;
+  }
+
+  .info-table td {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    padding: 12px 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .area-tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 0.5rem;
+  }
+
+  .area-tag {
+    font-size: 0.68rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    padding: 3px 10px;
+    font-family: 'Noto Sans JP', sans-serif;
+  }
+
+  .area-tag.highlight {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+
+  .map-wrap {
+    width: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    aspect-ratio: 4/3;
+    background: var(--cream-dark);
+  }
+
+  .map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .hours-visual {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+
+  .day-cell {
+    text-align: center;
+    padding: 8px 4px;
+    font-size: 0.7rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .day-cell .day-name {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .day-cell.open { background: var(--navy); color: var(--white); }
+  .day-cell.closed { background: var(--cream-dark); color: var(--text-light); }
+  .day-cell .dot { font-size: 0.6rem; }
+
+  .tel-cta-box {
+    margin-top: 2rem;
+    background: var(--navy);
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .tel-cta-label {
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    font-family: 'Noto Sans JP', sans-serif;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .tel-cta-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    font-family: 'Noto Sans JP', sans-serif;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s;
+  }
+
+  .tel-cta-number:hover { color: var(--gold-light); }
+
+  .tel-cta-sub {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    margin-top: 0.4rem;
+    display: block;
+    letter-spacing: 0.1em;
+  }
+
+  /* ======= FOOTER ======= */
+  footer {
+    background: #080f1e;
+    color: rgba(255,255,255,0.6);
+    padding: 50px 24px 30px;
+  }
+
+  .footer-inner {
+    max-width: 1060px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo-ja {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+  }
+
+  .footer-logo-en {
+    font-size: 0.58rem;
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    font-family: 'Noto Sans JP', sans-serif;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .footer-info {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .footer-info p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    line-height: 1.7;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-end;
+  }
+
+  .footer-nav a {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    font-family: 'Noto Sans JP', sans-serif;
+    transition: color 0.2s;
+  }
+
+  .footer-nav a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+    font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-disclaimer {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.25);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+  }
+
+  /* ======= FLOAT TEL ======= */
+  .float-tel {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 900;
+    background: var(--gold);
+    color: var(--navy);
+    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    border-radius: 3px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    letter-spacing: 0.05em;
+    animation: float-pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes float-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(184,147,74,0.3); }
+    50% { box-shadow: 0 6px 28px rgba(184,147,74,0.6); }
+  }
+
+  /* ======= NOTICE BAR ======= */
+  .notice-bar {
+    background: #c0392b;
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 0.72rem;
+    color: var(--white);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+  }
+
+  /* ======= RESPONSIVE ======= */
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .intro-inner { grid-template-columns: 1fr; gap: 36px; }
+    .intro-img-wrap { max-width: 480px; margin: 0 auto; }
+    .access-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .footer-nav { align-items: flex-start; }
+  }
+
+  @media (max-width: 640px) {
+    header .nav-desktop, header .header-tel { display: none; }
+    .hamburger { display: flex; }
+    .float-tel { display: block; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 20px; }
+    .consult-methods { flex-direction: column; align-items: center; }
+    .hours-visual { gap: 2px; }
+    .day-cell { padding: 6px 2px; font-size: 0.62rem; }
+  }
+
+  @media (max-width: 400px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NOTICE BAR -->
+<div class="notice-bar">
+  ※ 現在お問合せフォームは停止中です。お問合せはお電話にてお願いいたします：03-3831-1155
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#top">
+      <span class="logo-ja">行政書士事務所ダイモン</span>
+      <span class="logo-en">Administrative Scrivener Office Daimon</span>
+    </a>
+
+    <nav class="nav-desktop">
+      <a href="#about">事務所紹介</a>
+      <a href="#services">業務内容</a>
+      <a href="#features">選ばれる理由</a>
+      <a href="#access">アクセス</a>
+    </nav>
+
+    <div class="header-tel">
+      <span class="header-tel-label">無料相談受付</span>
+      <a class="header-tel-number" href="tel:0338311155">03-3831-1155</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#about" class="mobile-link">事務所紹介</a>
+  <a href="#services" class="mobile-link">業務内容</a>
+  <a href="#features" class="mobile-link">選ばれる理由</a>
+  <a href="#access" class="mobile-link">アクセス</a>
+  <a href="tel:0338311155" class="mobile-tel">📞 03-3831-1155</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-badge">東京都台東区上野 ｜ 行政書士事務所</span>
+    <h1 class="hero-title">
+      <em>許認可申請</em>のことなら<br>
+      行政書士事務所ダイモンへ
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      風俗営業許可・建設業許可・会社設立・古物営業許可<br>
+      東京都全域・埼玉・千葉・神奈川・茨城に対応
+    </p>
+    <div class="hero-cta-group">
+      <a href="tel:0338311155" class="btn-primary">今すぐ無料相談</a>
+      <a href="#services" class="btn-outline">業務内容を見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- INTRO / ABOUT -->
+<section class="intro-section" id="about">
+  <div class="intro-inner">
+    <div class="intro-img-wrap">
+      <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80" alt="行政書士事務所の様子">
+    </div>
+    <div class="intro-text-side">
+      <span class="section-label">About</span>
+      <h2 class="section-title">お客様の許認可手続きを<br>迅速・正確にサポート</h2>
+      <div class="gold-line" style="margin-left:0;"></div>
+      <p>
+        当事務所は東京都全域を中心に、千葉・埼玉・神奈川・茨城の地域で店舗開業者・企業経営者の皆様の許認可手続きをサポートしております。
+      </p>
+      <p>
+        風俗営業・建設業・飲食店営業・古物営業・運送業などの各種許認可、宅建業免許、ならびに会社設立を専門に業務を行っております。難しい手続きにお悩みの方、まずはお気軽にご相談ください。
+      </p>
+      <p>
+        行政書士法に基づく守秘義務により、ご相談内容が外部に漏れることは一切ございません。
+      </p>
+      <div class="intro-name-card">
+        <div class="name-title">代表行政書士</div>
+        <div class="name-ja">丸山 直樹</div>
+        <div class="name-en">Naoki Maruyama</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">当事務所が選ばれる理由</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <div class="feature-title">許認可手続きの<br>豊富な実績</div>
+        <p class="feature-text">風俗営業・建設業許可を中心に、多数の許認可申請を手がけてきた経験と実績で、お客様の許可取得を確実にサポートします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">迅速・正確な<br>手続き対応</div>
+        <p class="feature-text">お任せいただいた業務は誠心誠意、正確かつ迅速に対応。お客様が本来の業務に専念できるよう、全力でサポートいたします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">厳格な守秘義務<br>安心のご相談</div>
+        <p class="feature-text">行政書士法による守秘義務で相談内容は厳重に保護。ご相談は完全無料ですので、どんな些細なことでもお気軽にお問い合わせください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">業務内容</h2>
+      <div class="gold-line"></div>
+      <p class="section-desc">風俗営業・建設業をはじめ、各種許認可申請・会社設立まで幅広く対応しております</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <span class="service-icon-wrap">🏮</span>
+        <div class="service-name">風俗営業許可</div>
+        <div class="service-sub">上野・銀座・新宿・渋谷など<br>東京都全域・関東対応</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <span class="service-icon-wrap">🍽</span>
+        <div class="service-name">飲食店営業許可</div>
+        <div class="service-sub">開業までの流れを<br>丁寧にサポート</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <span class="service-icon-wrap">🏗</span>
+        <div class="service-name">建設業許可</div>
+        <div class="service-sub">経営事項審査・更新<br>入札参加申請にも対応</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <span class="service-icon-wrap">🏢</span>
+        <div class="service-name">会社設立</div>
+        <div class="service-sub">定款作成から設立後の<br>手続きまで一括サポート</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">05</span>
+        <span class="service-icon-wrap">♻️</span>
+        <div class="service-name">古物営業許可</div>
+        <div class="service-sub">リサイクル・中古品販売<br>ネット販売にも対応</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">06</span>
+        <span class="service-icon-wrap">🌙</span>
+        <div class="service-name">特定遊興飲食店<br>営業許可</div>
+        <div class="service-sub">深夜酒類提供飲食店<br>届出にも対応</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">07</span>
+        <span class="service-icon-wrap">🚛</span>
+        <div class="service-name">産業廃棄物<br>収集運搬業許可</div>
+        <div class="service-sub">要件確認から申請書類<br>作成まで対応</div>
+      </div>
+      <div class="service-card">
+        <span class="service-num">08</span>
+        <span class="service-icon-wrap">📊</span>
+        <div class="service-name">経営事項審査</div>
+        <div class="service-sub">公共工事の入札に必要な<br>経審申請をサポート</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTATION CTA -->
+<section class="consult-section">
+  <div class="consult-inner">
+    <span class="section-label">Consultation</span>
+    <h2 class="section-title">相談はすべて無料です</h2>
+    <div class="consult-free-badge">
+      <span class="consult-free-text">電話・メール・面談 すべて無料</span>
+    </div>
+    <p class="consult-free-sub">
+      お客様に納得してからご依頼いただけるよう、すべてのご相談を無料としております。<br>
+      ご相談の際は、お名前・ご住所・連絡先をお知らせください。
+    </p>
+    <div class="consult-methods">
+      <div class="consult-method">📞 お電話</div>
+      <div class="consult-method">🤝 面談</div>
+    </div>
+    <a href="tel:0338311155" class="btn-primary" style="font-size:1rem;padding:16px 48px;">03-3831-1155</a>
+    <p class="consult-note">
+      ※ 現在お問合せフォームからのお問合せは中止しております。<br>
+      恐れ入りますが、お電話にてお問合せください。
+    </p>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-section" id="access">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Access &amp; Hours</span>
+      <h2 class="section-title">営業時間・アクセス</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="access-grid">
+      <div>
+        <div class="info-block">
+          <div class="info-block-title">事務所情報</div>
+          <table class="info-table">
+            <tr>
+              <th>事務所名</th>
+              <td>行政書士事務所ダイモン</td>
+            </tr>
+            <tr>
+              <th>代表者</th>
+              <td>丸山 直樹（行政書士）</td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td>〒110-0005<br>東京都台東区上野2-8-7<br>上野広小路永谷ビル601号</td>
+            </tr>
+            <tr>
+              <th>電話</th>
+              <td>
+                <a href="tel:0338311155" style="color:var(--navy);font-weight:600;text-decoration:none;">03-3831-1155</a><br>
+                <span style="font-size:0.72rem;color:var(--text-light);">FAX：03-3831-8765</span>
+              </td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td>
+                10:00〜19:00（平日）<br>
+                <span style="font-size:0.72rem;color:var(--text-light);">休業日：土日曜・祝日・年末年始</span>
+              </td>
+            </tr>
+          </table>
+
+          <div class="hours-visual" style="margin-top:1.5rem;">
+            <div class="day-cell open"><span class="day-name">月</span><span class="dot">●</span></div>
+            <div class="day-cell open"><span class="day-name">火</span><span class="dot">●</span></div>
+            <div class="day-cell open"><span class="day-name">水</span><span class="dot">●</span></div>
+            <div class="day-cell open"><span class="day-name">木</span><span class="dot">●</span></div>
+            <div class="day-cell open"><span class="day-name">金</span><span class="dot">●</span></div>
+            <div class="day-cell closed"><span class="day-name">土</span><span class="dot">—</span></div>
+            <div class="day-cell closed"><span class="day-name">日</span><span class="dot">—</span></div>
+          </div>
+        </div>
+
+        <div class="info-block" style="margin-top:2rem;">
+          <div class="info-block-title">業務対応エリア</div>
+          <p style="font-size:0.78rem;color:var(--text-mid);font-family:'Noto Sans JP',sans-serif;font-weight:300;margin-bottom:0.8rem;line-height:1.8;">
+            東京都全域・埼玉県・千葉県・神奈川県・茨城県
+          </p>
+          <div class="area-tag-group">
+            <span class="area-tag highlight">台東区</span>
+            <span class="area-tag highlight">上野</span>
+            <span class="area-tag highlight">湯島</span>
+            <span class="area-tag highlight">銀座</span>
+            <span class="area-tag highlight">新宿</span>
+            <span class="area-tag highlight">渋谷</span>
+            <span class="area-tag highlight">池袋</span>
+            <span class="area-tag highlight">錦糸町</span>
+            <span class="area-tag">千代田区</span>
+            <span class="area-tag">中央区</span>
+            <span class="area-tag">文京区</span>
+            <span class="area-tag">墨田区</span>
+            <span class="area-tag">豊島区</span>
+            <span class="area-tag">埼玉県</span>
+            <span class="area-tag">千葉県</span>
+            <span class="area-tag">神奈川県</span>
+          </div>
+        </div>
+
+        <div class="tel-cta-box">
+          <span class="tel-cta-label">お気軽にお問合せください</span>
+          <a href="tel:0338311155" class="tel-cta-number">03-3831-1155</a>
+          <span class="tel-cta-sub">受付時間：10:00〜19:00（平日）</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="map-wrap">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.5!2d139.7717!3d35.7088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ea0a3aa89a5%3A0x0!2z5p2x5Lqs6YO95Y-w5p2x5Yy65LiK6YeO77yS4oiS77yY4oiS77yX!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="行政書士事務所ダイモン 地図">
+          </iframe>
+        </div>
+        <p style="font-size:0.72rem;color:var(--text-light);font-family:'Noto Sans JP',sans-serif;margin-top:0.8rem;text-align:center;line-height:1.8;">
+          東京都台東区上野2-8-7 上野広小路永谷ビル601号<br>
+          地下鉄「上野広小路駅」より徒歩約3分
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-ja">行政書士事務所ダイモン</div>
+        <span class="footer-logo-en">Administrative Scrivener Office Daimon</span>
+        <div class="footer-info">
+          <p>〒110-0005 東京都台東区上野2-8-7 上野広小路永谷ビル601号</p>
+          <p>TEL：03-3831-1155　FAX：03-3831-8765</p>
+          <p>営業時間：10:00〜19:00（平日）　休業：土日祝・年末年始</p>
+          <p>代表行政書士：丸山 直樹</p>
+        </div>
+      </div>
+      <nav class="footer-nav">
+        <a href="#top">トップページ</a>
+        <a href="#about">事務所紹介</a>
+        <a href="#services">業務内容</a>
+        <a href="#features">選ばれる理由</a>
+        <a href="#access">アクセス</a>
+      </nav>
+    </div>
+    <div class="footer-disclaimer">
+      本サイトにおいて提供する情報について、万全を期しておりますが、法改正・地域の特性その他の事情により実情と異なる場合もございます。
+      本サイトの情報に基づいてご自身で手続きをされる場合は、必ず各関係機関に事前にお問合せの上、行われることをお願い申し上げます。
+      なお、当サイトに記載されている事項は予告なく変更または廃止されることがございますのでご了承ください。
+    </div>
+    <div class="footer-bottom">
+      &copy; 行政書士事務所ダイモン All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT TEL (mobile) -->
+<a href="tel:0338311155" class="float-tel">📞 無料相談</a>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Header scroll effect
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.style.boxShadow = '0 4px 24px rgba(0,0,0,0.3)';
+    } else {
+      header.style.boxShadow = 'none';
+    }
+  });
+
+  // Intersection Observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.feature-card, .service-card, .intro-img-wrap, .intro-text-side').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
