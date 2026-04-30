@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鈴木たかつぐ社会保険労務士事務所</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243358;
+    --gold: #b8963e;
+    --gold-light: #d4af5a;
+    --cream: #f8f6f1;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --white: #ffffff;
+    --text: #1f2937;
+    --text-light: #4b5563;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.8;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 39, 68, 0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 2rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .nav-logo {
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
+  }
+
+  .nav-logo span {
+    display: block;
+    color: var(--gold-light);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: var(--navy);
+    z-index: 999;
+    padding: 1.5rem 2rem 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+
+  .mobile-menu.open { display: block; }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-menu li { border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .mobile-menu li:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+
+  .mobile-menu a {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.95rem;
+    padding: 1rem 0;
+    letter-spacing: 0.05em;
+    transition: color 0.2s, padding-left 0.2s;
+  }
+
+  .mobile-menu a:hover { color: var(--gold-light); padding-left: 0.5rem; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    transform: scale(1.05);
+    transition: transform 8s ease;
+  }
+
+  .hero-bg.loaded { transform: scale(1); }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(26,39,68,0.6) 0%, rgba(10,16,30,0.75) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    padding: 2rem;
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    padding: 0.4rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-en {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .hero-lead {
+    font-size: clamp(0.85rem, 2vw, 1.05rem);
+    line-height: 2;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: background 0.25s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid rgba(255,255,255,0.7);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.9rem 2.2rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+    transition: background 0.25s, border-color 0.25s;
+  }
+
+  .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  /* ===== SECTIONS COMMON ===== */
+  section { padding: 5rem 1.5rem; }
+
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+
+  .section-label {
+    display: inline-block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+    line-height: 1.5;
+  }
+
+  .section-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 1.2rem auto 0;
+  }
+
+  /* ===== MISSION ===== */
+  .mission { background: var(--cream); }
+
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 3rem;
+  }
+
+  .mission-card {
+    background: var(--navy);
+    color: var(--white);
+    padding: 2.5rem 2rem;
+  }
+
+  .mission-card:nth-child(2) { background: var(--gold); }
+
+  .mission-card-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .mission-card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+
+  .mission-card p {
+    font-size: 0.85rem;
+    line-height: 1.9;
+    opacity: 0.9;
+    font-weight: 300;
+  }
+
+  .profile-box {
+    background: var(--white);
+    border-left: 4px solid var(--gold);
+    padding: 2rem 2rem 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .profile-icon {
+    width: 80px;
+    height: 80px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .profile-icon svg { width: 40px; height: 40px; fill: var(--gold); }
+
+  .profile-info h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.3rem;
+  }
+
+  .profile-info .profile-en {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .profile-info p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 2;
+    font-weight: 300;
+  }
+
+  /* ===== FEATURES ===== */
+  .features { background: var(--white); }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid #e5e7eb;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .feature-card:hover {
+    box-shadow: 0 8px 30px rgba(26,39,68,0.1);
+    transform: translateY(-4px);
+  }
+
+  .feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+
+  .feature-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .feature-card p {
+    font-size: 0.83rem;
+    color: var(--text-light);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ===== SERVICES ===== */
+  .services { background: var(--navy); }
+
+  .services .section-title { color: var(--white); }
+  .services .section-label { color: var(--gold-light); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .service-item:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--gold);
+  }
+
+  .service-num {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .service-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+
+  .service-item p {
+    font-size: 0.83rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .services-note {
+    margin-top: 2rem;
+    text-align: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== BOOKS ===== */
+  .books { background: var(--cream); }
+
+  .books-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .book-item {
+    background: var(--white);
+    border-left: 3px solid var(--gold);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .book-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .book-item p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .book-item strong {
+    display: block;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    line-height: 1.6;
+  }
+
+  .book-publisher {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* ===== ACCESS ===== */
+  .access { background: var(--white); }
+
+  .access-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .access-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--gold);
+  }
+
+  .info-row {
+    display: flex;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid #e5e7eb;
+    align-items: flex-start;
+  }
+
+  .info-label {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    width: 80px;
+    padding-top: 0.1rem;
+  }
+
+  .info-value {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .info-value a {
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .info-value a:hover { color: var(--gold); }
+
+  .map-box {
+    background: var(--gray-light);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-box iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ===== CONTACT BANNER ===== */
+  .contact-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .contact-banner h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .contact-banner p {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .contact-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-tel {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .contact-tel svg { width: 24px; height: 24px; fill: var(--gold); }
+
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    transition: background 0.25s;
+  }
+
+  .contact-email:hover { background: var(--gold-light); }
+  .contact-email svg { width: 18px; height: 18px; fill: var(--white); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0f1828;
+    color: rgba(255,255,255,0.55);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .footer-name {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  footer p {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.78rem;
+    line-height: 1.8;
+  }
+
+  footer small {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+
+    section { padding: 3.5rem 1.2rem; }
+
+    .mission-grid { grid-template-columns: 1fr; }
+    .profile-box { grid-template-columns: 1fr; }
+    .profile-icon { margin: 0 auto; }
+    .profile-info { text-align: center; }
+
+    .features-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+
+    .services-grid { grid-template-columns: 1fr; }
+
+    .access-grid { grid-template-columns: 1fr; }
+
+    .map-box { height: 220px; }
+
+    .contact-actions { flex-direction: column; gap: 1.2rem; }
+
+    .contact-tel { font-size: 1.3rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 1.5rem; }
+    .section-title { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    鈴木たかつぐ社会保険労務士事務所
+    <span>Labor & Social Security Attorney Office</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#mission">事務所について</a></li>
+    <li><a href="#features">特徴</a></li>
+    <li><a href="#services">サービス</a></li>
+    <li><a href="#books">著書</a></li>
+    <li><a href="#access">アクセス</a></li>
+    <li><a href="#contact">お問い合わせ</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#mission" onclick="closeMobile()">事務所について</a></li>
+    <li><a href="#features" onclick="closeMobile()">特徴</a></li>
+    <li><a href="#services" onclick="closeMobile()">サービス</a></li>
+    <li><a href="#books" onclick="closeMobile()">著書</a></li>
+    <li><a href="#access" onclick="closeMobile()">アクセス</a></li>
+    <li><a href="#contact" onclick="closeMobile()">お問い合わせ</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">特定社会保険労務士 / Labor & Social Security Attorney</div>
+    <h1>人と組織の可能性を、<br>最大限に引き出す</h1>
+    <p class="hero-en">Suzuki Takatsugu SR Office — Tokyo, Itabashi</p>
+    <p class="hero-lead">
+      日本企業・外資系企業での30年超の人事専門職経験をもとに、<br>
+      経営者と従業員、双方に寄り添う伴走型の人事労務コンサルティング。
+    </p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">サービス一覧</a>
+      <a href="#contact" class="btn-outline">無料相談はこちら</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">About Us</span>
+      <h2 class="section-title">ミッション & ビジョン</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="mission-grid">
+      <div class="mission-card">
+        <p class="mission-card-label">Our Mission</p>
+        <h3>使命</h3>
+        <p>会社・組織とそこで働く従業員が、各々の能力を最大限に発揮して持続的に成長するための具体的・実践的・効果的な人事労務コンサルティングサービスを提供します。</p>
+      </div>
+      <div class="mission-card">
+        <p class="mission-card-label">Our Vision</p>
+        <h3>目指すもの</h3>
+        <p>人事労務管理（HRM）で、日本で最も頼りにされるコンサルタントを目指します。顧客満足の最大化に向けた、終わりなき挑戦を続けています。</p>
+      </div>
+    </div>
+
+    <div class="profile-box">
+      <div class="profile-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+        </svg>
+      </div>
+      <div class="profile-info">
+        <h3>鈴木孝嗣（Suzuki Takatsugu）</h3>
+        <p class="profile-en">特定社会保険労務士 ／ Labor & Social Security Attorney</p>
+        <p>
+          日立グループにて30年以上、人事・総務・法務の専門職・管理職を歴任。その後、スウェーデン・ドイツ系医療機器外資企業にて人事・管理・法務責任者（Head of HR, Admin & Legal）として6年間勤務。TOEIC920点取得。英語対応可。<br>
+          顧客規模は従業員1名から数百名、プライム上場企業（売上高数千億円〜1兆円）まで幅広く対応。製造・物流・印刷・一般社団法人・国際機関など多岐にわたる業種の経験を持つ。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Features</span>
+      <h2 class="section-title">当事務所の強み</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>30年超の実務経験</h3>
+        <p>日本を代表する大企業グループと外資系トップ企業での人事専門職経験。理論だけでなく、現場で培った実践的な知識でサポートします。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>英語対応（TOEIC 920点）</h3>
+        <p>外資系企業・多国籍企業での人事対応も可能。就業規則の和英両語作成、外国人従業員への対応、タレントマネジメントにも精通しています。</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>伴走型・経営直結の支援</h3>
+        <p>経営トップと直接対話を重ね、傾聴と率直な提言に基づく伴走型支援を実践。従業員1名の個人事業から上場企業まで、規模を問わず対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Services</span>
+      <h2 class="section-title">サービス一覧</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-item">
+        <p class="service-num">SERVICE 01</p>
+        <h3>人事・賃金制度の設計・見直し</h3>
+        <p>組織の成長フェーズや経営戦略に合わせた人事評価制度・賃金体系の構築・リニューアルを支援。多国籍企業のタレントマネジメントにも対応。</p>
+      </div>
+
+      <div class="service-item">
+        <p class="service-num">SERVICE 02</p>
+        <h3>就業規則の作成・見直し（和英対応）</h3>
+        <p>法令改正に対応した就業規則・各種規程の作成・見直しを行います。英文就業規則の作成にも対応しており、外資系企業からのご依頼も歓迎します。</p>
+      </div>
+
+      <div class="service-item">
+        <p class="service-num">SERVICE 03</p>
+        <h3>研修・ファシリテーション</h3>
+        <p>評価者研修・新任マネージャー研修など、組織の人材育成を支援する各種研修のファシリテーション（講師）を承ります。</p>
+      </div>
+
+      <div class="service-item">
+        <p class="service-num">SERVICE 04</p>
+        <h3>人事労務コンサルティング（労務顧問）</h3>
+        <p>日常的な労務相談から複雑なケースまで、顧問契約を通じて継続的にサポート。経営者・管理職・従業員、各々の立場に立ったアドバイスを提供します。</p>
+      </div>
+
+      <div class="service-item">
+        <p class="service-num">SERVICE 05</p>
+        <h3>社会保険・労働保険手続き代行</h3>
+        <p>入退社手続き・社会保険・労働保険の各種届出・変更手続きを代行。煩雑な行政手続きをまとめてお任せいただけます。</p>
+      </div>
+
+      <div class="service-item">
+        <p class="service-num">SERVICE 06</p>
+        <h3>助成金申請代行</h3>
+        <p>雇用関係助成金の調査・申請代行を行います。受給要件の確認から申請書類の作成・提出まで、ワンストップでサポートいたします。</p>
+      </div>
+    </div>
+
+    <p class="services-note">※ 英語でのご相談・サービス提供にも対応しております（TOEIC 920点）</p>
+  </div>
+</section>
+
+<!-- BOOKS -->
+<section class="books" id="books">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Publications</span>
+      <h2 class="section-title">代表著書</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="books-list">
+      <div class="book-item">
+        <div class="book-icon">📘</div>
+        <div>
+          <p>
+            <strong>「グローバル展開企業の人材マネジメント ーこれだけはそろえておきたい英文テンプレート」</strong>
+            国際展開を図る企業の人事担当者向けに、実務で使える英文人事テンプレートを網羅した実践書。
+            <span class="book-publisher">経団連出版 ／ 2017年7月</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-icon">📗</div>
+        <div>
+          <p>
+            <strong>「外資系企業で働く ー人事から見た日本企業との違いと生き抜く知恵」</strong>
+            外資系企業の人事制度・文化・働き方の違いを、人事のプロの目線で解説した一冊。
+            <span class="book-publisher">労働新聞社 ／ 2018年11月</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="book-item">
+        <div class="book-icon">📙</div>
+        <div>
+          <p>
+            <strong>「あなたの会社にドラマクィーンはいませんか？ ー残念な管理職への対処法」</strong>
+            職場に潜む問題ある管理職の行動パターンと、その対処法を実例をもとに分かりやすく解説。
+            <span class="book-publisher">労働新聞社 ／ 2019年12月</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Access</span>
+      <h2 class="section-title">アクセス</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="access-grid">
+      <div class="access-info">
+        <h3>事務所情報</h3>
+        <div class="info-row">
+          <span class="info-label">事務所名</span>
+          <span class="info-value">鈴木たかつぐ社会保険労務士事務所</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">代表者</span>
+          <span class="info-value">特定社会保険労務士　鈴木孝嗣</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">所在地</span>
+          <span class="info-value">〒174-0053<br>東京都板橋区清水町82-1</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">電話</span>
+          <span class="info-value"><a href="tel:09083024344">090-8302-4344</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">メール</span>
+          <span class="info-value"><a href="mailto:suzukit@suzukit-syaroshi.com">suzukit@suzukit-syaroshi.com</a></span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">対応言語</span>
+          <span class="info-value">日本語・英語（TOEIC 920点）</span>
+        </div>
+      </div>
+
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.0!2d139.7!3d35.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ef6a9d7fffff%3A0x1!2z5p2x5Lqs6YO96Iu45qmL5Yy656WJ5rC077yY77yS4oiS77yR!5e0!3m2!1sja!2sjp!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="事務所地図">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT BANNER -->
+<section class="contact-banner" id="contact">
+  <h2>お気軽にご相談ください</h2>
+  <p>人事労務に関するお悩み、まずはお話をお聞かせください。初回相談は無料で承ります。</p>
+  <div class="contact-actions">
+    <a href="tel:09083024344" class="contact-tel">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.86 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.77 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.06 6.06l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+      </svg>
+      090-8302-4344
+    </a>
+    <a href="mailto:suzukit@suzukit-syaroshi.com" class="contact-email">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      メールでお問い合わせ
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">鈴木たかつぐ社会保険労務士事務所</p>
+  <p>〒174-0053 東京都板橋区清水町82-1<br>
+  特定社会保険労務士 鈴木孝嗣</p>
+  <small>&copy; 2025 Suzuki Takatsugu SR Office. All rights reserved.</small>
+</footer>
+
+<script>
+  // Hero BG lazy load
+  window.addEventListener('load', function() {
+    document.getElementById('heroBg').classList.add('loaded');
+  });
+
+  // Hamburger
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', function() {
+    var isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+  });
+
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+  }
+
+  // Nav highlight on scroll
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY + 100;
+    sections.forEach(function(sec) {
+      if (scrollY >= sec.offsetTop && scrollY < sec.offsetTop + sec.offsetHeight) {
+        navLinks.forEach(function(a) {
+          a.style.color = '';
+          if (a.getAttribute('href') === '#' + sec.id) {
+            a.style.color = '#d4af5a';
+          }
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

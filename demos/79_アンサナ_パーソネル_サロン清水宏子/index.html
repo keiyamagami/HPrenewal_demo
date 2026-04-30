@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>清水アンサナ合同事務所 | 板橋区の行政書士・社会保険労務士</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2a4a;
+      --navy-light: #243560;
+      --gold: #b89a5e;
+      --gold-light: #d4b87a;
+      --cream: #f8f5f0;
+      --gray-light: #f2f0ed;
+      --gray-mid: #8a8a8a;
+      --text: #2c2c2c;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      line-height: 1.8;
+      background: var(--white);
+    }
+
+    /* ─────────── NAV ─────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(26,42,74,0.97);
+      backdrop-filter: blur(8px);
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .logo-sub {
+      font-size: 0.65rem;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-tel {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-light);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-tel span { font-size: 0.7rem; opacity: 0.8; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--navy);
+      padding: 20px 24px 28px;
+      z-index: 999;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mobile-menu ul li a {
+      display: block;
+      padding: 13px 0;
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      letter-spacing: 0.05em;
+    }
+
+    .mobile-menu .mobile-tel {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* ─────────── HERO ─────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(15,25,50,0.88) 0%, rgba(26,42,74,0.70) 60%, rgba(10,18,38,0.60) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      padding-top: 68px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 22px;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      color: var(--gold-light);
+      font-style: normal;
+    }
+
+    .hero-desc {
+      font-size: clamp(0.88rem, 1.5vw, 1rem);
+      color: rgba(255,255,255,0.82);
+      max-width: 540px;
+      line-height: 2;
+      margin-bottom: 38px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      transition: background 0.25s, transform 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(255,255,255,0.5);
+      transition: all 0.25s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--white);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+
+    /* ─────────── SECTION COMMON ─────────── */
+    section { padding: 88px 24px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+    }
+
+    .section-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 16px auto 0;
+    }
+
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    /* ─────────── REASONS ─────────── */
+    #reasons { background: var(--cream); }
+
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .reason-card {
+      background: var(--white);
+      padding: 40px 32px;
+      border-radius: 4px;
+      box-shadow: 0 2px 20px rgba(26,42,74,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .reason-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+    }
+
+    .reason-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(26,42,74,0.12);
+    }
+
+    .reason-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(26,42,74,0.07);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .reason-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .reason-icon svg { width: 24px; height: 24px; fill: var(--gold-light); }
+
+    .reason-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .reason-text {
+      font-size: 0.875rem;
+      color: #555;
+      line-height: 1.9;
+    }
+
+    /* ─────────── SERVICES ─────────── */
+    #services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      border: 1px solid #e8e4de;
+      border-radius: 4px;
+      padding: 32px 28px;
+      transition: all 0.25s;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 0;
+      background: linear-gradient(180deg, transparent, rgba(26,42,74,0.03));
+      transition: height 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 24px rgba(26,42,74,0.08);
+    }
+
+    .service-card:hover::after { height: 60px; }
+
+    .service-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: var(--cream);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      transition: background 0.25s;
+    }
+
+    .service-card:hover .service-icon-wrap { background: var(--navy); }
+
+    .service-icon-wrap svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--navy);
+      transition: fill 0.25s;
+    }
+
+    .service-card:hover .service-icon-wrap svg { fill: var(--gold-light); }
+
+    .service-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .service-text {
+      font-size: 0.83rem;
+      color: #666;
+      line-height: 1.85;
+    }
+
+    /* ─────────── PROFILE ─────────── */
+    #profile {
+      background: var(--navy);
+      padding: 88px 24px;
+    }
+
+    .profile-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .profile-img-wrap {
+      position: relative;
+    }
+
+    .profile-img-wrap img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .profile-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      right: 12px; bottom: 12px;
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      z-index: 0;
+    }
+
+    .profile-img-wrap img { position: relative; z-index: 1; }
+
+    .profile-content .section-label { text-align: left; }
+
+    .profile-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .profile-role {
+      font-size: 0.82rem;
+      color: var(--gold-light);
+      letter-spacing: 0.12em;
+      margin-bottom: 24px;
+    }
+
+    .profile-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.78);
+      line-height: 2;
+    }
+
+    .profile-divider {
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+      margin: 24px 0;
+    }
+
+    .profile-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .profile-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .profile-item::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─────────── ACCESS ─────────── */
+    #access { background: var(--gray-light); }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .info-table tr { border-bottom: 1px solid #e0ddd8; }
+    .info-table tr:first-child { border-top: 1px solid #e0ddd8; }
+
+    .info-table th {
+      width: 120px;
+      padding: 16px 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .info-table td {
+      padding: 16px 0;
+      font-size: 0.875rem;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .map-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      height: 360px;
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.7);
+      gap: 12px;
+      font-size: 0.85rem;
+    }
+
+    .map-placeholder svg { width: 36px; height: 36px; fill: var(--gold); }
+
+    /* ─────────── CTA BAND ─────────── */
+    #cta {
+      background: linear-gradient(135deg, var(--navy-light) 0%, var(--navy) 100%);
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    #cta .section-title { color: var(--white); }
+    #cta .section-label { color: var(--gold-light); }
+
+    .cta-tel-block {
+      margin: 36px 0 28px;
+    }
+
+    .cta-tel-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.12em;
+      margin-bottom: 6px;
+    }
+
+    .cta-tel-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+    }
+
+    .cta-hours {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    .cta-or {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 auto 28px;
+      max-width: 300px;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+    }
+
+    .cta-or::before, .cta-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ─────────── FOOTER ─────────── */
+    footer {
+      background: #0d1527;
+      padding: 48px 24px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 36px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .footer-logo-sub {
+      font-size: 0.7rem;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-address {
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.9;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-nav a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─────────── RESPONSIVE ─────────── */
+    @media (max-width: 900px) {
+      .reasons-grid { grid-template-columns: 1fr; gap: 20px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .profile-inner { grid-template-columns: 1fr; gap: 40px; }
+      .profile-img-wrap { max-width: 360px; margin: 0 auto; }
+      .access-grid { grid-template-columns: 1fr; }
+      .map-wrap { height: 280px; }
+    }
+
+    @media (max-width: 767px) {
+      .nav-links, .nav-tel { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 64px 20px; }
+      .services-grid { grid-template-columns: 1fr; gap: 16px; }
+      .footer-top { flex-direction: column; gap: 28px; }
+      .footer-nav { flex-wrap: wrap; gap: 16px 24px; }
+      .hero-content { padding: 0 24px; padding-top: 68px; }
+    }
+
+    @media (max-width: 480px) {
+      .reasons-grid { gap: 16px; }
+      .reason-card { padding: 28px 22px; }
+      .service-card { padding: 24px 20px; }
+    }
+
+    /* fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <nav>
+    <div class="logo">
+      <span class="logo-main">清水アンサナ合同事務所</span>
+      <span class="logo-sub">行政書士・社会保険労務士</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#reasons">選ばれる理由</a></li>
+      <li><a href="#services">サービス</a></li>
+      <li><a href="#profile">事務所概要</a></li>
+      <li><a href="#access">アクセス</a></li>
+      <li><a href="#cta">お問合せ</a></li>
+    </ul>
+    <div class="nav-tel">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      <span>受付 9:00-17:00</span>
+      03-6315-8555
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#reasons" onclick="closeMenu()">選ばれる理由</a></li>
+    <li><a href="#services" onclick="closeMenu()">サービス</a></li>
+    <li><a href="#profile" onclick="closeMenu()">事務所概要</a></li>
+    <li><a href="#access" onclick="closeMenu()">アクセス</a></li>
+    <li><a href="#cta" onclick="closeMenu()">お問合せ</a></li>
+  </ul>
+  <div class="mobile-tel">03-6315-8555</div>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">板橋区 行政書士・社会保険労務士</div>
+    <h1 class="hero-title">
+      お客さまの<em>「困った」</em>を<br>
+      安心・丁寧に解決します。
+    </h1>
+    <p class="hero-desc">
+      ビザ・在留資格から社会保険、相続・遺言、会社設立まで。<br>
+      経験10年以上のベテランスタッフが、<br>
+      お客さまの立場に立って親切に対応いたします。
+    </p>
+    <div class="hero-cta">
+      <a href="tel:0363158555" class="btn-primary">今すぐ電話で相談する</a>
+      <a href="#services" class="btn-outline">サービスを見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ─── REASONS ─── -->
+<section id="reasons">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Why Choose Us</div>
+      <h2 class="section-title">選ばれる3つの理由</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="reasons-grid">
+      <div class="reason-card fade-in">
+        <div class="reason-num">01</div>
+        <div class="reason-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 class="reason-title">経験10年以上の実績</h3>
+        <p class="reason-text">10年以上のキャリアを持つベテランスタッフが、お客さまの立場に立って親切・丁寧に対応しております。経験や実績に基づくアドバイスや手続きによって、多くのお客さまからご満足をいただいております。</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">02</div>
+        <div class="reason-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        </div>
+        <h3 class="reason-title">手続きを一括しておまかせ</h3>
+        <p class="reason-text">経験や蓄積したノウハウを基に、案件に応じて丁寧・迅速に進めます。お客さまのお悩み・不安などを当事務所にご依頼いただくことで、スッキリと解決することができます。</p>
+      </div>
+      <div class="reason-card fade-in">
+        <div class="reason-num">03</div>
+        <div class="reason-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+        </div>
+        <h3 class="reason-title">じっくり丁寧にご説明します</h3>
+        <p class="reason-text">手続き前にお見積書を提示し、流れや費用を詳しくご説明いたします。進捗状況や費用など手続きの透明化に努め、安心してお任せいただける環境づくりを大切にしています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">サービスのご案内</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        </div>
+        <h3 class="service-title">ビザ手続き</h3>
+        <p class="service-text">御社従業員の方のビザ全般をお任せください。ご家族のビザに関しても手続き可能です。在留資格の取得・変更・更新など幅広く対応いたします。</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+        </div>
+        <h3 class="service-title">許認可手続き</h3>
+        <p class="service-text">難しい許認可手続きをお任せいただくことで、早期の許可取得を実現します。御社の負担軽減にもなり、本業に集中することができます。</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"/></svg>
+        </div>
+        <h3 class="service-title">会社設立</h3>
+        <p class="service-text">会社設立手続きはもちろんのこと、その後の社会保険手続き、許認可取得まで全般的にサポートいたします。</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <h3 class="service-title">社会保険・年金・就業規則</h3>
+        <p class="service-text">会社社長の依頼や人事部などの管理部と連携し、目的実現のため迅速に手続きを行います。就業規則の作成・変更にも対応いたします。</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        </div>
+        <h3 class="service-title">相続手続き・遺言書作成</h3>
+        <p class="service-text">面倒な相続財産の手続きを行うことで、ご負担を減らし、早期の相続財産手続きの完了を目指します。遺言書の作成サポートも行っております。</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-icon-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        </div>
+        <h3 class="service-title">契約書作成</h3>
+        <p class="service-text">合同事務所ならではの業務範囲から、様々な契約書作成業務に対応しております。各種契約書のリーガルチェックも承ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROFILE ─── -->
+<section id="profile">
+  <div class="container">
+    <div class="profile-inner">
+      <div class="profile-img-wrap fade-in">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&auto=format&fit=crop&q=80" alt="事務所イメージ">
+      </div>
+      <div class="profile-content fade-in">
+        <div class="section-label">About</div>
+        <h2 class="profile-title">清水アンサナ<br>合同事務所</h2>
+        <p class="profile-role">所長 特定行政書士　清水 康仁</p>
+        <p class="profile-text">親切・丁寧な対応をモットーとし、お客さまが抱えるさまざまな法務・労務のお悩みに真摯に向き合ってまいりました。ビザ申請や在留資格の取得、社会保険・就業規則の整備、相続や会社設立まで、幅広い分野で皆さまをサポートいたします。</p>
+        <div class="profile-divider"></div>
+        <div class="profile-items">
+          <div class="profile-item">特定行政書士・社会保険労務士</div>
+          <div class="profile-item">経験10年以上のベテランスタッフ在籍</div>
+          <div class="profile-item">千川駅・小竹向原駅から徒歩10分</div>
+          <div class="profile-item">初回ご相談はお気軽にどうぞ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACCESS ─── -->
+<section id="access">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Access</div>
+      <h2 class="section-title">アクセス・受付時間</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="access-grid">
+      <div class="fade-in">
+        <table class="info-table">
+          <tr>
+            <th>事務所名</th>
+            <td>清水アンサナ合同事務所</td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td>〒173-0035<br>東京都板橋区大谷口2丁目56-15</td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td><a href="tel:0363158555" style="color:var(--navy);font-weight:500;">03-6315-8555</a></td>
+          </tr>
+          <tr>
+            <th>アクセス</th>
+            <td>千川駅・小竹向原駅から<br>徒歩10分</td>
+          </tr>
+          <tr>
+            <th>受付時間</th>
+            <td>9:00〜17:00<br><span style="font-size:0.8rem;color:#888;">※土曜・日曜・祝日を除く</span></td>
+          </tr>
+          <tr>
+            <th>フォーム</th>
+            <td>24時間受け付けております</td>
+          </tr>
+        </table>
+      </div>
+      <div class="map-wrap fade-in">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.3!2d139.6763!3d35.7387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5p2x5Lqs6YO95p2J5qmL5Yy65aSn6LC35Yy65LiJ0-56-15!5e0!3m2!1sja!2sjp!4v1600000000000"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="清水アンサナ合同事務所 地図">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="cta">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">お気軽にご相談ください</h2>
+    <div class="cta-tel-block">
+      <p class="cta-tel-label">お電話でのお問合せ・ご相談</p>
+      <div class="cta-tel-num">
+        <a href="tel:0363158555" style="color:inherit;text-decoration:none;">03-6315-8555</a>
+      </div>
+      <p class="cta-hours">受付時間 9:00〜17:00　定休日：土曜・日曜・祝日</p>
+    </div>
+    <div class="cta-or">またはフォームで</div>
+    <a href="#" class="btn-primary" style="font-size:0.95rem;padding:16px 40px;">
+      お問合せ・ご相談フォームへ
+    </a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-main">清水アンサナ合同事務所</div>
+        <div class="footer-logo-sub">行政書士・社会保険労務士</div>
+        <div class="footer-address">
+          〒173-0035 東京都板橋区大谷口2丁目56-15<br>
+          Tel: 03-6315-8555　受付 9:00〜17:00（土日祝除く）<br>
+          千川駅・小竹向原駅から徒歩10分
+        </div>
+      </div>
+      <div class="footer-nav">
+        <a href="#reasons">選ばれる理由</a>
+        <a href="#services">サービス</a>
+        <a href="#profile">事務所概要</a>
+        <a href="#access">アクセス</a>
+        <a href="#cta">お問合せ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 清水アンサナ合同事務所 All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

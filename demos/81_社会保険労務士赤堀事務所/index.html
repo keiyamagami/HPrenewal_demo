@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社会保険労務士赤堀事務所 | 東京都北区</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2744;
+      --navy-light: #243461;
+      --gold: #b8973a;
+      --gold-light: #d4af5a;
+      --cream: #f8f6f0;
+      --gray-light: #f2f2f2;
+      --gray: #888;
+      --text: #2c2c2c;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.8;
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(26, 39, 68, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184, 151, 58, 0.3);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+    }
+    .logo-sub {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 10px;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      font-weight: 400;
+    }
+    .logo-main {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 15px;
+      color: var(--white);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+    }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      font-weight: 400;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-light);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+    nav a:hover { color: var(--gold-light); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 9px 20px;
+      border-radius: 2px;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--white) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--navy);
+      padding: 16px 0 24px;
+      border-top: 1px solid rgba(184,151,58,0.2);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 14px 28px;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold-light); background: rgba(255,255,255,0.04); }
+    .mobile-menu .m-cta {
+      margin: 16px 28px 0;
+      background: var(--gold);
+      color: var(--white) !important;
+      text-align: center;
+      border-radius: 2px;
+      border: none;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35) saturate(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(26,39,68,0.7) 0%,
+        rgba(10,15,30,0.5) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 24px;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      padding: 6px 20px;
+      margin-bottom: 28px;
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .hero h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.55;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+
+    .hero-lead {
+      color: rgba(255,255,255,0.82);
+      font-size: clamp(14px, 2vw, 16px);
+      line-height: 2;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      text-decoration: none;
+      padding: 15px 36px;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(184,151,58,0.35);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--white);
+      text-decoration: none;
+      padding: 15px 36px;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      font-weight: 400;
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold-light); background: rgba(184,151,58,0.1); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+      animation: scrollLine 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(0); transform-origin: top; }
+      50% { transform: scaleY(1); transform-origin: top; }
+      51% { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ===== SECTIONS COMMON ===== */
+    section { padding: 96px 24px; }
+    .section-inner { max-width: 1060px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: #555;
+      font-size: 15px;
+      line-height: 2;
+      max-width: 640px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px 0 40px;
+    }
+
+    /* ===== MISSION / GREETING ===== */
+    .mission { background: var(--cream); }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .mission-img {
+      position: relative;
+    }
+    .mission-img img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+    }
+    .mission-img::before {
+      content: '';
+      position: absolute;
+      inset: -12px -12px 12px 12px;
+      border: 2px solid var(--gold);
+      border-radius: 2px;
+      z-index: 0;
+    }
+    .mission-img img { position: relative; z-index: 1; }
+
+    .mission-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mission-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mission-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      color: var(--gold-light);
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .mission-text {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+      padding-top: 7px;
+    }
+
+    /* ===== FEATURES ===== */
+    .features { background: var(--white); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: var(--cream);
+      padding: 40px 32px;
+      border-radius: 2px;
+      border-top: 3px solid var(--gold);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(26,39,68,0.1);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .feature-desc {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.9;
+    }
+
+    /* ===== SERVICES ===== */
+    .services { background: var(--navy); }
+
+    .services .section-title { color: var(--white); }
+    .services .section-desc { color: rgba(255,255,255,0.7); }
+    .services .divider { background: var(--gold); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .service-item {
+      background: rgba(255,255,255,0.04);
+      padding: 36px 32px;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .service-item:hover { background: rgba(184,151,58,0.1); }
+
+    .service-tag {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--white);
+      font-size: 10px;
+      padding: 3px 10px;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+      border-radius: 1px;
+    }
+
+    .service-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px;
+      color: var(--white);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.9;
+    }
+
+    /* ===== NEWS ===== */
+    .news { background: var(--cream); }
+
+    .news-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .news-item {
+      display: flex;
+      gap: 24px;
+      align-items: baseline;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(26,39,68,0.1);
+      text-decoration: none;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .news-item:first-child { border-top: 1px solid rgba(26,39,68,0.1); }
+    .news-item:hover { color: var(--navy); }
+    .news-item:hover .news-title { color: var(--gold); }
+
+    .news-date {
+      flex-shrink: 0;
+      font-size: 12px;
+      color: var(--gray);
+      letter-spacing: 0.08em;
+      font-family: 'Noto Serif JP', serif;
+    }
+
+    .news-cat {
+      flex-shrink: 0;
+      font-size: 10px;
+      background: var(--navy);
+      color: var(--white);
+      padding: 2px 10px;
+      border-radius: 1px;
+      letter-spacing: 0.08em;
+    }
+
+    .news-title {
+      font-size: 14px;
+      line-height: 1.7;
+      transition: color 0.2s;
+    }
+
+    /* ===== ACCESS ===== */
+    .access { background: var(--white); }
+
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .access-info-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid #eee;
+      align-items: flex-start;
+    }
+    .info-row:first-child { border-top: 1px solid #eee; }
+
+    .info-label {
+      flex-shrink: 0;
+      width: 80px;
+      font-size: 12px;
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      padding-top: 2px;
+    }
+
+    .info-value {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .tel-link {
+      display: inline-block;
+      color: var(--navy);
+      text-decoration: none;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-top: 8px;
+    }
+
+    .map-frame {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #ddd;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .cta-box {
+      margin-top: 40px;
+      background: var(--navy);
+      padding: 32px;
+      border-radius: 2px;
+      text-align: center;
+    }
+    .cta-box p {
+      color: rgba(255,255,255,0.75);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .cta-box .btn-primary {
+      display: inline-block;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111827;
+      color: rgba(255,255,255,0.6);
+      padding: 56px 24px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-brand .logo-main { font-size: 17px; }
+
+    .footer-info {
+      margin-top: 16px;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-nav-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-nav-title {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .footer-nav a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(184,151,58,0.15);
+      border: 1px solid rgba(184,151,58,0.3);
+      color: var(--gold-light);
+      font-size: 11px;
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav ul { display: none; }
+      .hamburger { display: flex; }
+
+      .mission-grid { grid-template-columns: 1fr; gap: 48px; }
+      .mission-img::before { display: none; }
+
+      .features-grid { grid-template-columns: 1fr; }
+
+      .services-grid { grid-template-columns: 1fr; }
+
+      .access-grid { grid-template-columns: 1fr; gap: 40px; }
+
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-nav { flex-wrap: wrap; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 72px 20px; }
+      .hero-btns { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+      .news-item { flex-wrap: wrap; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-sub">社会保険労務士・行政書士</span>
+      <span class="logo-main">赤堀事務所</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#about">事務所案内</a></li>
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#news">お知らせ</a></li>
+        <li><a href="#access">アクセス</a></li>
+        <li><a href="#contact" class="nav-cta">無料相談</a></li>
+      </ul>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">事務所案内</a>
+    <a href="#services" onclick="closeMobile()">サービス案内</a>
+    <a href="#news" onclick="closeMobile()">お知らせ</a>
+    <a href="#access" onclick="closeMobile()">アクセス</a>
+    <a href="#contact" class="m-cta" onclick="closeMobile()">無料相談はこちら</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">AKAHORI SR OFFICE · 東京都北区</div>
+    <h1>
+      人事・労務の悩みを、<br>
+      共に解決するパートナー。
+    </h1>
+    <p class="hero-lead">
+      社会保険・労働手続きから就業規則の整備まで、<br>
+      企業の成長と働く人の安心を、専門家として全力でサポートします。
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">無料相談を申し込む</a>
+      <a href="#services" class="btn-outline">サービス一覧を見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ===== MISSION / GREETING ===== -->
+<section class="mission" id="about">
+  <div class="section-inner">
+    <div class="mission-grid">
+      <div class="mission-img">
+        <img
+          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+          alt="赤堀事務所 代表"
+        >
+      </div>
+      <div>
+        <div class="section-label">GREETING</div>
+        <h2 class="section-title">あなたに寄り添う、<br>頼れるパートナーへ</h2>
+        <div class="divider"></div>
+        <p class="section-desc">
+          労働・社会保険の法令は毎年のように変わり、ハラスメントやメンタルヘルスなど
+          職場を取り巻く問題も複雑化しています。当事務所は、労働・社会保険の手続きはもちろん、
+          就業規則や人事制度など社内ルールの整備、職場環境の改善を通じて、
+          貴社の成長・発展を全力でサポートします。
+        </p>
+        <div class="mission-list">
+          <div class="mission-item">
+            <div class="mission-num">1</div>
+            <div class="mission-text">いつでも何でも気軽に相談できるパートナーであること</div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-num">2</div>
+            <div class="mission-text">有益な情報を幅広く提供できるパートナーであること</div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-num">3</div>
+            <div class="mission-text">時には言いにくいことも正直に伝えられるパートナーであること</div>
+          </div>
+          <div class="mission-item">
+            <div class="mission-num">4</div>
+            <div class="mission-text">誰よりも信頼できるパートナーであること</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features">
+  <div class="section-inner">
+    <div class="section-label">FEATURES</div>
+    <h2 class="section-title">選ばれる3つの理由</h2>
+    <div class="divider"></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <div class="feature-title">社労士・行政書士の<br>ワンストップ対応</div>
+        <p class="feature-desc">
+          社会保険労務士と行政書士を併設。労務管理から建設業などの許認可まで、複数の専門家に相談する手間なく、一か所でご対応します。
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-title">中小企業に寄り添う<br>きめ細かいサポート</div>
+        <p class="feature-desc">
+          「どうしよう」と感じたらすぐにご連絡ください。電話やメールで迅速に対応し、経営者の方が本業に集中できる環境づくりをお手伝いします。
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">最新法令に対応した<br>実務サポート</div>
+        <p class="feature-desc">
+          36協定・ストレスチェックの義務化、雇用保険の適用拡大など、最新の法改正情報をいち早くキャッチし、貴社に必要な対応をご提案します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-label">SERVICES</div>
+    <h2 class="section-title">サービス案内</h2>
+    <div class="divider"></div>
+    <p class="section-desc">
+      人事・労務に関するあらゆるご相談に対応しています。
+    </p>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-tag">労働保険・社会保険</div>
+        <div class="service-name">各種届出・手続き代行</div>
+        <p class="service-desc">
+          入退社手続き、社会保険・労働保険の加入・変更・喪失届、給付申請まで、煩雑な行政手続きをまとめてお任せください。
+        </p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">就業規則</div>
+        <div class="service-name">就業規則・社内規程の作成・整備</div>
+        <p class="service-desc">
+          法令改正に対応した就業規則の新規作成・見直し。ハラスメント防止規程や育児・介護休業規程など各種附属規程も対応します。
+        </p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">人事制度</div>
+        <div class="service-name">賃金・評価制度の構築</div>
+        <p class="service-desc">
+          賃金体系の整理・設計から人事評価制度の構築まで。社員のモチベーション向上と適正な処遇を両立する仕組みをご提案します。
+        </p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">助成金</div>
+        <div class="service-name">助成金申請サポート</div>
+        <p class="service-desc">
+          雇用関係助成金・キャリアアップ助成金など、受給可能な助成金の診断から申請書類作成・申請まで一貫してサポートします。
+        </p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">労務相談</div>
+        <div class="service-name">ハラスメント・メンタルヘルス対応</div>
+        <p class="service-desc">
+          職場のハラスメント防止体制の整備、ストレスチェック制度の導入・運用、労働問題が発生した際の対応方針をアドバイスします。
+        </p>
+      </div>
+      <div class="service-item">
+        <div class="service-tag">行政書士</div>
+        <div class="service-name">各種許認可申請（行政書士業務）</div>
+        <p class="service-desc">
+          建設業許可・産廃業許可をはじめとする各種許認可の新規申請・更新・変更届を行政書士として対応します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWS ===== -->
+<section class="news" id="news">
+  <div class="section-inner">
+    <div class="section-label">NEWS</div>
+    <h2 class="section-title">人事労務ニュース</h2>
+    <div class="divider"></div>
+    <div class="news-list">
+      <a href="#" class="news-item">
+        <span class="news-date">2026.04.28</span>
+        <span class="news-cat">労務情報</span>
+        <span class="news-title">女性の健康支援に取り組む企業への新たな認定制度について</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2026.04.21</span>
+        <span class="news-cat">36協定</span>
+        <span class="news-title">36協定を遵守するための実務上の注意点</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2026.04.14</span>
+        <span class="news-cat">賃金管理</span>
+        <span class="news-title">改めて確認したい賃金台帳の備え付け義務とは</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2026.04.07</span>
+        <span class="news-cat">社会保険</span>
+        <span class="news-title">変更となる健康保険の被扶養者の認定基準とその判断</span>
+      </a>
+      <a href="#" class="news-item">
+        <span class="news-date">2026.03.31</span>
+        <span class="news-cat">雇用保険</span>
+        <span class="news-title">2026年度から引下げとなる雇用保険料率と今後施行される適用拡大</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACCESS ===== -->
+<section class="access" id="access">
+  <div class="section-inner">
+    <div class="section-label">ACCESS</div>
+    <h2 class="section-title">アクセス・お問合せ</h2>
+    <div class="divider"></div>
+    <div class="access-grid">
+      <div>
+        <div class="access-info-block">
+          <div class="info-row">
+            <div class="info-label">事務所名</div>
+            <div class="info-value">社会保険労務士・行政書士<br><strong>赤堀事務所</strong></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">所在地</div>
+            <div class="info-value">〒114-0033<br>東京都北区中十条2-12-1-401</div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">電話</div>
+            <div class="info-value">
+              <a href="tel:0359484121" class="tel-link">03-5948-4121</a>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">対応時間</div>
+            <div class="info-value">平日 9:00〜18:00<br><span style="font-size:12px;color:#888">※ご予約の上ご来所ください</span></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">アクセス</div>
+            <div class="info-value">JR京浜東北線「十条駅」より徒歩約5分</div>
+          </div>
+        </div>
+        <div class="cta-box" id="contact">
+          <p>初回相談は無料です。お気軽にお問合せください。</p>
+          <a href="mailto:info@akahori-sr.jp" class="btn-primary">メールでお問合せ</a>
+        </div>
+      </div>
+      <div>
+        <div class="map-frame">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.7!2d139.7265!3d35.7731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018921b7e3f5c41%3A0x!2z5Lit5Y-k5omA5YyW5Yy65LiB5Y-k5YyX2-12-1!5e0!3m2!1sja!2sjp!4v1"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="赤堀事務所 地図"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="logo">
+          <span class="logo-sub">社会保険労務士・行政書士</span>
+          <span class="logo-main">赤堀事務所</span>
+        </a>
+        <div class="footer-info">
+          〒114-0033 東京都北区中十条2-12-1-401<br>
+          TEL：03-5948-4121<br>
+          平日 9:00〜18:00
+        </div>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">MENU</div>
+          <a href="#about">事務所案内</a>
+          <a href="#services">サービス案内</a>
+          <a href="#news">お知らせ</a>
+          <a href="#access">アクセス</a>
+          <a href="#contact">お問合せ</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-title">SERVICE</div>
+          <a href="#services">労働・社会保険手続</a>
+          <a href="#services">就業規則・社内規程</a>
+          <a href="#services">人事制度構築</a>
+          <a href="#services">助成金申請</a>
+          <a href="#services">許認可申請</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 社会保険労務士・行政書士 赤堀事務所. All rights reserved.</span>
+      <div class="footer-badge">
+        <span>⚖</span>
+        社会保険労務士登録事務所
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMobile() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  // header shrink on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 60) {
+      header.style.borderBottomColor = 'rgba(184,151,58,0.5)';
+    } else {
+      header.style.borderBottomColor = 'rgba(184,151,58,0.3)';
+    }
+  });
+</script>
+</body>
+</html>

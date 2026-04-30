@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フィナン・コンサルティング | 社会保険労務士 佐藤良道</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1a2e4a;
+    --navy-light: #2a4a72;
+    --gold: #b8933a;
+    --gold-light: #d4aa55;
+    --cream: #f8f5ef;
+    --text: #2c2c2c;
+    --text-light: #666;
+    --white: #ffffff;
+    --border: #e0d9ce;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.8;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Noto Serif JP', serif;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(26, 46, 74, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(184, 147, 58, 0.3);
+    transition: all 0.3s;
+  }
+
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+  }
+
+  .logo-main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .logo-sub {
+    font-size: 0.65rem;
+    color: var(--gold-light);
+    letter-spacing: 0.15em;
+    font-weight: 300;
+  }
+
+  nav { display: flex; align-items: center; gap: 32px; }
+
+  nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    transition: color 0.2s;
+    font-weight: 400;
+    padding: 4px 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  nav a:hover {
+    color: var(--gold-light);
+    border-bottom-color: var(--gold-light);
+  }
+
+  .header-tel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .header-tel svg { width: 14px; height: 14px; fill: var(--gold-light); }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s;
+    border-radius: 2px;
+  }
+
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: var(--navy);
+    padding: 24px;
+    z-index: 999;
+    border-top: 1px solid rgba(184,147,58,0.2);
+  }
+
+  .mobile-menu.open { display: block; }
+
+  .mobile-menu a {
+    display: block;
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    letter-spacing: 0.08em;
+  }
+
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  .mobile-tel {
+    display: block;
+    color: var(--gold-light) !important;
+    font-size: 1.1rem !important;
+    font-weight: 500;
+    margin-top: 8px;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26,46,74,0.75) 0%, rgba(26,46,74,0.45) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    padding-top: 68px;
+  }
+
+  .hero-label {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    color: var(--white);
+    line-height: 1.45;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+
+  .hero h1 em {
+    display: block;
+    font-style: normal;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    margin-bottom: 40px;
+    font-weight: 300;
+    line-height: 2;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    transition: all 0.3s;
+    border: 2px solid var(--gold);
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 36px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    border: 2px solid rgba(255,255,255,0.6);
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ===== SECTION COMMON ===== */
+  section { padding: 96px 24px; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .section-en {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-ja {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    color: var(--navy);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+  }
+
+  .section-divider {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 20px auto 0;
+  }
+
+  /* ===== ABOUT ===== */
+  .about { background: var(--cream); }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-photo {
+    position: relative;
+  }
+
+  .about-photo img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-photo-frame {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: 12px;
+    bottom: 12px;
+    border: 2px solid var(--gold);
+    z-index: -1;
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: -16px;
+    right: -16px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  .about-badge-num {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .about-badge-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .about-text .section-header {
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  .about-philosophy {
+    background: var(--navy);
+    color: var(--white);
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .about-philosophy p {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    line-height: 1.9;
+  }
+
+  .about-body {
+    font-size: 0.92rem;
+    color: var(--text-light);
+    line-height: 2;
+    margin-bottom: 20px;
+  }
+
+  .about-mba {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(184,147,58,0.1);
+    border: 1px solid var(--gold);
+    padding: 12px 20px;
+    margin-top: 8px;
+  }
+
+  .about-mba-icon {
+    font-size: 1.3rem;
+  }
+
+  .about-mba-text {
+    font-size: 0.8rem;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  /* ===== FEATURES ===== */
+  .features { background: var(--white); }
+
+  .features-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .feature-card {
+    background: var(--white);
+    padding: 48px 36px;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card:hover { background: var(--cream); }
+
+  .feature-icon {
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 1.8rem;
+  }
+
+  .feature-number {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .feature-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+
+  .feature-body {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.9;
+  }
+
+  /* ===== SERVICES ===== */
+  .services { background: var(--navy); }
+
+  .services .section-ja { color: var(--white); }
+
+  .services-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 40px 36px;
+    transition: all 0.3s;
+    position: relative;
+  }
+
+  .service-card:hover {
+    background: rgba(255,255,255,0.09);
+    border-color: rgba(184,147,58,0.5);
+    transform: translateY(-4px);
+  }
+
+  .service-card-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+
+  .service-card-title {
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 16px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  .service-card-body {
+    font-size: 0.87rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 2;
+  }
+
+  .service-card-points {
+    margin-top: 16px;
+    list-style: none;
+  }
+
+  .service-card-points li {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .service-card-points li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ===== NEWS ===== */
+  .news { background: var(--cream); }
+
+  .news-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .news-list { list-style: none; }
+
+  .news-item {
+    display: flex;
+    gap: 24px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+
+  .news-item:first-child { border-top: 1px solid var(--border); }
+
+  .news-date {
+    flex-shrink: 0;
+    color: var(--gold);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    font-size: 0.82rem;
+    width: 100px;
+  }
+
+  .news-tag {
+    flex-shrink: 0;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 0.65rem;
+    padding: 3px 10px;
+    letter-spacing: 0.08em;
+    align-self: center;
+  }
+
+  .news-text { color: var(--text); line-height: 1.7; }
+
+  /* ===== ACCESS ===== */
+  .access { background: var(--white); }
+
+  .access-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .access-info h3 {
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--gold);
+    font-weight: 600;
+  }
+
+  .access-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 32px;
+  }
+
+  .access-table tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .access-table th {
+    width: 110px;
+    padding: 16px 0;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-align: left;
+    letter-spacing: 0.05em;
+    vertical-align: top;
+  }
+
+  .access-table td {
+    padding: 16px 0;
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .access-tel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.05em;
+  }
+
+  .access-tel-link:hover { color: var(--gold); }
+
+  .access-map {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border: 0;
+    filter: grayscale(20%);
+  }
+
+  .contact-box {
+    background: var(--navy);
+    color: var(--white);
+    padding: 28px 32px;
+    margin-top: 24px;
+  }
+
+  .contact-box p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .contact-box .btn-primary {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #0e1c2f;
+    color: rgba(255,255,255,0.7);
+    padding: 48px 24px 32px;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-brand { max-width: 320px; }
+
+  .footer-name {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  .footer-name-en {
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .footer-desc {
+    font-size: 0.8rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.55);
+  }
+
+  .footer-nav {
+    display: flex;
+    gap: 48px;
+  }
+
+  .footer-nav-group h4 {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .footer-nav-group a {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-nav-group a:hover { color: var(--gold-light); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== CTA BANNER ===== */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, #9a7028 100%);
+    padding: 64px 24px;
+    text-align: center;
+  }
+
+  .cta-banner h2 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .cta-banner p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+  }
+
+  .cta-tel {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav, .header-tel { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-content { padding: 0 24px; padding-top: 68px; }
+    .hero h1 { font-size: 1.8rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-photo { max-width: 360px; }
+    .about-text .section-header { text-align: center; }
+    .about-text .section-divider { margin: 20px auto 0; }
+    .about-philosophy { text-align: center; }
+
+    .features-grid { grid-template-columns: 1fr; gap: 2px; }
+
+    .services-grid { grid-template-columns: 1fr; }
+
+    .access-inner { grid-template-columns: 1fr; gap: 40px; }
+
+    .footer-top { flex-direction: column; gap: 40px; }
+    .footer-nav { flex-wrap: wrap; gap: 32px; }
+
+    section { padding: 64px 24px; }
+  }
+
+  @media (max-width: 540px) {
+    .hero { min-height: 100svh; }
+    .hero-cta { flex-direction: column; }
+    .btn-primary, .btn-outline { text-align: center; }
+
+    .news-item { flex-wrap: wrap; gap: 8px; }
+    .news-date { width: auto; }
+
+    .cta-tel { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <span class="logo-main">フィナン・コンサルティング</span>
+      <span class="logo-sub">Finan Consulting ｜ SR. 佐藤良道</span>
+    </a>
+    <nav>
+      <a href="#about">代表紹介</a>
+      <a href="#features">強み</a>
+      <a href="#services">サービス</a>
+      <a href="#news">お知らせ</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <a href="tel:09092453514" class="header-tel">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      090-9245-3514
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">代表紹介</a>
+  <a href="#features" onclick="closeMobile()">強み</a>
+  <a href="#services" onclick="closeMobile()">サービス</a>
+  <a href="#news" onclick="closeMobile()">お知らせ</a>
+  <a href="#access" onclick="closeMobile()">アクセス・お問い合わせ</a>
+  <a href="tel:09092453514" class="mobile-tel">📞 090-9245-3514</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">社会保険労務士 ／ 経営コンサルタント</div>
+    <h1>
+      中小企業への<br>
+      <em>知識と経験で</em>
+      恩返しをする。
+    </h1>
+    <p class="hero-sub">
+      助成金・年金相談をはじめ、40年の金融実務と<br>
+      経営学修士（MBA）の知識で、あなたの経営を支援します。
+    </p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">サービスを見る</a>
+      <a href="#access" class="btn-outline">無料相談のお申込み</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-grid">
+      <div class="about-photo">
+        <div class="about-photo-frame"></div>
+        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=80" alt="佐藤良道 代表">
+        <div class="about-badge">
+          <span class="about-badge-num">4,000+</span>
+          <span class="about-badge-label">相談実績件数</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-header">
+          <span class="section-en">About</span>
+          <h2 class="section-ja">代表者ご挨拶</h2>
+          <span class="section-divider"></span>
+        </div>
+        <div class="about-philosophy">
+          <p>「私の理念は<br>　中小企業への<em style="font-style:normal;color:var(--gold-light);">恩返し</em>です。」</p>
+        </div>
+        <p class="about-body">
+          40年にわたるサラリーマン人生を終え、現在、社会保険労務士業を中心に経営コンサルタント業務を行っております。勤務先である信用金庫を通してお世話になった中小企業の方々へ、培った知識・ノウハウを活かし、発展に寄与したいと考えております。
+        </p>
+        <p class="about-body">
+          得意なものは、相談と講師業務です。特に、知らないと損をする<strong>助成金・年金相談</strong>には自信があります。各金融機関、公的機関等での講師実績も豊富で、「コトバに抑揚があり分かりやすい」との評価をいただいております。
+        </p>
+        <div class="about-mba">
+          <span class="about-mba-icon">🎓</span>
+          <span class="about-mba-text">2025年3月　明治大学大学院 経営学修士（MBA）取得<br>喜寿（77歳）での修士課程修了</span>
+        </div>
+        <p style="margin-top:20px;font-size:0.9rem;color:var(--navy);font-weight:500;text-align:right;font-family:'Noto Serif JP',serif;">
+          フィナン・コンサルティング　代表<br>
+          社会保険労務士　佐藤 良道
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-inner">
+    <div class="section-header">
+      <span class="section-en">Our Strength</span>
+      <h2 class="section-ja">フィナン・コンサルティングの強み</h2>
+      <span class="section-divider"></span>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <span class="feature-number">01</span>
+        <h3 class="feature-title">知らないと損する<br>助成金申請</h3>
+        <p class="feature-body">もらえる資格があるのに見過ごしている企業が多数あります。あなたの企業が対象かどうか、すぐに診断いたします。申請から受給まで丁寧にサポートします。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <span class="feature-number">02</span>
+        <h3 class="feature-title">分かりやすく解説<br>年金相談</h3>
+        <p class="feature-body">年金は難しいといわれますが、一人ひとりの状況に合わせて分かりやすく説明し、納得していただけるよう丁寧に対応します。個人・法人を問わずご相談ください。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎤</div>
+        <span class="feature-number">03</span>
+        <h3 class="feature-title">出前相談・セミナー<br>講師業務</h3>
+        <p class="feature-body">ユーモアと分かりやすさをモットーに、相談会やセミナーを承ります。各金融機関・公的機関での講師実績多数。年間71回の登壇実績（2013年）を誇ります。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="section-header">
+      <span class="section-en">Services</span>
+      <h2 class="section-ja">サービスのご案内</h2>
+      <span class="section-divider"></span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-card-tag">SUBSIDY</span>
+        <h3 class="service-card-title">助成金申請サポート</h3>
+        <p class="service-card-body">国や自治体から支給される助成金は、知らずに見過ごされているケースが多くあります。専門家として最適な助成金を選定し、申請から受給までサポートします。</p>
+        <ul class="service-card-points">
+          <li>雇用関係助成金の診断・申請</li>
+          <li>キャリアアップ助成金</li>
+          <li>働き方改革推進支援助成金</li>
+          <li>人材開発支援助成金</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-card-tag">PENSION</span>
+        <h3 class="service-card-title">年金相談</h3>
+        <p class="service-card-body">複雑な年金制度をわかりやすく解説します。受給開始時期の検討から、繰り上げ・繰り下げ受給のシミュレーションまで、個別にアドバイスいたします。</p>
+        <ul class="service-card-points">
+          <li>老齢年金・障害年金・遺族年金</li>
+          <li>年金受給額のシミュレーション</li>
+          <li>在職老齢年金の確認</li>
+          <li>各種年金手続きサポート</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-card-tag">LABOR</span>
+        <h3 class="service-card-title">社会保険・労務管理</h3>
+        <p class="service-card-body">社会保険の加入手続きから給与計算、就業規則の作成・見直しまで、企業の労務管理全般をトータルでサポートします。</p>
+        <ul class="service-card-points">
+          <li>社会保険・労働保険手続き</li>
+          <li>就業規則の作成・改訂</li>
+          <li>給与計算アウトソーシング</li>
+          <li>労務相談・コンサルティング</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-card-tag">SEMINAR</span>
+        <h3 class="service-card-title">セミナー・研修講師</h3>
+        <p class="service-card-body">金融機関・公的機関・各種団体への出張セミナーを承ります。「年収の壁」「リカレント教育」「事業承継」「働き方改革」など、幅広いテーマに対応します。</p>
+        <ul class="service-card-points">
+          <li>助成金・補助金活用セミナー</li>
+          <li>年金・ライフプラン講座</li>
+          <li>働き方改革・就業規則研修</li>
+          <li>事業承継・経営相談</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="news" id="news">
+  <div class="news-inner">
+    <div class="section-header">
+      <span class="section-en">News &amp; Activities</span>
+      <h2 class="section-ja">お知らせ・活動情報</h2>
+      <span class="section-divider"></span>
+    </div>
+    <ul class="news-list">
+      <li class="news-item">
+        <span class="news-date">2025.04.05</span>
+        <span class="news-tag">講師</span>
+        <span class="news-text">ライフプラン懇話会「学び直しと私ー喜寿から修士課程への挑戦」の講師を務めました</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2025.03.28</span>
+        <span class="news-tag">講師</span>
+        <span class="news-text">王子法人会セミナー「年収の壁セミナー」の講師を務めました</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2025.03.26</span>
+        <span class="news-tag">資格</span>
+        <span class="news-text">明治大学大学院経営学研究科を卒業し、経営学修士（MBA）を取得しました</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2024.01.15</span>
+        <span class="news-tag">受賞</span>
+        <span class="news-text">社会保険労務士会より感謝状を頂きました</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2023.04.01</span>
+        <span class="news-tag">入学</span>
+        <span class="news-text">明治大学大学院経営学研究科博士課程前期に入学しました</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2021.03.25</span>
+        <span class="news-tag">資格</span>
+        <span class="news-text">中央大学法学部通信教育課程を苦難を乗り越え卒業しました</span>
+      </li>
+      <li class="news-item">
+        <span class="news-date">2019.01.31</span>
+        <span class="news-tag">受賞</span>
+        <span class="news-text">実績が認められ、東京都社労士会から感謝状をいただきました</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>助成金の無料診断、承ります</h2>
+  <p>あなたの会社が対象かどうか、まずはお電話でお気軽にご相談ください。</p>
+  <a href="tel:09092453514" class="cta-tel">
+    📞 090-9245-3514
+  </a>
+  <br>
+  <p style="font-size:0.8rem;color:rgba(255,255,255,0.8);">受付時間：平日 9:00〜17:00</p>
+</div>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="access-inner">
+    <div class="access-info">
+      <h3>アクセス・お問い合わせ</h3>
+      <table class="access-table">
+        <tr>
+          <th>事務所名</th>
+          <td>フィナン・コンサルティング</td>
+        </tr>
+        <tr>
+          <th>代表者</th>
+          <td>社会保険労務士　佐藤 良道</td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>〒114-0002<br>東京都北区堀船3-32-12<br>サニーテンダー303</td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td>
+            <a href="tel:09092453514" class="access-tel-link">
+              090-9245-3514
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <th>対応時間</th>
+          <td>平日 9:00〜17:00<br><span style="font-size:0.8rem;color:var(--text-light);">※土日・祝日は要相談</span></td>
+        </tr>
+      </table>
+      <div class="contact-box">
+        <p>助成金の無料診断や各種ご相談は、お電話にてお気軽にお申し込みください。出前相談・セミナーのご依頼もお待ちしております。</p>
+        <a href="tel:09092453514" class="btn-primary">📞 今すぐ電話で相談する</a>
+      </div>
+    </div>
+    <div>
+      <iframe
+        class="access-map"
+        src="https://maps.google.com/maps?q=東京都北区堀船3-32-12&output=embed&hl=ja"
+        allowfullscreen=""
+        loading="lazy"
+        title="フィナン・コンサルティング アクセスマップ">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="footer-name">フィナン・コンサルティング</p>
+        <span class="footer-name-en">Finan Consulting</span>
+        <p class="footer-desc">
+          社会保険労務士・経営コンサルタント 佐藤良道が、中小企業の皆様の助成金・年金・労務管理をサポートします。40年の金融実務とMBAの知識で、あなたのビジネスに貢献いたします。
+        </p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-group">
+          <h4>MENU</h4>
+          <a href="#about">代表者紹介</a>
+          <a href="#features">強み・特徴</a>
+          <a href="#services">サービス案内</a>
+          <a href="#news">お知らせ</a>
+          <a href="#access">アクセス</a>
+        </div>
+        <div class="footer-nav-group">
+          <h4>CONTACT</h4>
+          <a href="tel:09092453514">090-9245-3514</a>
+          <a href="#access">無料相談申込み</a>
+          <a href="#access">セミナー依頼</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>〒114-0002 東京都北区堀船3-32-12 サニーテンダー303</span>
+      <span>Copyright © 2025 Finan Consulting. All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+
+  function closeMobile() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  }
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+      closeMobile();
+    }
+  });
+</script>
+</body>
+</html>
